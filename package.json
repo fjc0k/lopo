@@ -1,0 +1,30 @@
+{
+  "name": "lopo",
+  "version": "0.0.1",
+  "description": "一款基于 Vue 的精选移动端 UI 组件库。",
+  "main": "src/index.js",
+  "repository": "https://github.com/fjc0k/lopo.git",
+  "author": "Jay Fong <fjc0kb@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "poi"
+  },
+  "devDependencies": {
+    "@lopo/eslint-config-lopo": "^0.0.3",
+    "eslint": "^5.1.0",
+    "lerna": "^2.11.0",
+    "poi": "^10.2.9",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "@lopo/lopo"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.16"
+  },
+  "dependencies": {
+    "vue-messenger": "^2.3.3"
+  }
+}

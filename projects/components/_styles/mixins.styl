@@ -1,0 +1,112 @@
+@require './variables';
+
+// 字符串宽度溢出显示省略号
+ellipsis($line = 1) {
+  if $line == 1 {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  } else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+// 字符串换行
+text-wrap() {
+  overflow-wrap: break-word;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+// 样式重置
+reset($type) {
+  if $type == font {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    color: $color-text-paragraph;
+  } else if $type == box-model {
+    box-sizing: border-box;
+    background-clip: padding-box;
+  } else if $type == base {
+    reset(font);
+    reset(box-model);
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    resize: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  } else if $type == input {
+    reset(base);
+    line-height: inherit;
+    &::placeholder {
+      color: $color-text-placeholder;
+    }
+  }
+}
+
+// 禁用状态
+disabled() {
+  opacity: $opacity-disabled;
+  pointer-events: none;
+}
+
+// flex 行
+flex-row($justify = initial, $align = center) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// flex 列
+flex-col($align = initial, $justify = space-between) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// flex 居中
+flex-center($type) {
+  display: ($type == inline ? inline-flex : flex);
+  align-items: center;
+  justify-content: center;
+}
+
+// 透明遮罩
+transparent-mask() {
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+// 大小
+size($size) {
+  width: $size;
+  height: $size;
+}

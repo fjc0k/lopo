@@ -1,0 +1,42 @@
+{
+  "name": "@lopo/eslint-config-lopo",
+  "version": "0.0.3",
+  "description": "ESLint config for Lopo.",
+  "main": "src/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/fjc0k/lopo",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "lopo",
+    "eslint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fjc0k/lopo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fjc0k/lopo/issues"
+  },
+  "author": {
+    "name": "Jay Fong",
+    "email": "fjc0kb@gmail.com",
+    "url": "https://github.com/fjc0k"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint-config-xo": "^0.23.0",
+    "eslint-plugin-vue": "^4.7.0"
+  },
+  "peerDependencies": {
+    "eslint": "^5.1.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "./src/index.js"
+  }
+}
