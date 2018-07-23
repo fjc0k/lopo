@@ -15,15 +15,20 @@
       4
     </l-choose>
     <l-choose shape="circle" v-model="chosenValueAgree" :value="false" />
+    <hr />
+    <l-input disabled clearable type="textarea" placeholder="helllo" v-model="inputText" />
   </div>
 </template>
 
 <script>
 export default {
+  name: 'app',
+
   data: () => ({
     w: window,
     chosenValue: 1,
-    chosenValueAgree: false
+    chosenValueAgree: false,
+    inputText: 'hello'
   })
 }
 </script>

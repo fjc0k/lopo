@@ -1,0 +1,40 @@
+@require '../settings';
+
+$clearer-size = 17px;
+
+.input {
+  display: flex;
+  align-items: center;
+}
+
+// 真正的输入器
+.holder {
+  reset: input;
+  width: 100%;
+}
+
+// 清空图标
+.clearer {
+  reset: box-model;
+  position: relative;
+  margin: 0 $h-spacing-sm;
+  size: $clearer-size;
+  background: $color-text-placeholder;
+  border-radius: $clearer-size;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 1px;
+    top: (($clearer-size - 10) / 2);
+    left: (($clearer-size - 1) / 2);
+    background-color: white;
+    z-index: 1;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
