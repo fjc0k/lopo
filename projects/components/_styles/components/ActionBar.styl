@@ -5,7 +5,7 @@
 }
 
 .bar {
-  reset: font;
+  reset: base;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -13,5 +13,11 @@
   display: flex;
   align-items: center;
   height: $action-bar-height;
-  background: #ccc;
+  background: white;
+  z-index: 1;
+  font-size: $font-size-caption;
+  border-top: 1PX solid $color-line-light;
+  &.borderless {
+    border-top: none;
+  }
 }

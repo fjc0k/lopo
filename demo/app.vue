@@ -18,7 +18,15 @@
     <hr />
     <l-input clearable type="textarea" placeholder="helllo" v-model="inputText" />
     <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
-    <l-action-bar />
+    <l-action-bar borderless>
+      合计：¥20.00
+      <l-ActionBarButton type="warning" @click="w.alert(111)">
+        加入购物车
+      </l-ActionBarButton>
+      <l-ActionBarButton type="danger" @click="w.alert(111)">
+        立即购买
+      </l-ActionBarButton>
+    </l-action-bar>
   </div>
 </template>
 
@@ -34,3 +42,9 @@ export default {
   })
 }
 </script>
+
+<style>
+body {
+  font-size: 24px;
+}
+</style>
