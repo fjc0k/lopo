@@ -16,7 +16,7 @@
     </l-choose>
     <l-choose shape="circle" v-model="chosenValueAgree" :value="false" />
     <hr />
-    <l-input disabled clearable type="textarea" placeholder="helllo" v-model="inputText" />
+    <l-input clearable type="textarea" placeholder="helllo" v-model="inputText" />
   </div>
 </template>
 

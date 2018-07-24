@@ -27,7 +27,7 @@
   size: $choose-size;
   border: 1PX solid $color-line-dark;
   &.circle {
-    border-radius: $choose-size;
+    border-radius: $radius-circle;
   }
   &:after {
     reset: box-model;
@@ -43,9 +43,8 @@
     border-color: currentColor;
     &.radio {
       &:after {
-        width: 10px;
-        height: 10px;
-        border-radius: 10px;
+        size: 8px;
+        border-radius: $radius-circle;
         background-color: currentColor;
       }
       &.square:after {
