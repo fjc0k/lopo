@@ -8,6 +8,19 @@
       返回
     </l-button>
     <hr />
+    <l-list >
+      <l-list-item>
+        <l-image slot="icon" style="width:24px"  src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
+        hello
+      </l-list-item>
+      <l-list-item desc="hello" extra="方剑成">姓名</l-list-item>
+      <l-list-item desc="hello" extra="方剑成">姓名</l-list-item>
+      <l-list-item extra="ffffffffffffdddddddddddddddffddddddddddddddd">
+        年龄
+      </l-list-item>
+
+    </l-list>
+    <hr />
     <l-choose shape="square" v-model="chosenValue" :value="[2]" />
     <l-choose v-model="chosenValue" :value="{}" />
     <l-choose v-model="chosenValue" value="8999">

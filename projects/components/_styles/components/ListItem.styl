@@ -1,0 +1,68 @@
+@require '../settings';
+
+.item {
+  reset: base;
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  .icon {
+    display: flex;
+    align-items: center;
+    margin-left: $h-spacing-md;
+    font-size: $font-size-caption;
+  }
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-left: $h-spacing-md;
+
+  .item:not(:last-child) & {
+    border-bottom: 1PX solid $color-line-light;
+  }
+
+  .center {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+    .title {
+      flex-basis: 100%;
+      font-size: $font-size-heading;
+    }
+    .desc {
+      font-size: $font-size-base;
+      flex-basis: 100%;
+      color: $color-text-caption;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    .extra {
+      flex: 1;
+      font-size: $font-size-caption;
+      color: $color-text-caption;
+      text-wrap: true;
+    }
+    .chevron {
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      border-width: 2px 2px 0 0;
+      border-color: $color-line-dark;
+      border-style: solid;
+      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+      margin-left: $h-spacing-xs;
+      margin-right: $h-spacing-md;
+    }
+  }
+}
