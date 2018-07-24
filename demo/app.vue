@@ -18,6 +18,7 @@
     <hr />
     <l-input clearable type="textarea" placeholder="helllo" v-model="inputText" />
     <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
+    <l-action-bar />
   </div>
 </template>
 

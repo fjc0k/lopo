@@ -45,9 +45,9 @@ export default createComponent({
       $listeners
     } = this
 
-    return h('div', { class: _.input }, [
+    return h('div', { class: _.holder }, [
       h(tag, {
-        class: _.holder,
+        class: _.input,
         attrs: {
           ...$attrs,
           type,
