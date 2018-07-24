@@ -17,6 +17,7 @@
     <l-choose shape="circle" v-model="chosenValueAgree" :value="false" />
     <hr />
     <l-input clearable type="textarea" placeholder="helllo" v-model="inputText" />
+    <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
   </div>
 </template>
 
