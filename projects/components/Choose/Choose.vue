@@ -35,17 +35,7 @@ export default createComponent({
     value: null,
     type: {
       type: String,
-      enum: ['auto', 'radio', 'checkbox', 'agree'],
-      transform(type) {
-        if (type === 'auto') {
-          return Array.isArray(this.chosenValue)
-            ? 'checkbox'
-            : typeof this.chosenValue === 'boolean'
-              ? 'agree'
-              : 'radio'
-        }
-        return type
-      }
+      enum: ['auto', 'radio', 'checkbox', 'agree']
     },
     shape: {
       type: String,
@@ -55,15 +45,24 @@ export default createComponent({
   },
 
   computed: {
+    localType() {
+      return this.type === 'auto'
+        ? (
+          Array.isArray(this.chosenValue)
+            ? 'checkbox'
+            : typeof this.chosenValue === 'boolean'
+              ? 'agree'
+              : 'radio'
+        )
+        : this.type
+    },
     nativeType() {
       return this.localType === 'radio' ? 'radio' : 'checkbox'
     },
     localShape() {
-      const { localType, shape } = this
-      if (shape === 'auto') {
-        return localType === 'radio' ? 'circle' : 'square'
-      }
-      return shape
+      return this.shape === 'auto'
+        ? (this.localType === 'radio' ? 'circle' : 'square')
+        : this.shape
     },
     localValue() {
       return this.localType === 'agree' ? true : this.value
