@@ -45,6 +45,6 @@ export default {
 
 <style>
 body {
-  font-size: 24px;
+  font-size: 30px;
 }
 </style>
