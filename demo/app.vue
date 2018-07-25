@@ -13,7 +13,7 @@
         <l-image slot="icon" style="width:24px"  src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
         hello
       </l-list-item>
-      <l-list-item title="姓名" desc="hello" extra="方剑成">姓名</l-list-item>
+      <l-list-item icon="lopo-fail" title="已验证" extra="是"></l-list-item>
       <l-list-item  title="姓名" isLink desc="hello" extra="方剑成">姓名</l-list-item>
       <l-list-item title="年龄" extra="ffffffffffffdddddddddddddddffddddddddddddddd">
       </l-list-item>

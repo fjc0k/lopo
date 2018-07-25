@@ -8,7 +8,7 @@
     <div :class="_.left" v-if="$slots.icon || icon">
       <div :class="_.icon">
         <slot name="icon">
-          {{ icon }}
+          <Icon :name="icon" />
         </slot>
       </div>
     </div>
@@ -44,9 +44,12 @@
 
 <script>
 import { createComponent } from '../_utils'
+import Icon from '../Icon/Icon.vue'
 
 export default createComponent({
   name: 'ListItem',
+
+  components: { Icon },
 
   props: {
     icon: null,
