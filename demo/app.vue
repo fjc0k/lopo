@@ -4,6 +4,7 @@
     <l-button shape="circle" mini>
       <l-icon name="github" />
     </l-button>
+    <l-rate value="3" count="10" />
     <l-button type="danger" shape="square" mini @click="handleClick">
       返回
     </l-button>
