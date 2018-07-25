@@ -16,7 +16,10 @@ export default createComponent({
   },
 
   add(symbol) {
-    icons.push(symbol)
+    const symbols = Array.isArray(symbol) ? symbol : [symbol]
+    symbols.forEach(symbol => {
+      icons.push(symbol)
+    })
   },
 
   beforeMount() {

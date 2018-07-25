@@ -2,6 +2,7 @@ import * as components from './components'
 import * as services from './services'
 
 export default {
+  addIcon: components.Icon.add,
   install(Vue) {
     Object.keys(components).forEach(componentName => {
       const component = components[componentName]

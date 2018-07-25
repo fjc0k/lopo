@@ -1,8 +1,8 @@
 <template>
   <div>
     hello
-    <l-button type="primary" shape="circle" mini>
-      X
+    <l-button shape="circle" mini>
+      <l-icon name="github" />
     </l-button>
     <l-button type="danger" shape="square" mini @click="handleClick">
       返回
