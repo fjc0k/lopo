@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Lopo from '../projects/components'
+import Lopo from '../src'
 import App from './app.vue'
 
 Vue.use(Lopo)

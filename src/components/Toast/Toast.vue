@@ -74,6 +74,26 @@ export default createComponent({
             ? 'lopo-fail'
             : null
     }
+  },
+
+  methods: {
+    timing(visible) {
+      if (visible) {
+        const { duration } = this
+        if (duration > 0) {
+          this.timer = setTimeout(this.hide, duration)
+        }
+      } else {
+        clearTimeout(this.timer)
+      }
+    }
+  },
+
+  mounted() {
+    this.$watch('localVisible', {
+      immediate: true,
+      handler: this.timing
+    })
   }
 })
 </script>

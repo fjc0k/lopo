@@ -4,7 +4,10 @@
     <l-button type="primary" shape="circle" mini>
       X
     </l-button>
-    <l-button type="danger" shape="square" mini>
+    <l-button type="danger" shape="square" mini @click="$toast({
+      message: '明天会更好',
+      type: 'loading'
+    })">
       返回
     </l-button>
     <hr />
@@ -20,7 +23,6 @@
       <l-list-item title="姓名">
         <l-input clearable placeholder="输入您的姓名" v-model="inputText" />
       </l-list-item>
-
     </l-list>
     <hr />
     <l-choose shape="square" v-model="chosenValue" :value="[2]" />
@@ -35,7 +37,7 @@
     <l-input clearable type="textarea" placeholder="hello world" v-model="inputText" />
     <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
 
-    <l-toast :visible="true" type="loading"  maskClosable>
+    <l-toast :visible="false" type="loading"  maskClosable>
       确认成功
     </l-toast>
     <l-action-bar>
