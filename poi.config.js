@@ -10,7 +10,19 @@ module.exports = {
   html: {
     template: resolveRoot('demo/index.html')
   },
-  css: {
-    modules: true
+  chainWebpack(config) {
+    config.module
+      .rule('svg')
+      .exclude
+      .add(/Icon.icons/)
+
+    config.module
+      .rule('svg-to-symbol')
+      .include
+      .add(/Icon.icons/)
+      .end()
+      .test(/\.svg$/)
+      .use('svg-to-symbol-loader')
+      .loader('svg-to-symbol-loader')
   }
 }

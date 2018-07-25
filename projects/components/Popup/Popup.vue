@@ -12,7 +12,7 @@
         ]"
         :style="{ zIndex }"
         v-show="localVisible"
-        @click.passive="handleMaskClick">
+        @click="handleMaskClick">
         <transition
           :appear="appear"
           v-bind="transitions[position]"
@@ -26,7 +26,6 @@
 
 <script>
 import { createComponent } from '../_utils'
-import maskProps from './maskProps'
 
 const positions = ['center', 'top', 'right', 'bottom', 'left']
 let zIndex = 5000
@@ -37,6 +36,12 @@ export default createComponent({
   hidable: true,
 
   renderToBody: true,
+
+  maskProps: {
+    closable: true,
+    transparent: false,
+    through: false
+  },
 
   props: {
     position: {
@@ -50,22 +55,21 @@ export default createComponent({
     appear: {
       type: Boolean,
       default: true
-    },
-    ...maskProps({
-      closable: true,
-      transparent: false,
-      through: false
-    })
+    }
   },
 
   computed: {
     transitions() {
-      return positions.map(position => ({
-        enterClass: `${position}-enter`,
-        enterActiveClass: `${position}-enter-active`,
-        leaveActiveClass: `${position}-leave-active`,
-        leaveToClass: `${position}-leave-to`
-      }))
+      const { _ } = this
+      return positions.reduce((transitions, position) => {
+        transitions[position] = {
+          enterClass: _[`${position}-enter`],
+          enterActiveClass: _[`${position}-enter-active`],
+          leaveActiveClass: _[`${position}-leave-active`],
+          leaveToClass: _[`${position}-leave-to`]
+        }
+        return transitions
+      }, {})
     }
   },
 

@@ -14,6 +14,21 @@ const removeFromBody = function () {
   }
 }
 
+const getMaskProps = ({ closable = true, transparent = false, through = false } = {}) => ({
+  maskClosable: {
+    type: Boolean,
+    default: closable
+  },
+  maskTransparent: {
+    type: Boolean,
+    default: transparent
+  },
+  maskThrough: {
+    type: Boolean,
+    default: through
+  }
+})
+
 export default componentDefinition => {
   const componentName = componentDefinition.name
 
@@ -69,6 +84,13 @@ export default componentDefinition => {
           })
         }
       }
+    })
+  }
+
+  // mask 属性
+  if (componentDefinition.maskProps) {
+    componentDefinition.mixins.push({
+      props: getMaskProps(componentDefinition.maskProps)
     })
   }
 

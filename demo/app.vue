@@ -28,17 +28,16 @@
     <l-choose v-model="chosenValue" value="8999">
       {{ chosenValue }}
       4
+      <l-icon name="loading" />
     </l-choose>
     <l-choose shape="circle" v-model="chosenValueAgree" :value="false" />
     <hr />
     <l-input clearable type="textarea" placeholder="hello world" v-model="inputText" />
     <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
 
-    <l-popup :visible="true" position="bottom">
-      <div>
-        hello
-      </div>
-    </l-popup>
+    <l-toast :visible="true" type="loading"  maskClosable>
+      确认成功
+    </l-toast>
     <l-action-bar>
       合计：¥20.00
       <l-ActionBarButton type="warning" @click="w.alert(111)">

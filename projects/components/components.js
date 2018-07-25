@@ -7,3 +7,5 @@ export { default as ActionBarButton } from './ActionBarButton/ActionBarButton.vu
 export { default as List } from './List/List.vue'
 export { default as ListItem } from './ListItem/ListItem.vue'
 export { default as Popup } from './Popup/Popup.vue'
+export { default as Toast } from './Toast/Toast.vue'
+export { default as Icon } from './Icon/Icon.vue'
