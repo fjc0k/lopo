@@ -9,7 +9,7 @@
     </l-button>
     <hr />
     <l-list >
-      <l-list-item>
+      <l-list-item tappable>
         <l-image slot="icon" style="width:24px"  src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
         hello
       </l-list-item>
@@ -31,9 +31,15 @@
     </l-choose>
     <l-choose shape="circle" v-model="chosenValueAgree" :value="false" />
     <hr />
-    <l-input clearable type="textarea" placeholder="helllo" v-model="inputText" />
+    <l-input clearable type="textarea" placeholder="hello world" v-model="inputText" />
     <l-image circle src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
-    <l-action-bar borderless>
+
+    <l-popup :visible="true" position="bottom">
+      <div>
+        hello
+      </div>
+    </l-popup>
+    <l-action-bar>
       合计：¥20.00
       <l-ActionBarButton type="warning" @click="w.alert(111)">
         加入购物车
