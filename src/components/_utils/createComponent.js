@@ -8,9 +8,9 @@ const appendToBody = function () {
 
 const removeFromBody = function () {
   if (this.$options.hidable && this.visible === true) {
-    this.hide().then(() => document.body.removeChild(this.$el))
+    this.hide().then(() => this.$el.parentNode && this.$el.parentNode.removeChild(this.$el))
   } else {
-    document.body.removeChild(this.$el)
+    this.$el.parentNode && this.$el.parentNode.removeChild(this.$el)
   }
 }
 
@@ -67,19 +67,29 @@ export default componentDefinition => {
             typeof componentDefinition.hidable === 'object'
               ? componentDefinition.hidable.default
               : false
-          )
+          ),
+          on: {
+            change(visible) {
+              // 待动画完成后再提交事件
+              setTimeout(() => {
+                this.$emit(visible ? 'show' : 'hide')
+              }, 320)
+            }
+          }
         }
       },
       methods: {
         show() {
           return new Promise(resolve => {
             this.sendVisible(true)
+            // 待动画完成后再 resolve
             setTimeout(resolve, 320)
           })
         },
         hide() {
           return new Promise(resolve => {
             this.sendVisible(false)
+            // 待动画完成后再 resolve
             setTimeout(resolve, 320)
           })
         }

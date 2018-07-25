@@ -4,10 +4,7 @@
     <l-button type="primary" shape="circle" mini>
       X
     </l-button>
-    <l-button type="danger" shape="square" mini @click="$toast({
-      message: '明天会更好',
-      type: 'loading'
-    })">
+    <l-button type="danger" shape="square" mini @click="handleClick">
       返回
     </l-button>
     <hr />
@@ -61,7 +58,16 @@ export default {
     chosenValue: 1,
     chosenValueAgree: false,
     inputText: 'hello'
-  })
+  }),
+
+  methods: {
+    handleClick() {
+      const l = this.$toast.fail('请输入正确的手机号码')
+      setTimeout(() => {
+        l.hide()
+      }, 5000)
+    }
+  }
 }
 </script>
 

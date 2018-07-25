@@ -63,6 +63,9 @@ export default createComponent({
   },
 
   computed: {
+    localDuration() {
+      return this.type === 'loading' ? 0 : this.duration
+    },
     localIcon() {
       const { type } = this
       if (type === 'default') return this.icon
@@ -79,9 +82,9 @@ export default createComponent({
   methods: {
     timing(visible) {
       if (visible) {
-        const { duration } = this
-        if (duration > 0) {
-          this.timer = setTimeout(this.hide, duration)
+        const { localDuration } = this
+        if (localDuration > 0) {
+          this.timer = setTimeout(this.hide, localDuration)
         }
       } else {
         clearTimeout(this.timer)
