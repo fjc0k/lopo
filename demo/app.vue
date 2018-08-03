@@ -4,13 +4,14 @@
     <l-button shape="circle" mini>
       <l-icon name="github" />
     </l-button>
+    <l-switch v-model="switchValue" />
     <l-rate value="3" count="10" />
     <l-button type="danger" shape="square" mini @click="handleClick">
       返回
     </l-button>
     <hr />
-    <l-list >
-      <l-list-item tappable>
+    <l-list noBorder>
+      <l-list-item  tappable>
         <l-image slot="icon" style="width:24px"  src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
         hello
       </l-list-item>
@@ -55,6 +56,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    switchValue: false,
     w: window,
     chosenValue: 1,
     chosenValueAgree: false,
