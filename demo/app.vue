@@ -12,6 +12,12 @@
     <hr />
     <l-list noBorder>
       <l-list-item  tappable>
+    <l-card title="个人信息" square>
+      公众号广告：微信公众号广告是基于微信公众平台生态，以类似公众号文章内容的形式在包括文章底部、视频贴片和互选等广告资源位进行展示的内容广告。
+    </l-card>
+    <hr />
+    <l-list >
+      <l-list-item tappable>
         <l-image slot="icon" style="width:24px"  src="https://avatars0.githubusercontent.com/u/13151189?s=40&v=4" />
         hello
       </l-list-item>
