@@ -7,7 +7,8 @@
   "author": "Jay Fong <fjc0kb@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "poi"
+    "dev": "poi",
+    "build": "poi build"
   },
   "devDependencies": {
     "@lopo/eslint-config-lopo": "^0.0.3",
@@ -26,6 +27,7 @@
     "vue": "^2.5.16"
   },
   "dependencies": {
+    "swiper": "^4.3.5",
     "vue-iconfont": "^2.5.1",
     "vue-messenger": "^2.3.3"
   }

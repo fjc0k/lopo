@@ -4,14 +4,17 @@
     <l-button shape="circle" mini>
       <l-icon name="github" />
     </l-button>
-    <l-switch v-model="switchValue" />
+    <l-carousel :indicator="true" loop v-model="slideIndex">
+      <l-carousel-item to="http://baidu.com" image="https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png"></l-carousel-item>
+      <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
+
+    </l-carousel>
+    <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
     <l-button type="danger" shape="square" mini @click="handleClick">
       返回
     </l-button>
     <hr />
-    <l-list noBorder>
-      <l-list-item  tappable>
     <l-card title="个人信息" square>
       公众号广告：微信公众号广告是基于微信公众平台生态，以类似公众号文章内容的形式在包括文章底部、视频贴片和互选等广告资源位进行展示的内容广告。
     </l-card>
@@ -62,7 +65,8 @@ export default {
   name: 'app',
 
   data: () => ({
-    switchValue: false,
+    slideIndex: 1,
+    switchValue: true,
     w: window,
     chosenValue: 1,
     chosenValueAgree: false,
