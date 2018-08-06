@@ -19,7 +19,16 @@
     </l-sheet>
     <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
-    <l-button type="danger" shape="square" mini @click="sheetVisible=true">
+    <l-button type="danger" shape="square" mini @click="sheetVisible = true">
+      返回
+    </l-button>
+    <l-button plain type="danger" mini @click="sheetVisible = true">
+      返回
+    </l-button>
+    <l-button shape="square" @click="sheetVisible = true">
+      返回
+    </l-button>
+    <l-button noBorder plain type="primary" @click="sheetVisible = true">
       返回
     </l-button>
     <hr />
@@ -33,8 +42,8 @@
         hello
       </l-list-item>
       <l-list-item icon="lopo-fail" title="已验证" extra="是"></l-list-item>
-      <l-list-item  title="姓名" isLink desc="hello" extra="方剑成">姓名</l-list-item>
-      <l-list-item title="年龄" extra="ffffffffffffdddddddddddddddffddddddddddddddd">
+      <l-list-item title="姓名" isLink desc="hello" extra="方剑成">姓名</l-list-item>
+      <l-list-item title="年龄" extra="world">
       </l-list-item>
       <l-list-item title="姓名">
         <l-input clearable placeholder="输入您的姓名" v-model="inputText" />

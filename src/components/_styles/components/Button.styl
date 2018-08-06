@@ -19,26 +19,25 @@
   }
 
   // 形状
-  border-radius: $radius-md;
+  hairline(all, rgba(0, 0, 0, 0.2), $radius-md);
   &.square {
-    border-radius: 0;
+    hairline-radius(0);
   }
   &.round {
-    border-radius: $button-height;
+    hairline-radius($button-height);
   }
   &.circle {
     display: inline-flex;
     padding: 0;
     width: $button-height;
-    border-radius: $radius-circle;
+    hairline-radius($button-height);
     &.mini {
       width: $button-height--mini;
-      border-radius: $button-height--mini;
+      hairline-radius($button-height--mini);
     }
   }
 
   // 颜色
-  border: 1PX solid rgba(0, 0, 0, 0.2);
   color: white;
   &:active {
     color: rgba(white, 75%);
@@ -64,7 +63,7 @@
   &.default {
     background-color: $fill-base;
     color: $color-text-base;
-    border: 1PX solid $color-line-light;
+    hairline-color($color-line-light);
     &:active {
       background-color: $fill-tap;
     }
@@ -73,32 +72,30 @@
   // 朴素风格
   &.plain {
     background-color: transparent;
-    border-width: 1PX;
-    border-style: solid;
     &.default {
       color: $color-text-base;
-      border-color: $color-text-base;
+      hairline-color($color-text-base);
       &:active {
         background-color: rgba($color-text-base, 10%);
       }
     }
     &.primary {
       color: $color-primary;
-      border-color: $color-primary;
+      hairline-color($color-primary);
       &:active {
         background-color: rgba($color-primary, 10%);
       }
     }
     &.warning {
       color: $color-warning;
-      border-color: $color-warning;
+      hairline-color($color-warning);
       &:active {
         background-color: rgba($color-warning, 10%);
       }
     }
     &.danger {
       color: $color-danger;
-      border-color: $color-danger;
+      hairline-color($color-danger);
       &:active {
         background-color: rgba($color-danger, 10%);
       }
@@ -107,7 +104,7 @@
 
   // 无边框
   &.borderless {
-    border: none;
+    hairline-remove();
   }
 
   // 禁用

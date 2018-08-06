@@ -2,10 +2,9 @@
 
 .list {
   reset: base;
-  border-top: 1PX solid $color-line-light;
-  border-bottom: 1PX solid $color-line-light;
+  hairline(top bottom);
 
   &.borderless {
-    border: none;
+    hairline-remove(top bottom);
   }
 }
