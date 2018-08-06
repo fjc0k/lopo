@@ -7,7 +7,6 @@
     <l-carousel :indicator="true" loop v-model="slideIndex">
       <l-carousel-item to="http://baidu.com" image="https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png"></l-carousel-item>
       <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
-
     </l-carousel>
     <l-sheet
       v-model="sheetVisible"
@@ -17,6 +16,11 @@
       desc="得得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀陇望蜀">
       fff
     </l-sheet>
+    <l-picker-view
+      v-model="pickerValue"
+      v-bind="picker">
+
+    </l-picker-view>
     <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
     <l-button type="danger" shape="square" mini @click="sheetVisible = true">
@@ -82,6 +86,15 @@ export default {
   name: 'app',
 
   data: () => ({
+    pickerValue: ['四川省', 0],
+    picker: {
+      data: [
+        ['云南省', '四川省', '贵州省', '浙江省', '上海市', '福建省'],
+        ['1', 2, 3, 4, 5, 6, 7, 0]
+      ],
+      divider: ':',
+      caption: ['省', '市']
+    },
     sheetVisible: false,
     slideIndex: 1,
     switchValue: true,

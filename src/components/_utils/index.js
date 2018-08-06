@@ -1,1 +1,6 @@
+export { default as chunk } from './chunk'
 export { default as createComponent } from './createComponent'
+export { default as isNumeric } from './isNumeric'
+export { default as normalizeData } from './normalizeData'
+export { default as parseCSSUnit } from './parseCSSUnit'
+export { default as patchIndex } from './patchIndex'
