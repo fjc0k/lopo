@@ -19,7 +19,11 @@
     <l-picker-view
       v-model="pickerValue"
       v-bind="picker">
-
+    </l-picker-view>
+    <l-picker-view
+      v-model="pickerValue2"
+      v-bind="picker2"
+      cascaded>
     </l-picker-view>
     <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
@@ -90,10 +94,23 @@ export default {
     picker: {
       data: [
         ['云南省', '四川省', '贵州省', '浙江省', '上海市', '福建省'],
-        ['1', 2, 3, 4, 5, 6, 7, 0]
+        ['1', 2, 3, 4, 5, 6, 7, 0],
+        ['我们', '你们']
       ],
-      divider: ':',
-      caption: ['省', '市']
+      caption: ['省', '市', '县']
+    },
+    pickerValue2: ['云南省2', '镇雄县3'],
+    picker2: {
+      data: [
+        ['云南省', 'yn', { children: [
+          ['镇雄县', 'zx']
+        ] }],
+        ['云南省2', 'yn2', { children: [
+          ['镇雄县2', 'zx2'],
+          ['镇雄县3', 'zx3']
+        ] }]
+      ],
+      caption: ['省', '市', '县']
     },
     sheetVisible: false,
     slideIndex: 1,

@@ -82,8 +82,11 @@ export default createComponent({
           el: '.swiper-pagination'
         },
         on: {
-          slideChange: () => {
-            this.swiper && this.sendIndex(this.swiper.realIndex)
+          ...this.swiperOptions.on,
+          transitionEnd: () => {
+            if (this.swiper) {
+              this.sendIndex(this.swiper.realIndex)
+            }
           }
         }
       })

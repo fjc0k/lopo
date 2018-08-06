@@ -24,23 +24,18 @@
       <!-- // 指示器 -->
       <div :class="_.indicator" :style="styles.indicator" />
       <div direction="vertical" :class="_.content">
-        <template v-for="(groupData, groupIndex) in normalizedData">
+        <template v-for="(groupData, groupIndex) in localData">
           <Carousel
+            :index="selectedIndexes[groupIndex]"
             direction="vertical"
             :autoplay="false"
             :loop="false"
             :indicator="false"
-            :swiperOptions="{
-              freeMode: true,
-              freeModeSticky: true,
-              slideToClickedSlide: true,
-              freeModeMomentumRatio: 0.6, // Higher value produces larger momentum distance after you release slider
-              freeModeMomentumVelocityRatio: 0.6, // Higher value produces larger momentum velocity after you release slider
-              freeModeMinimumVelocity: 0.1 // Minimum touchmove-velocity required to trigger free mode momentum
-            }"
+            :swiperOptions="swiperOptions"
             :class="_.group"
             :style="styles.group"
-            :key="groupIndex">
+            :key="groupIndex"
+            @change="selectedIndex => handleChange(groupIndex, selectedIndex)">
             <CarouselItem
               :class="_.item"
               :style="styles.item"
@@ -49,7 +44,7 @@
               {{ item.label }}
             </CarouselItem>
           </Carousel>
-          <div :class="_.divider" :style="styles.divider" :key="groupIndex" v-if="localDivider[groupIndex]">
+          <div :class="_.divider" :style="styles.divider" :key="`_${groupIndex}`" v-if="localDivider[groupIndex]">
             <span :class="_.wrapper">
               {{ localDivider[groupIndex] }}
             </span>
@@ -61,7 +56,7 @@
 </template>
 
 <script>
-import { fill } from 'lodash'
+import { fill, range, findIndex } from 'lodash'
 import { createComponent, parseCSSUnit } from '../_utils'
 import normalizeData from './normalizeData'
 import Carousel from '../Carousel/Carousel.vue'
@@ -99,15 +94,45 @@ export default createComponent({
     cascaded: Boolean
   },
 
+  data: () => ({
+    localData: []
+  }),
+
   computed: {
-    localData() {
-      return normalizeData(this.data, this.cascaded)
-    },
-    normalizedData() {
-      return this.localData
+    swiperOptions() {
+      return {
+        freeMode: true,
+        freeModeSticky: true,
+        slideToClickedSlide: true,
+        freeModeMomentumRatio: 0.6, // Higher value produces larger momentum distance after you release slider
+        freeModeMomentumVelocityRatio: 0.6, // Higher value produces larger momentum velocity after you release slider
+        freeModeMinimumVelocity: 0.1 // Minimum touchmove-velocity required to trigger free mode momentum
+      }
     },
     groupCount() {
-      return this.normalizedData.length
+      return this.localData.length
+    },
+    selectedIndexes() {
+      const { localValue, localData, groupCount } = this
+      const selectedIndexes = range(groupCount).map(index => {
+        if (index in localValue) {
+          const foundIndex = findIndex(
+            localData[index],
+            ['value', localValue[index]]
+          )
+          return foundIndex === -1 ? 0 : foundIndex
+        }
+        return 0
+      })
+      if (!this.detailProvided) {
+        this.detailProvided = true // eslint-disable-line vue/no-side-effects-in-computed-properties
+        this.sendDetail(
+          selectedIndexes.map(
+            (itemIndex, groupIndex) => localData[groupIndex][itemIndex]
+          )
+        )
+      }
+      return selectedIndexes
     },
     localItemHeight() {
       return parseCSSUnit(this.itemHeight)
@@ -171,9 +196,23 @@ export default createComponent({
     }
   },
 
+  watch: {
+    data: {
+      immediate: true,
+      handler(data) {
+        const { cascaded } = this
+        data = normalizeData(data, cascaded)
+        this.localData = cascaded ? [data] : data
+      }
+    }
+  },
+
   methods: {
-    handleClick(e) {
-      this.$emit('click', e)
+    handleChange(groupIndex, selectedIndex) {
+      const { localValue, localData } = this
+      const _localValue = localValue.slice()
+      _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
+      this.sendValue(_localValue)
     }
   }
 })
