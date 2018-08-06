@@ -9,9 +9,17 @@
       <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
 
     </l-carousel>
+    <l-sheet
+      v-model="sheetVisible"
+      :maskClosable="false"
+      noCancel
+      title="明天会更好明天会更好明天会更好明天会更好明天会更好"
+      desc="得得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀陇望蜀">
+      fff
+    </l-sheet>
     <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
-    <l-button type="danger" shape="square" mini @click="handleClick">
+    <l-button type="danger" shape="square" mini @click="sheetVisible=true">
       返回
     </l-button>
     <hr />
@@ -65,6 +73,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    sheetVisible: false,
     slideIndex: 1,
     switchValue: true,
     w: window,
