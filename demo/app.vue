@@ -99,7 +99,7 @@ export default {
       ],
       caption: ['省', '市', '县']
     },
-    pickerValue2: ['云南省2', '镇雄县3'],
+    pickerValue2: ['yn2', 'zx3'],
     picker2: {
       data: [
         ['云南省', 'yn', { children: [

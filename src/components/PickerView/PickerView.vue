@@ -200,19 +200,45 @@ export default createComponent({
     data: {
       immediate: true,
       handler(data) {
-        const { cascaded } = this
+        const { cascaded, value } = this
         data = normalizeData(data, cascaded)
-        this.localData = cascaded ? [data] : data
+        let localData
+        if (cascaded) {
+          localData = [data]
+          let _index = 0
+          let index
+          while (
+            data
+            && ((index = findIndex(data, ['value', value[_index++]])) > -1)
+            && (data = data[index].children)
+          ) {
+            localData.push(data)
+          }
+        } else {
+          localData = data
+        }
+        this.localData = localData
       }
     }
   },
 
   methods: {
     handleChange(groupIndex, selectedIndex) {
-      const { localValue, localData } = this
-      const _localValue = localValue.slice()
-      _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
-      this.sendValue(_localValue)
+      const { localValue, localData, cascaded } = this
+      const selectedItem = localData[groupIndex][selectedIndex]
+      if (cascaded) {
+        if (selectedItem.children) {
+          this.localData.splice(groupIndex + 1, this.localData.length, selectedItem.children)
+        } else {
+          const _localValue = localValue.slice()
+          _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
+          this.sendValue(_localValue)
+        }
+      } else {
+        const _localValue = localValue.slice()
+        _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
+        this.sendValue(_localValue)
+      }
     }
   }
 })
