@@ -23,17 +23,32 @@
       <div :class="_.mask" :style="styles.mask" />
       <!-- // 指示器 -->
       <div :class="_.indicator" :style="styles.indicator" />
-      <div :class="_.content">
+      <div direction="vertical" :class="_.content">
         <template v-for="(groupData, groupIndex) in normalizedData">
-          <div :class="_.group" :style="styles.group" :key="groupIndex" ref="groups">
-            <div
+          <Carousel
+            direction="vertical"
+            :autoplay="false"
+            :loop="false"
+            :indicator="false"
+            :swiperOptions="{
+              freeMode: true,
+              freeModeSticky: true,
+              slideToClickedSlide: true,
+              freeModeMomentumRatio: 0.6, // Higher value produces larger momentum distance after you release slider
+              freeModeMomentumVelocityRatio: 0.6, // Higher value produces larger momentum velocity after you release slider
+              freeModeMinimumVelocity: 0.1 // Minimum touchmove-velocity required to trigger free mode momentum
+            }"
+            :class="_.group"
+            :style="styles.group"
+            :key="groupIndex">
+            <CarouselItem
               :class="_.item"
               :style="styles.item"
               v-for="(item, itemIndex) in groupData"
               :key="itemIndex">
               {{ item.label }}
-            </div>
-          </div>
+            </CarouselItem>
+          </Carousel>
           <div :class="_.divider" :style="styles.divider" :key="groupIndex" v-if="localDivider[groupIndex]">
             <span :class="_.wrapper">
               {{ localDivider[groupIndex] }}
@@ -49,9 +64,13 @@
 import { fill } from 'lodash'
 import { createComponent, parseCSSUnit } from '../_utils'
 import normalizeData from './normalizeData'
+import Carousel from '../Carousel/Carousel.vue'
+import CarouselItem from '../CarouselItem/CarouselItem.vue'
 
 export default createComponent({
   name: 'PickerView',
+
+  components: { Carousel, CarouselItem },
 
   props: {
     value: {
@@ -136,6 +155,7 @@ export default createComponent({
           maxWidth: groupWidth
         },
         group: {
+          height: itemHeight,
           maxWidth: groupWidth, // 限制宽度：单行溢出文本显示省略号
           padding: `${pickerHalfHeight} 0` // 上下留白：上下空白区域可滑动
         },

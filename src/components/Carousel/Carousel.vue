@@ -49,6 +49,10 @@ export default createComponent({
     loop: {
       type: Boolean,
       default: true
+    },
+    swiperOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
 
@@ -66,6 +70,7 @@ export default createComponent({
   mounted() {
     this.$nextTick(() => {
       this.swiper = new Swiper(this.$el, {
+        ...this.swiperOptions,
         init: true, // Whether Swiper should be initialised automatically when you create an instance.
         initialSlide: this.index, // Index number of initial slide.
         direction: this.direction, // Could be 'horizontal' or 'vertical' (for vertical slider).
