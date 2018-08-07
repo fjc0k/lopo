@@ -1,5 +1,6 @@
 export { default as chunk } from './chunk'
 export { default as createComponent } from './createComponent'
+export { default as dateToArray } from './dateToArray'
 export { default as isNumeric } from './isNumeric'
 export { default as normalizeData } from './normalizeData'
 export { default as parseCSSUnit } from './parseCSSUnit'

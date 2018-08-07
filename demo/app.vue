@@ -28,6 +28,12 @@
       v-bind="picker2"
       cascaded>
     </l-picker-view>
+    <hr>
+    <l-date-picker-view
+      v-model="pickerValue3"
+      v-bind="picker3">
+    </l-date-picker-view>
+    <hr>
     <l-switch v-model="switchValue" disabled />
     <l-rate value="3" count="10" />
     <l-button type="danger" shape="square" mini @click="sheetVisible = true">
@@ -93,6 +99,10 @@ export default {
   name: 'app',
 
   data: () => ({
+    pickerValue3: [1, 3],
+    picker3: {
+
+    },
     pickerValue: ['四川省', 0],
     picker: {
       data: [

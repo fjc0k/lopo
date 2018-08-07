@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@lopo/eslint-config-lopo": "^0.0.3",
+    "babel-plugin-import": "^1.8.0",
     "eslint": "^5.1.0",
     "lerna": "^2.11.0",
     "poi": "^10.2.9",
@@ -27,6 +28,8 @@
     "vue": "^2.5.16"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
+    "lodash": "^4.17.10",
     "swiper": "^4.3.5",
     "vue-iconfont": "^2.5.1",
     "vue-messenger": "^2.3.3"
