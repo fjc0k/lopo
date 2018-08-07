@@ -101,7 +101,7 @@ export default {
   data: () => ({
     pickerValue3: [2021, 3, 5],
     picker3: {
-      mode: 'month',
+      mode: 'datetime',
       formatYear: 'yy 年',
       formatMonth: 'm 月',
       formatDay: 'd 日',

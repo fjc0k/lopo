@@ -31,7 +31,7 @@ export default createComponent({
     },
     mode: {
       type: String,
-      enum: ['date', 'month', 'year']
+      enum: ['date', 'month', 'year', 'time', 'datetime']
     },
     startDate: {
       type: [Date, String, Number],
@@ -46,17 +46,27 @@ export default createComponent({
     filterYear: Function,
     filterMonth: Function,
     filterDay: Function,
+    filterHour: Function,
+    filterMinute: Function,
     formatYear: String,
     formatMonth: String,
-    formatDay: String
+    formatDay: String,
+    formatHour: String,
+    formatMinute: String
   },
 
   computed: {
+    noDate() {
+      return this.mode === 'time'
+    },
     noMonth() {
       return this.mode === 'year'
     },
     noDay() {
-      return this.mode !== 'date'
+      return this.mode === 'month' || this.month === 'year'
+    },
+    noTime() {
+      return this.mode === 'date' || this.mode === 'month' || this.mode === 'year'
     },
     data() {
       const {
@@ -110,6 +120,39 @@ export default createComponent({
                     value: day
                   }))
                 })()
+              }
+            })
+          })()
+        }
+      })
+    }
+  },
+
+  methods: {
+    getTimeData(payload, extraDate) {
+      const {
+        filterHour,
+        filterMinute,
+        formatHour,
+        formatMinute
+      } = this
+      let hours = range(0, 24)
+      if (filterHour) {
+        hours = hours.filter(hour => filterHour({ ...payload, hour }))
+      }
+      return hours.map(hour => {
+        return {
+          label: formatHour ? formatDate({ ...extraDate, h: hour }, formatHour) : hour,
+          value: hour,
+          children: (() => {
+            let minutes = range(0, 60)
+            if (filterMinute) {
+              minutes = minutes.filter(minute => filterMinute({ ...payload, hour, minute }))
+            }
+            return minutes.map(minute => {
+              return {
+                label: formatMinute ? formatDate({ ...extraDate, h: hour, i: minute }, formatMinute) : minute,
+                value: minute
               }
             })
           })()

@@ -221,7 +221,7 @@ export default createComponent({
     updateDetail() {
       this.$nextTick(() => {
         this.sendDetail(
-          this.selectedIndexes.map(
+          this.selectedIndexes.slice(0, this.groupCount).map(
             (itemIndex, groupIndex) => this.localData[groupIndex][itemIndex]
           )
         )
@@ -237,7 +237,7 @@ export default createComponent({
       const selectedItem = localData[groupIndex][selectedIndex]
       localValue[groupIndex] = localData[groupIndex][selectedIndex].value
       if (cascaded) { // 级联
-        this.selectedIndexes.splice(groupIndex, this.selectedIndexes.length, selectedIndex)
+        this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
         if (selectedItem.children) {
           this.localData.splice(groupIndex + 1, this.localData.length, selectedItem.children)
           this.$nextTick(() => {
