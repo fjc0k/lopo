@@ -93,6 +93,10 @@ export default createComponent({
         }
       })
     })
+  },
+
+  beforeDestroy() {
+    this.swiper && this.swiper.destroy()
   }
 })
 </script>
