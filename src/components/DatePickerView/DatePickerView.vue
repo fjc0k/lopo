@@ -1,10 +1,20 @@
 <template>
-  <PickerView
-    v-model="localValue"
-    v-bind="$attrs"
-    :data="data"
-    cascaded
-  />
+  <div :class="_.view">
+    <PickerView
+      v-if="!noDate"
+      v-model="localValue"
+      v-bind="$attrs"
+      :data="dateData"
+      cascaded
+    />
+    <PickerView
+      v-if="!noTime"
+      v-model="localValue"
+      v-bind="$attrs"
+      :data="timeData"
+      cascaded
+    />
+  </div>
 </template>
 
 <script>
@@ -68,7 +78,7 @@ export default createComponent({
     noTime() {
       return this.mode === 'date' || this.mode === 'month' || this.mode === 'year'
     },
-    data() {
+    dateData() {
       const {
         localStartDate,
         localEndDate,
@@ -125,11 +135,8 @@ export default createComponent({
           })()
         }
       })
-    }
-  },
-
-  methods: {
-    getTimeData(payload, extraDate) {
+    },
+    timeData() {
       const {
         filterHour,
         filterMinute,
@@ -138,20 +145,20 @@ export default createComponent({
       } = this
       let hours = range(0, 24)
       if (filterHour) {
-        hours = hours.filter(hour => filterHour({ ...payload, hour }))
+        hours = hours.filter(hour => filterHour({ hour }))
       }
       return hours.map(hour => {
         return {
-          label: formatHour ? formatDate({ ...extraDate, h: hour }, formatHour) : hour,
+          label: formatHour ? formatDate({ h: hour }, formatHour) : hour,
           value: hour,
           children: (() => {
             let minutes = range(0, 60)
             if (filterMinute) {
-              minutes = minutes.filter(minute => filterMinute({ ...payload, hour, minute }))
+              minutes = minutes.filter(minute => filterMinute({ hour, minute }))
             }
             return minutes.map(minute => {
               return {
-                label: formatMinute ? formatDate({ ...extraDate, h: hour, i: minute }, formatMinute) : minute,
+                label: formatMinute ? formatDate({ h: hour, i: minute }, formatMinute) : minute,
                 value: minute
               }
             })
@@ -162,3 +169,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/DatePickerView.styl" module />

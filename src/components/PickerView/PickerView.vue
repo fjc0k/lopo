@@ -59,6 +59,11 @@
 </template>
 
 <script>
+/*
+ * todo
+ * ff
+ */
+
 import { fill, range, findIndex } from 'lodash'
 import { createComponent, parseCSSUnit } from '../_utils'
 import normalizeData from './normalizeData'
