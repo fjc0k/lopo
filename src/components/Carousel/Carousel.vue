@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <slot />
     </div>
-    <div class="swiper-pagination" />
+    <div class="swiper-pagination" v-if="indicator" />
   </div>
 </template>
 

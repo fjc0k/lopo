@@ -123,7 +123,7 @@ export default createComponent({
     localDivider() {
       const { divider, groupCount } = this
       if (Array.isArray(divider)) {
-        return divider.slice(0, groupCount)
+        return divider.slice(0, groupCount - 1)
       }
       return divider ? fill(Array(groupCount - 1), divider) : []
     },

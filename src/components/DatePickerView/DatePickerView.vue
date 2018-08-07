@@ -29,6 +29,10 @@ export default createComponent({
       default: () => [],
       transform: value => value.slice()
     },
+    mode: {
+      type: String,
+      enum: ['date', 'month', 'year']
+    },
     startDate: {
       type: [Date, String, Number],
       default: () => subYears(now, 10),
@@ -48,6 +52,12 @@ export default createComponent({
   },
 
   computed: {
+    noMonth() {
+      return this.mode === 'year'
+    },
+    noDay() {
+      return this.mode !== 'date'
+    },
     data() {
       const {
         localStartDate,
@@ -57,7 +67,9 @@ export default createComponent({
         filterDay,
         formatYear,
         formatMonth,
-        formatDay
+        formatDay,
+        noMonth,
+        noDay
       } = this
       let years = range(localStartDate[0], localEndDate[0] + 1)
       if (filterYear) {
@@ -67,7 +79,7 @@ export default createComponent({
         return {
           label: formatYear ? formatDate({ y: year }, formatYear) : year,
           value: year,
-          children: (() => {
+          children: noMonth ? undefined : (() => {
             let months = range(1, 13)
             if (year === localStartDate[0]) {
               months = months.filter(month => month >= localStartDate[1])
@@ -82,7 +94,7 @@ export default createComponent({
               return {
                 label: formatMonth ? formatDate({ y: year, m: month }, formatMonth) : month,
                 value: month,
-                children: (() => {
+                children: noDay ? undefined : (() => {
                   let days = range(1, getDaysInMonth(new Date(year, month - 1)) + 1)
                   if (year === localStartDate[0] && month === localStartDate[1]) {
                     days = days.filter(day => day >= localStartDate[2])
