@@ -99,9 +99,18 @@ export default {
   name: 'app',
 
   data: () => ({
-    pickerValue3: [1, 3],
+    pickerValue3: [2021, 3, 5],
     picker3: {
-
+      formatYear: 'yy 年',
+      formatMonth: 'm 月',
+      formatDay: 'd 日',
+      divider: ['-', ':'],
+      startDate: '2018-9-4',
+      filterYear: ({ year }) => year % 4
+      /*
+       * filterMonth: ({ month }) => month % 3,
+       * filterDay: ({ day }) => day > 20
+       */
     },
     pickerValue: ['四川省', 0],
     picker: {

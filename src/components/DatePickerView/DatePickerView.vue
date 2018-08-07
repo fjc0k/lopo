@@ -1,7 +1,8 @@
 <template>
   <PickerView
+    v-model="localValue"
+    v-bind="$attrs"
     :data="data"
-    :caption="['年', '月', '日']"
     cascaded
   />
 </template>
@@ -10,7 +11,7 @@
 /* eslint max-nested-callbacks: 0 */
 import { range } from 'lodash'
 import { subYears, addYears, parse, getDaysInMonth } from 'date-fns'
-import { createComponent, dateToArray } from '../_utils'
+import { createComponent, dateToArray, formatDate } from '../_utils'
 import PickerView from '../PickerView/PickerView.vue'
 
 const now = new Date()
@@ -18,9 +19,16 @@ const now = new Date()
 export default createComponent({
   name: 'DatePickerView',
 
+  inheritAttrs: false,
+
   components: { PickerView },
 
   props: {
+    value: {
+      type: Array,
+      default: () => [],
+      transform: value => value.slice()
+    },
     startDate: {
       type: [Date, String, Number],
       default: () => subYears(now, 10),
@@ -33,19 +41,31 @@ export default createComponent({
     },
     filterYear: Function,
     filterMonth: Function,
-    filterDay: Function
+    filterDay: Function,
+    formatYear: String,
+    formatMonth: String,
+    formatDay: String
   },
 
   computed: {
     data() {
-      const { localStartDate, localEndDate, filterYear, filterMonth, filterDay } = this
+      const {
+        localStartDate,
+        localEndDate,
+        filterYear,
+        filterMonth,
+        filterDay,
+        formatYear,
+        formatMonth,
+        formatDay
+      } = this
       let years = range(localStartDate[0], localEndDate[0] + 1)
       if (filterYear) {
         years = years.filter(year => filterYear({ year }))
       }
       return years.map(year => {
         return {
-          label: year,
+          label: formatYear ? formatDate({ y: year }, formatYear) : year,
           value: year,
           children: (() => {
             let months = range(1, 13)
@@ -60,7 +80,7 @@ export default createComponent({
             }
             return months.map(month => {
               return {
-                label: month,
+                label: formatMonth ? formatDate({ y: year, m: month }, formatMonth) : month,
                 value: month,
                 children: (() => {
                   let days = range(1, getDaysInMonth(new Date(year, month - 1)) + 1)
@@ -74,7 +94,7 @@ export default createComponent({
                     days = days.filter(day => filterDay({ year, month, day }))
                   }
                   return days.map(day => ({
-                    label: day,
+                    label: formatDay ? formatDate({ y: year, m: month, d: day }, formatDay) : day,
                     value: day
                   }))
                 })()
