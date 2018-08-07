@@ -61,7 +61,10 @@
 <script>
 /*
  * todo
- * ff
+ * [
+ *    [{ label: 1, value: 1 }, { label: 2, value: 2 }],
+ *    [{ label: 11, value: 11, children: [[{ ... }, { ... }], [{ ... }]] }]
+ * ]
  */
 
 import { fill, range, findIndex } from 'lodash'
