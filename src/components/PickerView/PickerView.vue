@@ -25,6 +25,7 @@
       <div :class="_.indicator" :style="styles.indicator" />
       <div direction="vertical" :class="_.content">
         <template v-for="(groupData, groupIndex) in localData">
+          <!-- // 此处需手动处理 selectedIndexes，故不用 v-model 双向绑定 -->
           <Carousel
             :index="selectedIndexes[groupIndex]"
             direction="vertical"
@@ -35,6 +36,8 @@
             :class="_.group"
             :style="styles.group"
             :key="groupIndex"
+            ref="groups"
+            @ready="swiper => handleReady(groupIndex, swiper.realIndex)"
             @change="selectedIndex => handleChange(groupIndex, selectedIndex)">
             <CarouselItem
               :class="_.item"
@@ -70,7 +73,8 @@ export default createComponent({
   props: {
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
+      transform: value => value.slice()
     },
     detail: {
       type: Array,
@@ -95,7 +99,8 @@ export default createComponent({
   },
 
   data: () => ({
-    localData: []
+    localData: [],
+    selectedIndexes: []
   }),
 
   computed: {
@@ -112,42 +117,20 @@ export default createComponent({
     groupCount() {
       return this.localData.length
     },
-    selectedIndexes() {
-      const { localValue, localData, groupCount } = this
-      const selectedIndexes = range(groupCount).map(index => {
-        if (index in localValue) {
-          const foundIndex = findIndex(
-            localData[index],
-            ['value', localValue[index]]
-          )
-          return foundIndex === -1 ? 0 : foundIndex
-        }
-        return 0
-      })
-      if (!this.detailProvided) {
-        this.detailProvided = true // eslint-disable-line vue/no-side-effects-in-computed-properties
-        this.sendDetail(
-          selectedIndexes.map(
-            (itemIndex, groupIndex) => localData[groupIndex][itemIndex]
-          )
-        )
-      }
-      return selectedIndexes
-    },
     localItemHeight() {
       return parseCSSUnit(this.itemHeight)
     },
     localDivider() {
       const { divider, groupCount } = this
       if (Array.isArray(divider)) {
-        return divider
+        return divider.slice(0, groupCount)
       }
       return divider ? fill(Array(groupCount - 1), divider) : []
     },
     localCaption() {
       const { caption, groupCount } = this
       if (Array.isArray(caption)) {
-        return caption
+        return caption.slice(0, groupCount)
       }
       return caption ? fill(Array(groupCount), caption) : []
     },
@@ -200,44 +183,81 @@ export default createComponent({
     data: {
       immediate: true,
       handler(data) {
-        const { cascaded, value } = this
+        const { value, cascaded } = this
         data = normalizeData(data, cascaded)
+
         let localData
-        if (cascaded) {
-          localData = [data]
-          let _index = 0
-          let index
-          while (
-            data
-            && ((index = findIndex(data, ['value', value[_index++]])) > -1)
-            && (data = data[index].children)
-          ) {
+        let selectedIndexes
+
+        if (cascaded) { // 级联
+          localData = []
+          selectedIndexes = []
+          let groupIndex = 0
+          while (data) {
             localData.push(data)
+            const foundIndex = findIndex(data, ['value', value[groupIndex++]])
+            selectedIndexes.push(foundIndex === -1 ? 0 : foundIndex)
+            data = foundIndex === -1 ? null : data[foundIndex].children
           }
-        } else {
+        } else { // 非级联
           localData = data
+          selectedIndexes = range(data.length).map(index => {
+            if (index in value) {
+              const foundIndex = findIndex(localData[index], ['value', value[index]])
+              return foundIndex === -1 ? 0 : foundIndex
+            }
+            return 0
+          })
         }
+
         this.localData = localData
+        this.selectedIndexes = selectedIndexes
+        this.updateDetail()
       }
     }
   },
 
   methods: {
+    updateDetail() {
+      this.$nextTick(() => {
+        this.sendDetail(
+          this.selectedIndexes.map(
+            (itemIndex, groupIndex) => this.localData[groupIndex][itemIndex]
+          )
+        )
+      })
+    },
+    handleReady(groupIndex, selectedIndex) {
+      if (this.cascaded) { // 级联：触发子选项
+        this.handleChange(groupIndex, selectedIndex)
+      }
+    },
     handleChange(groupIndex, selectedIndex) {
       const { localValue, localData, cascaded } = this
       const selectedItem = localData[groupIndex][selectedIndex]
-      if (cascaded) {
+      localValue[groupIndex] = localData[groupIndex][selectedIndex].value
+      if (cascaded) { // 级联
+        this.selectedIndexes.splice(groupIndex, this.selectedIndexes.length, selectedIndex)
         if (selectedItem.children) {
           this.localData.splice(groupIndex + 1, this.localData.length, selectedItem.children)
+          this.$nextTick(() => {
+            const nextGroupIndex = groupIndex + 1
+            const nextGroup = this.$refs.groups[nextGroupIndex]
+            if (nextGroup && nextGroup.swiper) {
+              nextGroup.swiper.update()
+              this.handleChange(nextGroupIndex, nextGroup.swiper.realIndex) // 触发子选项
+            }
+          })
         } else {
-          const _localValue = localValue.slice()
-          _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
-          this.sendValue(_localValue)
+          // 无子选项的项目就是最后一项，只在最后一项时触发双向绑定
+          this.localData.splice(groupIndex + 1)
+          this.sendValue(localValue.slice(0, groupIndex + 1))
+          this.updateDetail()
         }
-      } else {
-        const _localValue = localValue.slice()
-        _localValue[groupIndex] = localData[groupIndex][selectedIndex].value
-        this.sendValue(_localValue)
+      } else { // 非级联
+        this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
+        this.sendValue(localValue.slice())
+        this.updateDetail()
       }
     }
   }

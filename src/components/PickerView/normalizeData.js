@@ -6,9 +6,9 @@ export default function normalizeData(data, cascaded) {
   }
   return _normalizeData(data).map(groupData => {
     if (Array.isArray(groupData.children)) {
-      groupData.children = _normalizeData(groupData.children, cascaded)
+      groupData.children = normalizeData(groupData.children, cascaded)
     } else {
-      groupData.children = undefined
+      delete groupData.children
     }
     return groupData
   })

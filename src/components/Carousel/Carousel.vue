@@ -69,6 +69,7 @@ export default createComponent({
 
   mounted() {
     this.$nextTick(() => {
+      const self = this
       this.swiper = new Swiper(this.$el, {
         ...this.swiperOptions,
         init: true, // Whether Swiper should be initialised automatically when you create an instance.
@@ -83,10 +84,11 @@ export default createComponent({
         },
         on: {
           ...this.swiperOptions.on,
-          transitionEnd: () => {
-            if (this.swiper) {
-              this.sendIndex(this.swiper.realIndex)
-            }
+          init() {
+            self.$emit('ready', this)
+          },
+          transitionEnd() {
+            self.sendIndex(this.realIndex)
           }
         }
       })
