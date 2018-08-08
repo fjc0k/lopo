@@ -55,6 +55,5 @@ export function groupData(
       groupData(foundItem.children, selectedValues, result, result._index - 1)
     }
   }
-  console.log(result)
   return result
 }
