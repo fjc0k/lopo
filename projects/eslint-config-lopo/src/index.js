@@ -45,7 +45,7 @@ module.exports = {
 
     // 允许 any == null 或 any != null
     'no-eq-null': 0,
-    'eqeqeq': [2, 'allow-null'],
+    eqeqeq: [2, 'allow-null'],
 
     // 不允许使用 var
     'no-var': 2,
@@ -57,9 +57,6 @@ module.exports = {
     'prefer-template': 2,
 
     // 操作符放前面
-    'operator-linebreak': [2, 'before'],
-
-    // 多行注释
-    'multiline-comment-style': [2, 'starred-block']
+    'operator-linebreak': [2, 'before']
   }
 }
