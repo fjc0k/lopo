@@ -1,10 +1,16 @@
 <template>
   <Sheet
     v-model="localVisible"
-    :maskClosable="maskClosable"
-    :maskThrough="maskThrough"
-    :maskTransparent="maskTransparent">
-    <PickerView v-model="localValue" v-bind="$attrs" ref="view" />
+    v-bind="$props"
+    @cancel="handleCancel"
+    @confirm="handleConfirm">
+    <PassSlots />
+    <component
+      :is="view"
+      v-model="stagedValue"
+      v-bind="$attrs"
+      ref="view"
+    />
   </Sheet>
 </template>
 
@@ -12,6 +18,7 @@
 import { createComponent } from '../_utils'
 import Sheet from '../Sheet/Sheet.vue'
 import PickerView from '../PickerView/PickerView.vue'
+import PassSlots from '../PassSlots/PassSlots.vue'
 
 export default createComponent({
   name: 'Picker',
@@ -22,7 +29,11 @@ export default createComponent({
 
   inheritAttrs: false,
 
-  components: { Sheet, PickerView },
+  components: {
+    Sheet,
+    PickerView,
+    PassSlots
+  },
 
   maskProps: {
     closable: true,
@@ -35,13 +46,34 @@ export default createComponent({
       type: Array,
       default: () => [],
       transform: value => value.slice()
-    }
+    },
+    view: {
+      type: null,
+      default: PickerView
+    },
+    ...Sheet.props
   },
 
+  data: () => ({
+    stagedValue: []
+  }),
+
   beforeMount() {
+    this.stagedValue = this.localValue.slice()
     this.$on('show', () => {
       this.$refs.view.update()
     })
+  },
+
+  methods: {
+    handleCancel() {
+      this.stagedValue = this.localValue.slice()
+      this.$emit('cancel', ...arguments)
+    },
+    handleConfirm() {
+      this.$emit('confirm', ...arguments)
+      this.sendValue(this.stagedValue.slice())
+    }
   }
 })
 </script>

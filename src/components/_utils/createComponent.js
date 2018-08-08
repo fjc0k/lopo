@@ -35,6 +35,10 @@ export default componentDefinition => {
   // 注入组件名
   componentDefinition.name = `L${componentName}`
 
+  if (componentDefinition.functional) {
+    return componentDefinition
+  }
+
   // 初始化混入
   componentDefinition.mixins = componentDefinition.mixins || []
 

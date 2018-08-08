@@ -23,6 +23,9 @@
       v-model="pickerValue"
       v-bind="picker"
       :visible.sync="pickerVisible">
+      <div slot="desc">
+        小心哦
+      </div>
     </l-picker>
     <hr>
     <!-- {{ pickerValue2 }}
@@ -128,6 +131,7 @@ export default {
     },
     pickerValue: ['四川', '男生'],
     picker: {
+      title: '选择你的信息',
       caption: ['省份', '性别', '年龄'],
       data: [
         ['云南', '四川', '贵州', '浙江', ['上海', '上海', [
