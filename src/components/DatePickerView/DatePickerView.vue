@@ -1,20 +1,10 @@
 <template>
-  <div :class="_.view">
-    <PickerView
-      v-if="!noDate"
-      v-model="localValue"
-      v-bind="$attrs"
-      :data="dateData"
-      cascaded
-    />
-    <PickerView
-      v-if="!noTime"
-      v-model="localValue"
-      v-bind="$attrs"
-      :data="timeData"
-      cascaded
-    />
-  </div>
+  <PickerView
+    v-model="localValue"
+    v-bind="$attrs"
+    :data="dateData"
+    cascaded
+  />
 </template>
 
 <script>
@@ -125,10 +115,12 @@ export default createComponent({
                   if (filterDay) {
                     days = days.filter(day => filterDay({ year, month, day }))
                   }
-                  return days.map(day => ({
-                    label: formatDay ? formatDate({ y: year, m: month, d: day }, formatDay) : day,
-                    value: day
-                  }))
+                  return days.map(day => {
+                    return {
+                      label: formatDay ? formatDate({ y: year, m: month, d: day }, formatDay) : day,
+                      value: day
+                    }
+                  })
                 })()
               }
             })
