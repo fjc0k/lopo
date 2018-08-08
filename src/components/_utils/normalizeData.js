@@ -1,24 +1,21 @@
-export default data => {
-  // e.g. '10'
-  if (Array.isArray(data)) {
-    return [{
-      label: data,
-      value: data
-    }]
-  }
-
+export default function normalizeData(data) {
   return data.map(item => {
-    // e.g. { label: '10', value: 10 }
-    if (typeof item === 'object') return item
-
     // e.g. ['10', 10]
     if (Array.isArray(item)) {
       const [label, value = label, children] = item
       return {
         label: label,
         value: value,
-        children
+        children: Array.isArray(children) ? children.map(normalizeData) : undefined
       }
+    }
+
+    // e.g. { label: '10', value: 10 }
+    if (typeof item === 'object') {
+      if (Array.isArray(item.children)) {
+        item.children = item.children.map(normalizeData)
+      }
+      return item
     }
 
     // e.g. '10'

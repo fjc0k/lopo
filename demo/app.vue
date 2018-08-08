@@ -21,13 +21,13 @@
       v-bind="picker">
     </l-picker-view>
     <hr>
-    {{ pickerValue2 }}
+    <!-- {{ pickerValue2 }}
     <hr>
     <l-picker-view
       v-model="pickerValue2"
       v-bind="picker2"
       cascaded>
-    </l-picker-view>
+    </l-picker-view> -->
     <hr>
     <l-date-picker-view
       v-model="pickerValue3"
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
 export default {
   name: 'app',
 
@@ -102,25 +103,45 @@ export default {
     pickerValue3: [2021, 3, 5],
     picker3: {
       mode: 'datetime',
-      formatYear: 'yy 年',
-      formatMonth: 'm 月',
-      formatDay: 'd 日',
-      divider: ['-', ':'],
+      caption: ['年', '月', '日', '时', '分'],
+      /*
+       * formatYear: 'yy 年',
+       * formatMonth: 'm 月',
+       * formatDay: 'd 日',
+       * formatHour: 'h 时',
+       * formatMinute: 'i 分',
+       */
       startDate: '2018-9-4',
-      filterYear: ({ year }) => year % 4
+      filterYear: ({ year }) => year % 4,
+      filterHour: ({ hour }) => hour % 5 === 0
       /*
        * filterMonth: ({ month }) => month % 3,
        * filterDay: ({ day }) => day > 20
        */
     },
-    pickerValue: ['四川省', 0],
+    pickerValue: ['四川省', 0, 'dd', 'ii', 'xx2'],
     picker: {
       data: [
-        ['云南省', '四川省', '贵州省', '浙江省', '上海市', '福建省'],
-        ['1', 2, 3, 4, 5, 6, 7, 0],
-        ['我们', '你们']
-      ],
-      caption: ['省（直辖市）', '市', '县']
+        ps.map(p => `${p}${1}`),
+        ps.map((p, index) => ({
+          label: `${p}${2}`,
+          value: `${p}${2}`,
+          children: [
+            ps.slice(0, index + 1).map(p => [
+              `${p}${21}-${index}`,
+              `${p}${21}-${index}`
+            ])
+          ]
+        })),
+        ps.map((p, index) => ({
+          label: `${p}${3}`,
+          value: `${p}${3}`,
+          children: [
+            ps.slice(0, index + 1).map(p => `${p}${31}-${index}`),
+            ps.slice(0, index + 1).map(p => `${p}${32}-${index}`)
+          ]
+        }))
+      ]
     },
     pickerValue2: ['云南省2', '镇雄县2'],
     picker2: {

@@ -59,17 +59,9 @@
 </template>
 
 <script>
-/*
- * todo
- * [
- *    [{ label: 1, value: 1 }, { label: 2, value: 2 }],
- *    [{ label: 11, value: 11, children: [[{ ... }, { ... }], [{ ... }]] }]
- * ]
- */
-
-import { fill, range, findIndex } from 'lodash'
+import { fill } from 'lodash'
 import { createComponent, parseCSSUnit } from '../_utils'
-import normalizeData from './normalizeData'
+import { normalizeData, groupData } from './_utils'
 import Carousel from '../Carousel/Carousel.vue'
 import CarouselItem from '../CarouselItem/CarouselItem.vue'
 
@@ -102,12 +94,12 @@ export default createComponent({
       default: 5
     },
     divider: [String, Number, Array],
-    caption: [String, Number, Array],
-    cascaded: Boolean
+    caption: [String, Number, Array]
   },
 
   data: () => ({
     localData: [],
+    parentIndexes: [],
     selectedIndexes: []
   }),
 
@@ -191,34 +183,9 @@ export default createComponent({
     data: {
       immediate: true,
       handler(data) {
-        const { value, cascaded } = this
-        data = normalizeData(data, cascaded)
-
-        let localData
-        let selectedIndexes
-
-        if (cascaded) { // 级联
-          localData = []
-          selectedIndexes = []
-          let groupIndex = 0
-          while (data) {
-            localData.push(data)
-            const foundIndex = findIndex(data, ['value', value[groupIndex++]])
-            selectedIndexes.push(foundIndex === -1 ? 0 : foundIndex)
-            data = foundIndex === -1 ? null : data[foundIndex].children
-          }
-        } else { // 非级联
-          localData = data
-          selectedIndexes = range(data.length).map(index => {
-            if (index in value) {
-              const foundIndex = findIndex(localData[index], ['value', value[index]])
-              return foundIndex === -1 ? 0 : foundIndex
-            }
-            return 0
-          })
-        }
-
-        this.localData = localData
+        const { groupedData, parentIndexes, selectedIndexes } = groupData(normalizeData(data), this.value)
+        this.localData = groupedData
+        this.parentIndexes = parentIndexes
         this.selectedIndexes = selectedIndexes
         this.updateDetail()
       }
@@ -235,36 +202,43 @@ export default createComponent({
         )
       })
     },
-    handleReady(groupIndex, selectedIndex) {
-      if (this.cascaded) { // 级联：触发子选项
-        this.handleChange(groupIndex, selectedIndex)
-      }
+    handleReady() {
+
     },
     handleChange(groupIndex, selectedIndex) {
-      const { localValue, localData, cascaded } = this
-      const selectedItem = localData[groupIndex][selectedIndex]
-      localValue[groupIndex] = localData[groupIndex][selectedIndex].value
-      if (cascaded) { // 级联
-        this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
-        if (selectedItem.children) {
-          this.localData.splice(groupIndex + 1, this.localData.length, selectedItem.children)
-          this.$nextTick(() => {
-            const nextGroupIndex = groupIndex + 1
+      const localValue = this.localValue
+      const localData = this.localData
+      const parentIndexes = this.parentIndexes
+      const currentGroup = localData[groupIndex]
+      const selectedItem = currentGroup[selectedIndex]
+      localValue[groupIndex] = selectedItem.value
+      this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
+
+      let _groupIndex = groupIndex + 1
+      let _shouldReplaceCount = 0
+      while (parentIndexes[_groupIndex] !== undefined && (parentIndexes[_groupIndex] > parentIndexes[groupIndex])) {
+        _shouldReplaceCount++
+        _groupIndex++
+      }
+
+      if (selectedItem.children) {
+        const childrenCount = selectedItem.children.length
+        this.localData.splice(groupIndex + 1, _shouldReplaceCount, ...selectedItem.children)
+        this.parentIndexes.splice(groupIndex + 1, _shouldReplaceCount, ...fill(Array(childrenCount), groupIndex))
+        this.$nextTick(() => {
+          for (let i = 0; i < childrenCount; i++) {
+            const nextGroupIndex = groupIndex + i + 1
             const nextGroup = this.$refs.groups[nextGroupIndex]
             if (nextGroup && nextGroup.swiper) {
               nextGroup.swiper.update()
               this.handleChange(nextGroupIndex, nextGroup.swiper.realIndex) // 触发子选项
             }
-          })
-        } else {
-          // 无子选项的项目就是最后一项，只在最后一项时触发双向绑定
-          this.localData.splice(groupIndex + 1)
-          this.sendValue(localValue.slice(0, groupIndex + 1))
-          this.updateDetail()
-        }
-      } else { // 非级联
-        this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
-        this.sendValue(localValue.slice())
+          }
+        })
+      } else {
+        this.parentIndexes.splice(groupIndex + 1, _shouldReplaceCount)
+        this.localData.splice(groupIndex + 1, _shouldReplaceCount)
+        this.sendValue(localValue.slice(0, this.groupCount))
         this.updateDetail()
       }
     }

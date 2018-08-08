@@ -2,7 +2,7 @@
   <PickerView
     v-model="localValue"
     v-bind="$attrs"
-    :data="dateData"
+    :data="data"
     cascaded
   />
 </template>
@@ -100,7 +100,7 @@ export default createComponent({
             if (filterMonth) {
               months = months.filter(month => filterMonth({ year, month }))
             }
-            return months.map(month => {
+            return [months.map(month => {
               return {
                 label: formatMonth ? formatDate({ y: year, m: month }, formatMonth) : month,
                 value: month,
@@ -115,15 +115,15 @@ export default createComponent({
                   if (filterDay) {
                     days = days.filter(day => filterDay({ year, month, day }))
                   }
-                  return days.map(day => {
+                  return [days.map(day => {
                     return {
                       label: formatDay ? formatDate({ y: year, m: month, d: day }, formatDay) : day,
                       value: day
                     }
-                  })
+                  })]
                 })()
               }
-            })
+            })]
           })()
         }
       })
@@ -148,15 +148,25 @@ export default createComponent({
             if (filterMinute) {
               minutes = minutes.filter(minute => filterMinute({ hour, minute }))
             }
-            return minutes.map(minute => {
+            return [minutes.map(minute => {
               return {
                 label: formatMinute ? formatDate({ h: hour, i: minute }, formatMinute) : minute,
                 value: minute
               }
-            })
+            })]
           })()
         }
       })
+    },
+    data() {
+      const data = []
+      if (!this.noDate) {
+        data.push(this.dateData)
+      }
+      if (!this.noTime) {
+        data.push(this.timeData)
+      }
+      return data
     }
   }
 })
