@@ -8,6 +8,9 @@
       <l-carousel-item to="http://baidu.com" image="https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png"></l-carousel-item>
       <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
     </l-carousel>
+    <hr>
+    <l-image-picker v-model="imagePickerFiles" cols="5"></l-image-picker>
+    <hr>
     <l-sheet
       v-model="sheetVisible"
       :maskClosable="false"
@@ -100,6 +103,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    imagePickerFiles: [],
     pickerValue3: [2021, 3, 5],
     picker3: {
       mode: 'datetime',
