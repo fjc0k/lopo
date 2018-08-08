@@ -1,6 +1,6 @@
 {
   "name": "@lopo/eslint-config-lopo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ESLint config for Lopo.",
   "main": "src/index.js",
   "license": "MIT",
