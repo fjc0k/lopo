@@ -1,35 +1,30 @@
-import { isArray, isPlainObject } from 'lodash'
-
-export default (data, {
-  label: labelKey = 'label',
-  value: valueKey = 'value'
-} = {}) => {
+export default data => {
   // e.g. '10'
-  if (!isArray(data)) {
+  if (Array.isArray(data)) {
     return [{
-      [labelKey]: data,
-      [valueKey]: data
+      label: data,
+      value: data
     }]
   }
 
   return data.map(item => {
     // e.g. { label: '10', value: 10 }
-    if (isPlainObject(item)) return item
+    if (typeof item === 'object') return item
 
     // e.g. ['10', 10]
-    if (isArray(item)) {
-      const [label, value = label, extra] = item
+    if (Array.isArray(item)) {
+      const [label, value = label, children] = item
       return {
-        [labelKey]: label,
-        [valueKey]: value,
-        ...extra
+        label: label,
+        value: value,
+        children
       }
     }
 
     // e.g. '10'
     return {
-      [labelKey]: item,
-      [valueKey]: item
+      label: item,
+      value: item
     }
   })
 }
