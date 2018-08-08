@@ -19,14 +19,14 @@
       desc="得得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀陇望蜀">
       fff
     </l-sheet>
-    <l-picker
-      v-model="pickerValue"
-      v-bind="picker"
+    <l-date-picker
+      v-model="pickerValue3"
+      v-bind="picker3"
       :visible.sync="pickerVisible">
       <div slot="desc">
         小心哦
       </div>
-    </l-picker>
+    </l-date-picker>
     <hr>
     <!-- {{ pickerValue2 }}
     <hr>

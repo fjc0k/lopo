@@ -3,6 +3,7 @@
     v-model="localValue"
     v-bind="$attrs"
     :data="data"
+    ref="view"
     cascaded
   />
 </template>
@@ -167,6 +168,12 @@ export default createComponent({
         data.push(this.timeData)
       }
       return data
+    }
+  },
+
+  methods: {
+    update() {
+      this.$refs.view.update()
     }
   }
 })
