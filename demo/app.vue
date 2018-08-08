@@ -1,8 +1,8 @@
 <template>
   <div>
     hello
-    <l-button shape="circle" mini>
-      <l-icon name="github" />
+    <l-button shape="circle" mini @click="pickerVisible=true">
+      -
     </l-button>
     <l-carousel :indicator="true" loop v-model="slideIndex">
       <l-carousel-item to="http://baidu.com" image="https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png"></l-carousel-item>
@@ -19,10 +19,11 @@
       desc="得得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀得陇望蜀陇望蜀">
       fff
     </l-sheet>
-    <l-picker-view
+    <l-picker
       v-model="pickerValue"
-      v-bind="picker">
-    </l-picker-view>
+      v-bind="picker"
+      :visible.sync="pickerVisible">
+    </l-picker>
     <hr>
     <!-- {{ pickerValue2 }}
     <hr>
@@ -103,6 +104,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    pickerVisible: false,
     imagePickerFiles: [],
     pickerValue3: [2021, 3, 5],
     picker3: {
@@ -124,28 +126,21 @@ export default {
        * filterDay: ({ day }) => day > 20
        */
     },
-    pickerValue: ['四川省', 0, 'dd', 'ii', 'xx2'],
+    pickerValue: ['四川', '男生'],
     picker: {
+      caption: ['省份', '性别', '年龄'],
       data: [
-        ps.map(p => `${p}${1}`),
-        ps.map((p, index) => ({
-          label: `${p}${2}`,
-          value: `${p}${2}`,
-          children: [
-            ps.slice(0, index + 1).map(p => [
-              `${p}${21}-${index}`,
-              `${p}${21}-${index}`
-            ])
-          ]
-        })),
-        ps.map((p, index) => ({
-          label: `${p}${3}`,
-          value: `${p}${3}`,
-          children: [
-            ps.slice(0, index + 1).map(p => `${p}${31}-${index}`),
-            ps.slice(0, index + 1).map(p => `${p}${32}-${index}`)
-          ]
-        }))
+        ['云南', '四川', '贵州', '浙江', ['上海', '上海', [
+          ['浦东', '浦西']
+        ]], '山东'],
+        [
+          ['男生', '男生', [
+            ['18岁', '20岁', '30岁']
+          ]],
+          ['女生', '女生', [
+            ['21岁', '22岁', '45岁', '80岁']
+          ]]
+        ]
       ]
     },
     pickerValue2: ['云南省2', '镇雄县2'],

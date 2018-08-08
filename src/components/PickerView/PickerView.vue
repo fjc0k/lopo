@@ -242,6 +242,11 @@ export default createComponent({
         this.sendValue(localValue.slice(0, this.groupCount))
         this.updateDetail()
       }
+    },
+    update() {
+      this.$refs.groups.forEach(group => {
+        group.swiper.update()
+      })
     }
   }
 })

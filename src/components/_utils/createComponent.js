@@ -55,19 +55,21 @@ export default componentDefinition => {
 
   // hidable 组件
   if (componentDefinition.hidable) {
+    const hidableConfig = typeof componentDefinition.hidable === 'object' ? componentDefinition.hidable : {
+      default: false
+    }
     componentDefinition.mixins.push({
-      model: {
-        prop: 'visible',
-        event: 'change'
-      },
+      ...(hidableConfig.sync ? {} : {
+        model: {
+          prop: 'visible',
+          event: 'change'
+        }
+      }),
       props: {
         visible: {
           type: Boolean,
-          default: (
-            typeof componentDefinition.hidable === 'object'
-              ? componentDefinition.hidable.default
-              : false
-          ),
+          default: hidableConfig.default,
+          sync: hidableConfig.sync,
           on: {
             change(visible) {
               // 待动画完成后再提交事件
