@@ -109,9 +109,10 @@ export default createComponent({
         freeMode: true,
         freeModeSticky: true,
         slideToClickedSlide: true,
-        freeModeMomentumRatio: 0.6, // Higher value produces larger momentum distance after you release slider
-        freeModeMomentumVelocityRatio: 0.6, // Higher value produces larger momentum velocity after you release slider
-        freeModeMinimumVelocity: 0.1 // Minimum touchmove-velocity required to trigger free mode momentum
+        freeModeMomentumRatio: 0.6,
+        freeModeMomentumVelocityRatio: 0.6,
+        freeModeMinimumVelocity: 0.1,
+        freeModeMomentumBounceRatio: 2
       }
     },
     groupCount() {

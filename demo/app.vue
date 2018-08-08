@@ -113,7 +113,8 @@ export default {
        */
       startDate: '2018-9-4',
       filterYear: ({ year }) => year % 4,
-      filterHour: ({ hour }) => hour % 5 === 0
+      filterHour: ({ hour }) => hour % 5 === 0,
+      filterMinute: ({ minute }) => minute % 15 === 0
       /*
        * filterMonth: ({ month }) => month % 3,
        * filterDay: ({ day }) => day > 20
