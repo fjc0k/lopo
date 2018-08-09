@@ -8,6 +8,15 @@
     <l-button shape="circle" mini @click="pickerVisible=true">
       -
     </l-button>
+    <hr>
+
+    <l-countdown time="2018-8-9 20:20">
+      <!-- <div slot-scope="{ hours, seconds }">
+        {{ hours }}, {{ seconds }}啦
+      </div> -->
+    </l-countdown>
+
+    <hr>
     <l-button type="primary" mini @click="handleOpenPicker">
       Open Picker
     </l-button>
