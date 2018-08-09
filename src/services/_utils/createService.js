@@ -1,5 +1,5 @@
 export default ({ Vue, Component }) => {
-  return (options, children) => {
+  return (options, children = {}) => {
     const instance = new Vue({
       name: Component.name,
       computed: {
@@ -9,10 +9,19 @@ export default ({ Vue, Component }) => {
             this.$destroy()
           }
           return options
+        },
+        slots() {
+          const h = this.$createElement
+          return Object.keys(children).map(slot => {
+            const vnode = children[slot]
+            return h('template', { slot }, [
+              typeof vnode === 'function' ? vnode(h) : vnode
+            ])
+          })
         }
       },
       render(h) {
-        return h(Component, this.options, children)
+        return h(Component, this.options, this.slots)
       },
       el: document.createElement('div')
     })

@@ -49,7 +49,7 @@ export default createComponent({
     },
     view: {
       type: null,
-      default: PickerView
+      default: () => PickerView
     },
     ...Sheet.props
   },

@@ -4,6 +4,9 @@
     <l-button shape="circle" mini @click="pickerVisible=true">
       -
     </l-button>
+    <l-button type="primary" mini @click="handleOpenPicker">
+      Open Picker
+    </l-button>
     <l-carousel :indicator="true" loop v-model="slideIndex">
       <l-carousel-item to="http://baidu.com" image="https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png"></l-carousel-item>
       <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
@@ -191,6 +194,18 @@ export default {
       setTimeout(() => {
         l.hide()
       }, 5000)
+    },
+    handleOpenPicker() {
+      this.$datePicker({
+        value: [2020],
+        caption: ['年', '月', '日'],
+        data: [
+          ['明天', '今天']
+        ]
+      }, {
+        title: [<i>iii</i>, <l-icon name="lopo-fail"></l-icon>],
+        cancel: 'Cancel'
+      })
     }
   }
 }

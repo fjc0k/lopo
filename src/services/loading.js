@@ -7,7 +7,7 @@ export default Vue => message => {
       visible: true,
       type: 'loading'
     }
-  }, [
-    message
-  ])
+  }, {
+    default: message
+  })
 }

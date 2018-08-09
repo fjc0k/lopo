@@ -17,9 +17,9 @@ export default Vue => {
         visible: true,
         ...attrs
       }
-    }, [
-      message
-    ])
+    }, {
+      default: message
+    })
   }
   getToast.success = (message, duration) => getToast({
     type: 'success',
