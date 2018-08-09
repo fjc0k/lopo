@@ -18,10 +18,10 @@
             name="lopo-cross"
             @click.native="handleRemoveClick(item, (listIndex * cols) + itemIndex)"
           />
-          <div
-            :class="[_.content, _.image]"
+          <XImage
+            :class="_.content"
+            :src="item.url"
             :style="{
-              backgroundImage: `url(${item.url})`,
               transform: `rotate(${item.rotation}deg)`
             }"
             @click="handleImageClick(item, (listIndex * cols) + itemIndex)"
@@ -38,13 +38,14 @@ import { toArray } from 'lodash'
 import { createComponent, chunk } from '../_utils'
 import { getOrientation, getRotation } from './_utils'
 import Icon from '../Icon/Icon.vue'
+import XImage from '../Image/Image.vue'
 
 const IMAGE_SELECTOR = 0
 
 export default createComponent({
   name: 'ImagePicker',
 
-  components: { Icon },
+  components: { Icon, XImage },
 
   model: {
     prop: 'files',

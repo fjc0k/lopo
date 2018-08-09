@@ -11,9 +11,9 @@
     <hr>
 
     <l-countdown time="2018-8-9 20:20">
-      <!-- <div slot-scope="{ hours, seconds }">
-        {{ hours }}, {{ seconds }}啦
-      </div> -->
+      <div slot-scope="{ hours, seconds, pad }">
+        已经过去{{ hours }}小时{{seconds}}秒了~
+      </div>
     </l-countdown>
 
     <hr>
@@ -25,7 +25,7 @@
       <l-carousel-item image="https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png"></l-carousel-item>
     </l-carousel>
     <hr>
-    <l-image-picker v-model="imagePickerFiles" cols="5"></l-image-picker>
+    <l-image-picker v-model="imagePickerFiles"></l-image-picker>
     <hr>
     <l-sheet
       v-model="sheetVisible"

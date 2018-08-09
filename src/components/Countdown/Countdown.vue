@@ -1,7 +1,15 @@
 <template>
   <div :class="_.countdown">
-    <slot v-bind="diff">
-      {{ diff.days | padStartWithZero }}天{{ diff.hours | padStartWithZero }}时{{ diff.minutes | padStartWithZero }}分{{ diff.seconds | padStartWithZero }}秒
+    <slot v-bind="diff" :pad="pad">
+      {{
+        pad(diff.days)
+      }}天{{
+        pad(diff.hours)
+      }}时{{
+        pad(diff.minutes)
+      }}分{{
+        pad(diff.seconds)
+      }}秒
     </slot>
   </div>
 </template>
@@ -30,12 +38,6 @@ export default createComponent({
     }
   }),
 
-  filters: {
-    padStartWithZero(num) {
-      return num < 10 ? `0${num}` : num
-    }
-  },
-
   beforeMount() {
     this.update()
     this.timer = setInterval(this.update, 1000)
@@ -43,10 +45,7 @@ export default createComponent({
 
   methods: {
     pad(num) {
-      this.cache = this.cache || Object.create(null)
-      if (this.cache) {
-
-      }
+      return num < 10 ? `0${num}` : num
     },
     update() {
       const diff = Math.abs(differenceInSeconds(this.localTime, new Date()))
