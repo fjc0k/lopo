@@ -1,6 +1,6 @@
 <template>
   <div>
-    hello
+    hello <l-badge text="world"></l-badge>
     <l-button shape="circle" mini @click="pickerVisible=true">
       -
     </l-button>
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
+// const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
 export default {
   name: 'app',
 
@@ -197,6 +197,8 @@ export default {
     },
     handleOpenPicker() {
       this.$datePicker({
+        mode: 'time',
+        formatHour: 'h 时',
         value: [2020],
         caption: ['年', '月', '日'],
         data: [
