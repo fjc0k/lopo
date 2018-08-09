@@ -1,6 +1,10 @@
 <template>
   <div>
     hello <l-badge text="world"></l-badge>
+    <l-price value="20" symbolPosition="top"></l-price>
+    <l-price value="0.01" decimalSize="small" symbolPosition="bottom"></l-price>
+    <l-price :value="1000.3847848" symbolPosition="bottom"></l-price>
+    <l-price :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
     <l-button shape="circle" mini @click="pickerVisible=true">
       -
     </l-button>
