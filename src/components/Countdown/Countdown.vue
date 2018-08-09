@@ -17,6 +17,7 @@
 <script>
 import { parse, differenceInSeconds } from 'date-fns'
 import { createComponent } from '../_utils'
+import { clearInterval } from 'timers'
 
 export default createComponent({
   name: 'Countdown',
@@ -38,27 +39,31 @@ export default createComponent({
     }
   }),
 
-  beforeMount() {
-    this.update()
-    this.timer = setInterval(this.update, 1000)
-  },
-
   methods: {
     pad(num) {
       return num < 10 ? `0${num}` : num
     },
     update() {
       const diff = Math.abs(differenceInSeconds(this.localTime, new Date()))
-      const days = Math.floor(diff / (3600 * 24))
-      const hours = Math.floor((diff - (days * 3600 * 24)) / 3600)
-      const minutes = Math.floor(((diff - (days * 3600 * 24) - (hours * 3600))) / 60)
-      const seconds = Math.floor(diff - (days * 3600 * 24) - (hours * 3600) - (minutes * 60))
+      const days = Math.floor(diff / 60 / 60 / 24)
+      const hours = Math.floor((diff / 60 / 60) % 24)
+      const minutes = Math.floor((diff / 60) % 60)
+      const seconds = diff % 60
       this.diff = { days, hours, minutes, seconds }
       if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
         clearInterval(this.timer)
         this.$emit('end')
       }
     }
+  },
+
+  beforeMount() {
+    this.update()
+    this.timer = setInterval(this.update, 1000)
+  },
+
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 })
 </script>

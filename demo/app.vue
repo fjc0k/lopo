@@ -11,8 +11,8 @@
     <hr>
 
     <l-countdown time="2018-8-9 20:20">
-      <div slot-scope="{ hours, seconds, pad }">
-        已经过去{{ hours }}小时{{seconds}}秒了~
+      <div slot-scope="{ hours, minutes, seconds, pad }">
+        已经过去{{ hours }}小时{{ minutes }}分{{seconds}}秒了~
       </div>
     </l-countdown>
 
