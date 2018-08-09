@@ -23,14 +23,16 @@ export default createComponent({
   },
 
   beforeMount() {
-    Icon = getIcon({
-      type: 'svg',
-      sprite: [
-        '<svg><defs>',
-        ...icons,
-        '</defs></svg>'
-      ].join('')
-    })
+    if (!Icon) {
+      Icon = getIcon({
+        type: 'svg',
+        sprite: [
+          '<svg><defs>',
+          ...icons,
+          '</defs></svg>'
+        ].join('')
+      })
+    }
   },
 
   render(h) {
