@@ -53,7 +53,11 @@ export default createComponent({
     formatMonth: String,
     formatDay: String,
     formatHour: String,
-    formatMinute: String
+    formatMinute: String,
+    extraData: {
+      type: Array,
+      default: () => []
+    }
   },
 
   computed: {
@@ -167,6 +171,7 @@ export default createComponent({
       if (!this.noTime) {
         data.push(this.timeData)
       }
+      data.push(...this.extraData)
       return data
     }
   },

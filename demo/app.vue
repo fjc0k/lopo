@@ -127,8 +127,11 @@ export default {
     imagePickerFiles: [],
     pickerValue3: [2021, 3, 5],
     picker3: {
-      mode: 'datetime',
+      mode: 'date',
       caption: ['年', '月', '日', '时', '分'],
+      extraData: [
+        ['6点 - 9点', '9点 - 12点', '13点 - 15点']
+      ],
       /*
        * formatYear: 'yy 年',
        * formatMonth: 'm 月',
