@@ -213,12 +213,12 @@ export default {
     },
     handleOpenPicker() {
       this.$datePicker({
-        mode: 'time',
+        mode: 'year',
         formatHour: 'h 时',
-        value: [2020],
-        caption: ['年', '月', '日'],
-        data: [
-          ['明天', '今天']
+        value: [2020, '秋'],
+        caption: ['年份', '季节'],
+        postData: [
+          ['春', '夏', '秋', '冬']
         ]
       }, {
         title: [<i>iii</i>, <l-icon name="lopo-fail"></l-icon>],

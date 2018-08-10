@@ -85,6 +85,14 @@ export default createComponent({
       type: Array,
       default: () => []
     },
+    preData: {
+      type: Array,
+      default: () => []
+    },
+    postData: {
+      type: Array,
+      default: () => []
+    },
     itemHeight: {
       type: String,
       default: '2em'
@@ -184,7 +192,14 @@ export default createComponent({
     data: {
       immediate: true,
       handler(data) {
-        const { groupedData, parentIndexes, selectedIndexes } = groupData(normalizeData(data), this.value)
+        const { groupedData, parentIndexes, selectedIndexes } = groupData(
+          normalizeData([
+            ...this.preData,
+            ...data,
+            ...this.postData
+          ]),
+          this.value
+        )
         this.localData = groupedData
         this.parentIndexes = parentIndexes
         this.selectedIndexes = selectedIndexes
