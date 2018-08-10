@@ -2,8 +2,12 @@
 
 .carousel {
   :global {
-    .swiper-pagination-bullet-active {
-      background: $color-primary;
+    .swiper-pagination-bullet {
+      opacity: 1;
+      background: #CCC;
+      &-active {
+        background: #888;
+      }
     }
   }
 }
