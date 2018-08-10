@@ -17,7 +17,6 @@
 <script>
 import { parse, differenceInSeconds } from 'date-fns'
 import { createComponent } from '../_utils'
-import { clearInterval } from 'timers'
 
 export default createComponent({
   name: 'Countdown',
