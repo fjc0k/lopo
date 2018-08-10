@@ -257,3 +257,12 @@ hairline-remove($directions = (top right bottom left)) {
     }
   }
 }
+
+// 隐藏
+hidden() {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
