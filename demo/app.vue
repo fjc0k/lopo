@@ -219,10 +219,11 @@ export default {
         caption: ['年份', '季节'],
         postData: [
           ['春', '夏', '秋', '冬']
-        ]
+        ],
+        startDate: '2017',
+        endDate: '2089'
       }, {
-        title: [<i>iii</i>, <l-icon name="lopo-fail"></l-icon>],
-        cancel: 'Cancel'
+        title: '选择季节'
       })
     }
   }
