@@ -1,6 +1,6 @@
 {
   "name": "@lopo/china-division-data",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "中国三级区划地址数据。",
   "main": "dist/china-division-data.cjs.js",
   "module": "dist/china-division-data.es.js",

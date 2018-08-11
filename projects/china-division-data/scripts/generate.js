@@ -20,19 +20,19 @@ const removeEmpty = arr => arr.filter(item => item && String(item).length)
     }
     return arr
   }, [])
-  const divisionList = [listArr.filter(item => +item[1] === 1)
+  const divisionList = listArr.filter(item => +item[1] === 1)
     .map(item => {
       return removeEmpty([
         item[0],
-        [listArr.filter(item2 => +item2[1] === +_.last(item)).map(item2 => {
+        listArr.filter(item2 => +item2[1] === +_.last(item)).map(item2 => {
           return removeEmpty([
             item2[0],
-            [listArr.filter(item3 => +item3[1] === +_.last(item2)).map(item3 => {
+            listArr.filter(item3 => +item3[1] === +_.last(item2)).map(item3 => {
               return item3[0]
-            })]
+            })
           ])
-        })]
+        })
       ])
-    })]
+    })
   fs.outputJsonSync(resolveSrc('data.json'), divisionList, { spaces: 2 })
 })()

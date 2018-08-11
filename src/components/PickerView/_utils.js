@@ -17,13 +17,13 @@ export function normalizeData(rawData) {
         return {
           label: label,
           value: _value,
-          children: isArray(_children) && _children.length ? normalizeData(_children) : undefined
+          children: isArray(_children) && _children.length && _children[0].length ? normalizeData(_children) : undefined
         }
       }
 
       // e.g. { label: '10', value: 10 }
       if (isPlainObject(item)) {
-        item.children = isArray(item.children) && item.children.length ? normalizeData(item.children) : undefined
+        item.children = isArray(item.children) && item.children.length && item.children[0].length ? normalizeData(item.children) : undefined
         return item
       }
 

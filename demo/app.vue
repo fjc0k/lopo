@@ -10,6 +10,14 @@
     </l-button>
     <hr>
 
+    <l-Address-Picker-View
+      mode="province"
+      :filterCity="({ city }) => city === '昭通市'"
+      :postData="[
+        ['商业城', '以勒']
+      ]"
+    ></l-Address-Picker-View>
+
     <l-countdown time="2018-8-9 20:20">
       <div slot-scope="{ hours, minutes, seconds, pad }">
         已经过去{{ hours }}小时{{ minutes }}分{{seconds}}秒了~
@@ -118,7 +126,7 @@
 </template>
 
 <script>
-import cdd from '../projects/china-division-data/dist/divisions-pure.es'
+import cdd from '@lopo/china-division-data'
 console.log(cdd)
 // const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
 export default {
@@ -213,7 +221,7 @@ export default {
       }, 5000)
     },
     handleOpenPicker() {
-      this.$picker({
+      this.$addressPicker({
         data: cdd,
         mode: 'year',
         formatHour: 'h 时',

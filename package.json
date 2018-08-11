@@ -28,6 +28,7 @@
     "vue": "^2.5.16"
   },
   "dependencies": {
+    "@lopo/china-division-data": "^0.0.2",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.10",
     "swiper": "^4.3.5",

@@ -669,6 +669,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@lopo/china-division-data@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@lopo/china-division-data/-/china-division-data-0.0.2.tgz#4351eb444e9309104fada5b6318baf93fe898031"
+
 "@lopo/eslint-config-lopo@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@lopo/eslint-config-lopo/-/eslint-config-lopo-0.0.6.tgz#8ad9d6bef8b9eebcadd88949547ef30bce597416"
