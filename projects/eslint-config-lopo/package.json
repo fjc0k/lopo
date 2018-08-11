@@ -1,10 +1,10 @@
 {
   "name": "@lopo/eslint-config-lopo",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "ESLint config for Lopo.",
   "main": "src/index.js",
   "license": "MIT",
-  "homepage": "https://github.com/fjc0k/lopo",
+  "homepage": "https://github.com/fjc0k/lopo/tree/master/projects/eslint-config-lopo",
   "publishConfig": {
     "access": "public"
   },
