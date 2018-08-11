@@ -16,6 +16,10 @@ import { createComponent, dateToArray, formatDate } from '../_utils'
 import PickerView from '../PickerView/PickerView.vue'
 
 const now = new Date()
+const RANGE_12 = range(1, 13)
+const RANGE_24 = range(0, 24)
+const RANGE_60 = range(0, 60)
+const RANGE_12_0 = range(0, 12)
 
 export default createComponent({
   name: 'DatePickerView',
@@ -34,6 +38,11 @@ export default createComponent({
       type: String,
       enum: ['date', 'month', 'year', 'time', 'datetime']
     },
+    clock: {
+      numeric: true,
+      default: 24,
+      transform: Number
+    },
     startDate: {
       type: [Date, String, Number],
       default: () => subYears(now, 10),
@@ -44,19 +53,25 @@ export default createComponent({
       default: () => addYears(now, 10),
       transform: date => dateToArray(parse(date))
     },
+    secondSelectable: Boolean,
     filterYear: Function,
     filterMonth: Function,
     filterDay: Function,
     filterHour: Function,
     filterMinute: Function,
+    filterSecond: Function,
     formatYear: String,
     formatMonth: String,
     formatDay: String,
     formatHour: String,
-    formatMinute: String
+    formatMinute: String,
+    formatSecond: String
   },
 
   computed: {
+    is12HourClock() {
+      return this.localClock === 12
+    },
     noDate() {
       return this.mode === 'time'
     },
@@ -68,6 +83,9 @@ export default createComponent({
     },
     noTime() {
       return this.mode === 'date' || this.mode === 'month' || this.mode === 'year'
+    },
+    noSecond() {
+      return !this.secondSelectable
     },
     dateData() {
       const {
@@ -91,7 +109,7 @@ export default createComponent({
           label: formatYear ? formatDate({ y: year }, formatYear) : year,
           value: year,
           children: noMonth ? undefined : (() => {
-            let months = range(1, 13)
+            let months = RANGE_12
             if (year === localStartDate[0]) {
               months = months.filter(month => month >= localStartDate[1])
             }
@@ -134,9 +152,49 @@ export default createComponent({
         filterHour,
         filterMinute,
         formatHour,
-        formatMinute
+        formatMinute,
+        is12HourClock
       } = this
-      let hours = range(0, 24)
+
+      // 12 小时制：从 12 开始算起，午夜为上午 12 点，正午为下午 12 点
+      if (is12HourClock) {
+        const sessions = [
+          { label: '上午', value: 'am' },
+          { label: '下午', value: 'pm' }
+        ]
+        return sessions.map(session => {
+          const sessionValue = session.value
+          session.children = (() => {
+            let hours = RANGE_12_0
+            if (filterHour) {
+              hours = hours.filter(hour => filterHour({ session: sessionValue, hour: hour || 12 }))
+            }
+            return [hours.map(hour => {
+              const realHour = hour || 12
+              return {
+                label: formatHour ? formatDate({ h: realHour }, formatHour) : realHour,
+                value: realHour,
+                children: (() => {
+                  let minutes = RANGE_60
+                  if (filterMinute) {
+                    minutes = minutes.filter(minute => filterMinute({ session: sessionValue, hour: realHour, minute }))
+                  }
+                  return [minutes.map(minute => {
+                    return {
+                      label: formatMinute ? formatDate({ h: realHour, i: minute }, formatMinute) : minute,
+                      value: minute
+                    }
+                  })]
+                })()
+              }
+            })]
+          })()
+          return session
+        })
+      }
+
+      // 24 小时制
+      let hours = RANGE_24
       if (filterHour) {
         hours = hours.filter(hour => filterHour({ hour }))
       }
@@ -145,7 +203,7 @@ export default createComponent({
           label: formatHour ? formatDate({ h: hour }, formatHour) : hour,
           value: hour,
           children: (() => {
-            let minutes = range(0, 60)
+            let minutes = RANGE_60
             if (filterMinute) {
               minutes = minutes.filter(minute => filterMinute({ hour, minute }))
             }
@@ -159,6 +217,22 @@ export default createComponent({
         }
       })
     },
+    secondData() {
+      const {
+        filterSecond,
+        formatSecond
+      } = this
+      let seconds = range(0, 60)
+      if (filterSecond) {
+        seconds = seconds.filter(second => filterSecond({ second }))
+      }
+      return seconds.map(second => {
+        return {
+          label: formatSecond ? formatDate({ s: second }, formatSecond) : second,
+          value: second
+        }
+      })
+    },
     data() {
       const data = []
       if (!this.noDate) {
@@ -166,6 +240,9 @@ export default createComponent({
       }
       if (!this.noTime) {
         data.push(this.timeData)
+        if (!this.noSecond) {
+          data.push(this.secondData)
+        }
       }
       return data
     }

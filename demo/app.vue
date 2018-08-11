@@ -127,11 +127,9 @@ export default {
     imagePickerFiles: [],
     pickerValue3: [2021, 3, 5],
     picker3: {
-      mode: 'date',
-      caption: ['年', '月', '日', '时', '分'],
-      extraData: [
-        ['6点 - 9点', '9点 - 12点', '13点 - 15点']
-      ],
+      mode: 'datetime',
+      secondSelectable: true,
+      caption: ['年', '月', '日', '时', '分', '秒'],
       /*
        * formatYear: 'yy 年',
        * formatMonth: 'm 月',
@@ -140,9 +138,10 @@ export default {
        * formatMinute: 'i 分',
        */
       startDate: '2018-9-4',
-      filterYear: ({ year }) => year % 4,
-      filterHour: ({ hour }) => hour % 5 === 0,
-      filterMinute: ({ minute }) => minute % 15 === 0
+      filterYear: ({ year }) => year % 4
+      // filterHour: ({ hour }) => hour % 5 === 0,
+      // filterMinute: ({ minute }) => minute % 15 === 0,
+      // filterSecond: ({ second }) => second % 3 === 0
       /*
        * filterMonth: ({ month }) => month % 3,
        * filterDay: ({ day }) => day > 20
