@@ -7,18 +7,23 @@ export function normalizeData(rawData) {
       // e.g. ['10', 10]
       if (isArray(item)) {
         const [label, value = label, children] = item
+        let _value = value
+        let _children = children
+        // value 为 array 则表示 children
+        if (isArray(value)) {
+          _value = label
+          _children = value
+        }
         return {
           label: label,
-          value: value,
-          children: isArray(children) ? normalizeData(children) : undefined
+          value: _value,
+          children: isArray(_children) && _children.length ? normalizeData(_children) : undefined
         }
       }
 
       // e.g. { label: '10', value: 10 }
       if (isPlainObject(item)) {
-        if (isArray(item.children)) {
-          item.children = normalizeData(item.children)
-        }
+        item.children = isArray(item.children) && item.children.length ? normalizeData(item.children) : undefined
         return item
       }
 

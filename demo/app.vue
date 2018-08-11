@@ -118,6 +118,8 @@
 </template>
 
 <script>
+import cdd from '../projects/china-division-data/dist/divisions-pure.es'
+console.log(cdd)
 // const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
 export default {
   name: 'app',
@@ -211,14 +213,15 @@ export default {
       }, 5000)
     },
     handleOpenPicker() {
-      this.$datePicker({
+      this.$picker({
+        data: cdd,
         mode: 'year',
         formatHour: 'h 时',
-        value: [2020, '秋'],
+        value: ['云南省', '秋'],
         caption: ['年份', '季节'],
-        postData: [
-          ['春', '夏', '秋', '冬']
-        ],
+        // postData: [
+        //   ['春', '夏', '秋', '冬']
+        // ],
         startDate: '2017',
         endDate: '2089'
       }, {

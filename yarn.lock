@@ -669,9 +669,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@lopo/eslint-config-lopo@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@lopo/eslint-config-lopo/-/eslint-config-lopo-0.0.4.tgz#457b37a49e4aa071603ff8cbffe9f862dfa1e459"
+"@lopo/eslint-config-lopo@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@lopo/eslint-config-lopo/-/eslint-config-lopo-0.0.6.tgz#8ad9d6bef8b9eebcadd88949547ef30bce597416"
   dependencies:
     babel-eslint "^8.2.6"
     eslint-config-xo "^0.23.0"

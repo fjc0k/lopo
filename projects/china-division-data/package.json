@@ -1,0 +1,45 @@
+{
+  "name": "@lopo/china-division-data",
+  "version": "0.0.1",
+  "description": "中国三级区划地址数据。",
+  "main": "dist/china-division-data.cjs.js",
+  "module": "dist/china-division-data.es.js",
+  "unpkg": "dist/china-division-data.min.js",
+  "jsdelivr": "dist/china-division-data.min.js",
+  "license": "MIT",
+  "homepage": "https://github.com/fjc0k/lopo/tree/master/projects/china-division-data",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "lopo",
+    "china",
+    "division"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fjc0k/lopo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fjc0k/lopo/issues"
+  },
+  "author": {
+    "name": "Jay Fong",
+    "email": "fjc0kb@gmail.com",
+    "url": "https://github.com/fjc0k"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "build": "bili --format es,cjs,umd,umd-min --moduleName ChinaDivisionData",
+    "gb": "yarn generate & yarn build"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "bili": "^3.1.2",
+    "fs-extra": "^7.0.0",
+    "lodash": "^4.17.10"
+  }
+}
