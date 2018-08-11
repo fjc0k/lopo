@@ -22,8 +22,9 @@ module.exports = {
     // 字符串使用单引号，允许使用反勾号
     quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 
-    // 行末无分号
+    // 行末无分号，必须出现分号时，应在行首
     semi: [2, 'never'],
+    'semi-style': [2, 'first'],
 
     // 花括号之间有空格
     'object-curly-spacing': [2, 'always'],
