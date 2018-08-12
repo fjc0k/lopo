@@ -222,7 +222,7 @@ export default createComponent({
         filterSecond,
         formatSecond
       } = this
-      let seconds = range(0, 60)
+      let seconds = RANGE_60
       if (filterSecond) {
         seconds = seconds.filter(second => filterSecond({ second }))
       }
