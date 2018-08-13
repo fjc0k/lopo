@@ -2,9 +2,7 @@ const snakeCase = require('lodash/snakeCase')
 
 module.exports = {
   presets: [
-    ['poi', {
-      jsx: 'vue'
-    }]
+    '@vue/app'
   ],
   plugins: [
     ['import', {
