@@ -2,9 +2,12 @@
   <div>
     hello <l-badge text="world"></l-badge>
     <l-price value="20" symbolPosition="top"></l-price>
-    <l-price value="0.01" decimalSize="small" symbolPosition="bottom"></l-price>
-    <l-price :value="1000.3847848" symbolPosition="bottom"></l-price>
-    <l-price :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
+    <hr>
+    <l-price max="4.70" value="0.01" decimalSize="small" symbolPosition="bottom"></l-price>
+    <hr>
+    <l-price max="40" :value="22.3847848" symbolPosition="bottom"></l-price>
+    <hr>
+    <l-price hyphen="-" max="99" :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
     <l-button shape="circle" mini @click="pickerVisible=true">
       -
     </l-button>
@@ -227,14 +230,15 @@ export default {
         mode: 'year',
         formatHour: 'h 时',
         value: ['云南省', '秋'],
-        caption: ['年份', '季节'],
         // postData: [
         //   ['春', '夏', '秋', '冬']
         // ],
         startDate: '2017',
-        endDate: '2089'
+        endDate: '2089',
+        mainland: true
       }, {
-        title: '选择季节'
+        title: '选择收货地址',
+        desc: '暂不支持港澳台'
       })
     }
   }
