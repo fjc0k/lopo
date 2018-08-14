@@ -1,11 +1,27 @@
 {
   "name": "lopo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一款基于 Vue 的精选移动端 UI 组件库。",
-  "main": "src/index.js",
-  "repository": "https://github.com/fjc0k/lopo.git",
-  "author": "Jay Fong <fjc0kb@gmail.com>",
+  "main": "dist/lopo.common.js",
+  "unpkg": "dist/lopo.umd.min.js",
+  "jsdelivr": "dist/lopo.umd.min.js",
   "license": "MIT",
+  "homepage": "https://github.com/fjc0k/lopo",
+  "author": {
+    "name": "Jay Fong",
+    "email": "fjc0kb@gmail.com",
+    "url": "https://github.com/fjc0k"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fjc0k/lopo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fjc0k/lopo/issues"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve --copy --port 5962 demo/index.js",
     "build": "vue-cli-service build --report --target lib --name lopo src/index.js"
