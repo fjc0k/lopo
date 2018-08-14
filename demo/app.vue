@@ -16,6 +16,7 @@
       :postData="[
         ['商业城', '以勒']
       ]"
+      mainland
     ></l-Address-Picker-View>
 
     <l-countdown time="2018-8-9 20:20">

@@ -32,7 +32,8 @@ export default createComponent({
     },
     filterProvince: Function,
     filterCity: Function,
-    filterDistrict: Function
+    filterDistrict: Function,
+    mainland: Boolean
   },
 
   computed: {
@@ -47,10 +48,14 @@ export default createComponent({
         filterProvince,
         filterCity,
         filterDistrict,
+        mainland,
         noCity,
         noDistrict
       } = this
       let data = divisionData
+      if (mainland) {
+        data = data.filter(([province]) => !/香港|澳门|台湾/.test(province))
+      }
       if (filterProvince) {
         data = data.filter(([province]) => filterProvince({ province }))
       }
