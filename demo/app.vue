@@ -36,6 +36,10 @@
     <l-badge plain>
       <l-icon name="lopo-cross" slot="text" />
     </l-badge>
+    ,
+    <l-badge text="!" plain>
+      <l-button mini>dd</l-button>
+    </l-badge>
 
     <h3>Price</h3>
     <l-price value="20" symbolPosition="top"></l-price>

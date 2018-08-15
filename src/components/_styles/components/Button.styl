@@ -39,24 +39,24 @@
 
   // 颜色
   color: white;
-  &:active {
+  &.active {
     color: rgba(white, 75%);
   }
   &.primary {
     background-color: $color-primary;
-    &:active {
+    &.active {
       background-color: rgba($color-primary, 75%);
     }
   }
   &.warning {
     background-color: $color-warning;
-    &:active {
+    &.active {
       background-color: rgba($color-warning, 75%);
     }
   }
   &.danger {
     background-color: $color-danger;
-    &:active {
+    &.active {
       background-color: rgba($color-danger, 75%);
     }
   }
@@ -64,7 +64,7 @@
     background-color: $fill-base;
     color: $color-text-base;
     hairline-color($color-line-light);
-    &:active {
+    &.active {
       background-color: $fill-tap;
     }
   }
@@ -75,28 +75,28 @@
     &.default {
       color: $color-text-base;
       hairline-color($color-text-base);
-      &:active {
+      &.active {
         background-color: rgba($color-text-base, 10%);
       }
     }
     &.primary {
       color: $color-primary;
       hairline-color($color-primary);
-      &:active {
+      &.active {
         background-color: rgba($color-primary, 10%);
       }
     }
     &.warning {
       color: $color-warning;
       hairline-color($color-warning);
-      &:active {
+      &.active {
         background-color: rgba($color-warning, 10%);
       }
     }
     &.danger {
       color: $color-danger;
       hairline-color($color-danger);
-      &:active {
+      &.active {
         background-color: rgba($color-danger, 10%);
       }
     }
@@ -104,7 +104,7 @@
 
   // 无边框
   &.borderless {
-    hairline-remove();
+    hairline-remove(all);
   }
 
   // 禁用

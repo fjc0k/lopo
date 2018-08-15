@@ -1,5 +1,6 @@
 <template>
   <button
+    v-feedback="_.active"
     :type="nativeType"
     :class="[
       _.button,
@@ -16,9 +17,12 @@
 
 <script>
 import { createComponent } from '../_utils'
+import { feedback } from '../../directives'
 
 export default createComponent({
   name: 'Button',
+
+  directives: { feedback },
 
   props: {
     nativeType: {
