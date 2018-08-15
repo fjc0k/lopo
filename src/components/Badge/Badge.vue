@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { createComponent, isNumeric } from '../_utils'
+import { isNumber } from 'lodash'
+import { createComponent } from '../_utils'
 
 export default createComponent({
   name: 'Badge',
@@ -26,18 +27,18 @@ export default createComponent({
     text: {
       type: null,
       transform(text) {
-        return isNumeric(text) && text > this.threshold
-          ? `${this.threshold}+`
+        return isNumber(text) && text > this.max
+          ? `${this.max}+`
           : text
       }
     },
-    threshold: {
+    max: {
       numeric: true,
       default: 99
     },
     type: {
       type: String,
-      enum: ['default', 'primary', 'warning', 'danger']
+      enum: ['default', 'primary', 'warning', 'info']
     },
     shape: {
       type: String,

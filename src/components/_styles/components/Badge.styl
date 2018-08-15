@@ -1,0 +1,44 @@
+@require '../settings';
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  reset: base;
+  display: inline-block;
+  color: white;
+  white-space: nowrap;
+  text-align: center;
+  font-size: $font-size-caption-sm;
+  height: $badge-height;
+  min-width: $badge-height;
+  line-height: $badge-height;
+  padding: 0 $h-spacing-sm;
+
+  // 形状
+  .round & {
+    border-radius: $badge-height;
+  }
+  .flat & {
+    border-radius: $radius-sm;
+  }
+  .square & {
+    border-radius: 0;
+  }
+
+  // 色彩
+  .default & {
+    background-color: $color-danger;
+  }
+  .primary & {
+    background-color: $color-primary;
+  }
+  .warning & {
+    background-color: $color-warning;
+  }
+  .info & {
+
+  }
+}
