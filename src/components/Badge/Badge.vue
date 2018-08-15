@@ -5,11 +5,12 @@
       _[type],
       _[shape],
       plain && _.plain,
-      dot && _.dot
+      dot && _.dot,
+      $slots.default && _.corner
     ]">
     <slot />
     <div :class="_.badge">
-      <slot name="text">
+      <slot name="text" v-if="!dot">
         {{ localText }}
       </slot>
     </div>
@@ -38,7 +39,7 @@ export default createComponent({
     },
     type: {
       type: String,
-      enum: ['default', 'primary', 'warning', 'info']
+      enum: ['default', 'primary', 'warning']
     },
     shape: {
       type: String,

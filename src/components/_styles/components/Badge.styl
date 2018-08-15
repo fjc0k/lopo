@@ -2,20 +2,20 @@
 
 .wrapper {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
 }
 
 .badge {
   reset: base;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   white-space: nowrap;
-  text-align: center;
-  font-size: $font-size-caption-sm;
+  font-size: $badge-font-size;
   height: $badge-height;
   min-width: $badge-height;
-  line-height: $badge-height;
-  padding: 0 $h-spacing-sm;
+  padding: 0 $badge-h-padding;
 
   // 形状
   .round & {
@@ -26,6 +26,12 @@
   }
   .square & {
     border-radius: 0;
+  }
+  .dot & {
+    size: ($badge-height / 2.5);
+    min-width: auto;
+    border-radius: 100%;
+    padding: 0;
   }
 
   // 色彩
@@ -38,7 +44,40 @@
   .warning & {
     background-color: $color-warning;
   }
-  .info & {
 
+  // 朴素
+  .plain & {
+    background-color: transparent;
+    hairline(all);
+    .round& {
+      hairline-radius($badge-height);
+    }
+    .flat& {
+      hairline-radius($radius-sm);
+    }
+    .square& {
+      hairline-radius(0);
+    }
+    .default& {
+      color: $color-danger;
+      hairline-color($color-danger);
+    }
+    .primary& {
+      color: $color-primary;
+      hairline-color($color-primary);
+    }
+    .warning& {
+      color: $color-warning;
+      hairline-color($color-warning);
+    }
+  }
+
+  // 角落
+  .corner & {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate3d(50%, -50%, 0px);
+    z-index: 1;
   }
 }

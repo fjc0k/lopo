@@ -10,6 +10,32 @@
     <l-badge text="明天" type="primary"></l-badge>
     ,
     <l-badge text="1" type="warning"></l-badge>
+    ,
+    <l-badge text="01" dot></l-badge>
+    ,
+    <l-badge>
+      <l-icon name="lopo-cross" slot="text" />
+    </l-badge>
+    ,
+    <l-badge text="!">
+      <l-button mini>dd</l-button>
+    </l-badge>
+    <br>
+    <l-badge text="world" plain></l-badge>
+    ,
+    <l-badge text="优惠" shape="flat" plain></l-badge>
+    ,
+    <l-badge text="限时秒杀" shape="square" plain></l-badge>
+    ,
+    <l-badge text="明天" type="primary" plain></l-badge>
+    ,
+    <l-badge text="1" type="warning" plain></l-badge>
+    ,
+    <l-badge text="01" dot plain></l-badge>
+    ,
+    <l-badge plain>
+      <l-icon name="lopo-cross" slot="text" />
+    </l-badge>
 
     <h3>Price</h3>
     <l-price value="20" symbolPosition="top"></l-price>
