@@ -38,7 +38,7 @@
     </l-badge>
     ,
     <l-badge text="!" plain>
-      <l-button type="primary" mini>dd</l-button>
+      <l-button type="primary" mini @click="w.alert(1)">dd</l-button>
     </l-badge>
 
     <h3>Price</h3>

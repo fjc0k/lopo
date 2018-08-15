@@ -36,5 +36,7 @@ export default {
     el.removeEventListener('touchend', _removeActiveClass)
     el.removeEventListener('mouseup', _removeActiveClass)
     el.removeEventListener('mouseleave', _removeActiveClass)
+    delete el._addActiveClass
+    delete el._removeActiveClass
   }
 }
