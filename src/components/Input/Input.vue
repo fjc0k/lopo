@@ -23,8 +23,8 @@ export default createComponent({
   },
 
   methods: {
-    handleInput({ target: { value: newValue } }) {
-      if (newValue !== this.localValue) {
+    handleInput({ target: { composing, value: newValue } }) {
+      if (!composing && newValue !== this.localValue) {
         this.sendValue(newValue)
       }
     },
