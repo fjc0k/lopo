@@ -2,9 +2,9 @@
   <PickerView
     v-model="localValue"
     v-bind="$attrs"
+    v-on="$passListeners('input')"
     :data="data"
     ref="view"
-    cascaded
   />
 </template>
 

@@ -1,4 +1,5 @@
 import Messenger from 'vue-messenger'
+import { castArray, omit } from 'lodash'
 
 const appendToBody = function () {
   if (!this._isDestroyed && (!this.$el.parentNode || this.$el.parentNode !== document.body)) {
@@ -42,7 +43,7 @@ export default componentDefinition => {
   // 初始化混入
   componentDefinition.mixins = componentDefinition.mixins || []
 
-  // 注入样式类名
+  // 注入样式类名及常用方法
   componentDefinition.mixins.push({
     computed: {
       _() {
@@ -50,6 +51,12 @@ export default componentDefinition => {
           ...(this.$style || {}),
           ...(this.$options.classNames || {})
         }
+      }
+    },
+    methods: {
+      $passListeners(exclude) {
+        const listeners = this.$listeners
+        return exclude ? omit(listeners, castArray(exclude)) : listeners
       }
     }
   })

@@ -9,6 +9,7 @@
       :is="view"
       v-model="stagedValue"
       v-bind="$attrs"
+      v-on="$passListeners('input')"
       ref="view"
     />
   </Sheet>
@@ -31,7 +32,6 @@ export default createComponent({
 
   components: {
     Sheet,
-    PickerView,
     PassSlots
   },
 

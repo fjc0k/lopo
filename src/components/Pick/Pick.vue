@@ -11,8 +11,10 @@
     <component
       :is="picker"
       :visible.sync="localVisible"
+      :detail.sync="localDetail"
       v-model="localValue"
-      v-bind="$attrs">
+      v-bind="$attrs"
+      v-on="$passListeners(['input', 'update:visible', 'update:detail'])">
       <PassSlots />
     </component>
   </div>
@@ -43,6 +45,11 @@ export default createComponent({
       type: Array,
       default: () => []
     },
+    detail: {
+      type: Array,
+      default: () => [],
+      sync: true
+    },
     format: {
       type: Function,
       default: value => value.join(', ')
@@ -61,9 +68,9 @@ export default createComponent({
 
   computed: {
     formattedValue() {
-      const { format, localValue } = this
+      const { format, localValue, localDetail } = this
       return localValue && localValue.length
-        ? (format ? format(localValue) : localValue)
+        ? (format ? format(localValue, localDetail) : localValue)
         : ''
     }
   },
