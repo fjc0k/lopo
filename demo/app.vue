@@ -71,6 +71,21 @@
     ,
     <l-price hyphen="~" :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
 
+    <h3>List</h3>
+    <l-list>
+      <l-list-item tappable>你的姓名</l-list-item>
+      <l-list-item icon="lopo-cross" desc="选择一下">你的姓名</l-list-item>
+      <l-list-item extra="方剑成">你的姓名</l-list-item>
+      <l-list-item title="你的姓名" desc="选择一下" isLink>
+        <l-pick-address
+          v-model="pickDddress"
+          placeholder="选择地址"
+        >
+          <div slot="desc">选择正确的收货地址</div>
+        </l-pick-address>
+      </l-list-item>
+    </l-list>
+
   </div>
 </template>
 

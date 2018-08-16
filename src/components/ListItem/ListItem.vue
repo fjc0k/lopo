@@ -4,7 +4,7 @@
     localTappable && _.tappable,
     List.noDivider && _['no-divider'],
     List.longDivider && _['long-divider']
-  ]">
+  ]" v-feedback="_.active">
     <div :class="_.left" v-if="$slots.icon || icon">
       <div :class="_.icon">
         <slot name="icon">
@@ -44,12 +44,15 @@
 
 <script>
 import { createComponent } from '../_utils'
+import { feedback } from '../../directives'
 import Icon from '../Icon/Icon.vue'
 
 export default createComponent({
   name: 'ListItem',
 
   components: { Icon },
+
+  directives: { feedback },
 
   props: {
     icon: null,
