@@ -28,3 +28,5 @@ export { default as AddressPickerView } from './AddressPickerView/AddressPickerV
 export { default as AddressPicker } from './AddressPicker/AddressPicker.vue'
 export { default as TabBar } from './TabBar/TabBar.vue'
 export { default as Pick } from './Pick/Pick.vue'
+export { default as PickDate } from './PickDate/PickDate.vue'
+export { default as PickAddress } from './PickAddress/PickAddress.vue'

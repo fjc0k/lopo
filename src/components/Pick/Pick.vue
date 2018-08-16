@@ -6,7 +6,7 @@
       :disabled="disabled"
       :clearable="clearable"
       readonly
-      @click.native="handleClick"
+      @click="handleClick"
     />
     <component
       :is="picker"
@@ -53,13 +53,18 @@ export default createComponent({
       default: () => Picker
     },
     disabled: Boolean,
-    clearable: Boolean
+    clearable: {
+      type: Boolean,
+      default: true
+    }
   },
 
   computed: {
     formattedValue() {
       const { format, localValue } = this
-      return format ? format(localValue) : localValue
+      return localValue && localValue.length
+        ? (format ? format(localValue) : localValue)
+        : ''
     }
   },
 

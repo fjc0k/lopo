@@ -28,7 +28,8 @@ export default createComponent({
         this.sendValue(newValue)
       }
     },
-    handleClear() {
+    handleClear(e) {
+      e.stopPropagation()
       this.sendValue('')
     }
   },

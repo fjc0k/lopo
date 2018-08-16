@@ -1,5 +1,20 @@
 <template>
   <div>
+    <h3>PickAddress</h3>
+    <l-pick-address
+      v-model="pickDddress"
+      placeholder="选择地址"
+    >
+      <div slot="desc">选择正确的收货地址</div>
+    </l-pick-address>
+
+    <h3>PickDate</h3>
+    <l-pick-date
+      v-model="pickDate"
+      mode="month"
+      placeholder="选择日期"
+      :format="([year, month]) => `${year}年${month}月`"></l-pick-date>
+
     <h3>Pick</h3>
     <l-pick :data="[
       ['明天', '今天'],
@@ -67,6 +82,8 @@ export default {
   name: 'app',
 
   data: () => ({
+    pickDddress: [],
+    pickDate: [],
     pickerVisible: false,
     imagePickerFiles: [],
     pickerValue3: [2021, 3, 5],

@@ -218,8 +218,8 @@ export default createComponent({
         )
       })
     },
-    handleReady() {
-
+    handleReady(groupIndex, selectedIndex) {
+      return this.handleChange(groupIndex, selectedIndex)
     },
     handleChange(groupIndex, selectedIndex) {
       const localValue = this.localValue
