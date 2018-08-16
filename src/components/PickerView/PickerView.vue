@@ -259,7 +259,8 @@ export default createComponent({
       }
     },
     update() {
-      this.$refs.groups.forEach(group => {
+      const groups = this.$refs.groups
+      groups && groups.forEach(group => {
         group.swiper.update()
       })
     }

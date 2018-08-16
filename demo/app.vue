@@ -1,5 +1,11 @@
 <template>
   <div>
+    <h3>Pick</h3>
+    <l-pick :data="[
+      ['明天', '今天'],
+      ['11点', '12点']
+    ]" :format="value => value.join('-')" title="选择收货地址" placeholder="选择收货地址" />
+
     <h3>Badge</h3>
     <l-badge text="world"></l-badge>
     ,
