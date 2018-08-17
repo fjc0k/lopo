@@ -1,5 +1,13 @@
 <template>
   <div>
+    <h3>ImageViewer</h3>
+    <l-image-viewer :data="[
+      { url: 'http://placekitten.com/g/200/300' },
+      { url: 'http://placekitten.com/g/1000/900' },
+      { url: 'https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg' },
+      'https://placekitten.com/200/286'
+    ]" />
+
     <h3>PickAddress</h3>
     <l-pick-address
       v-model="pickDddress"
