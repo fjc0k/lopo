@@ -1,6 +1,8 @@
 <template>
   <div>
     <h3>ImageViewer</h3>
+    <l-button @click="viewerVisible = !viewerVisible">Show</l-button>
+    <l-button @click="$imageViewer(viewerList, { index: 2 })">Show $imageViewer</l-button>
     <l-image-viewer :history="false" :data="viewerList" :index.sync="viewerIndex" v-model="viewerVisible" />
 
     <h3>PickAddress</h3>
@@ -100,7 +102,7 @@ export default {
   name: 'app',
 
   data: () => ({
-    viewerVisible: true,
+    viewerVisible: false,
     viewerIndex: 1,
     viewerList: [
       { url: 'http://placekitten.com/g/200/300' },
