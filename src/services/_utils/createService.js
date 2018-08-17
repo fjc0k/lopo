@@ -5,7 +5,7 @@ export default ({ Vue, Component }) => {
       computed: {
         options() {
           options.on = options.on || {}
-          options.on.hide = () => {
+          options.on['after-hide'] = () => {
             this.$destroy()
           }
           return options

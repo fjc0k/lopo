@@ -54,8 +54,12 @@ import PhotoSwipeDefaultUI from 'photoswipe/dist/photoswipe-ui-default'
 import { isPlainObject } from 'lodash'
 import { createComponent } from '../_utils'
 
+let UID = 0
+
 export default createComponent({
   name: 'ImageViewer',
+
+  hidable: true,
 
   props: {
     data: {
@@ -69,40 +73,95 @@ export default createComponent({
         item.w = item.w || item.width || 0
         item.h = item.h || item.height || 0
         return item
-      })
+      }),
+      on: {
+        receive(localData) {
+          const { pswp } = this
+          if (pswp) {
+            pswp.items.splice(0, pswp.items.length, ...localData)
+            pswp.invalidateCurrItems()
+            pswp.updateSize(true)
+            pswp.ui.update()
+          }
+        }
+      }
+    },
+    index: {
+      numeric: true,
+      default: 0,
+      transform: parseInt,
+      sync: true,
+      on: {
+        receive(localIndex) {
+          const { pswp } = this
+          if (pswp && localIndex > -1 && localIndex < pswp.items.length) {
+            pswp.goTo(localIndex)
+          }
+        }
+      }
+    },
+    history: {
+      type: Boolean,
+      default: true
+    },
+    options: {
+      type: Object,
+      default: () => ({})
     }
   },
 
-  mounted() {
-    const pswpElement = this.$el
+  data: () => ({ UID: `image-viewer-${UID++}` }),
 
-    // build items array
-    const items = this.localData
-
-    // define options (if needed)
-    const options = {
-    // optionName: 'option value'
-    // for example:
-      index: 0 // start at first slide
-    }
-
-    // Initializes and opens PhotoSwipe
-    const gallery = new PhotoSwipe(pswpElement, PhotoSwipeDefaultUI, items, options)
-
-    gallery.listen('gettingData', function (index, item) {
-      if (item.w < 1 || item.h < 1) { // unknown size
-        const img = new Image()
-        img.onload = function () { // will get size after load
-          item.w = this.width // set image width
-          item.h = this.height // set image height
-          gallery.invalidateCurrItems() // reinit Items
-          gallery.updateSize(true) // reinit Items
+  methods: {
+    init() {
+      if (this.pswp) return
+      const pswpElement = this.$el
+      const items = this.localData
+      const options = {
+        index: this.localIndex,
+        galleryUID: this.UID,
+        history: this.history,
+        ...this.options
+      }
+      const pswp = new PhotoSwipe(pswpElement, PhotoSwipeDefaultUI, items, options)
+      pswp.listen('gettingData', function (index, item) {
+        if (item.w < 1 || item.h < 1) {
+          const img = new Image()
+          img.onload = function () {
+            item.w = this.width
+            item.h = this.height
+            pswp.invalidateCurrItems()
+            pswp.updateSize(true)
+          }
+          img.src = item.src
         }
-        img.src = item.src // let's download image
+      })
+      pswp.listen('afterChange', () => {
+        const currentIndex = pswp.getCurrentIndex()
+        this.sendIndex(currentIndex)
+      })
+      pswp.listen('close', () => {
+        this.sendVisible(false)
+      })
+      pswp.init()
+      this.pswp = pswp
+    }
+  },
+
+  created() {
+    this.$on('show', () => {
+      this.init()
+    })
+    this.$on('hide', () => {
+      if (this.pswp) {
+        this.pswp.close()
+        this.pswp = null
       }
     })
+  },
 
-    gallery.init()
+  beforeDestroy() {
+    this.pswp && this.pswp.destroy()
   }
 })
 </script>

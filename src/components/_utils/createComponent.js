@@ -83,10 +83,12 @@ export default componentDefinition => {
           sync: hidableConfig.sync,
           on: {
             change(visible) {
-              // 待动画完成后再提交事件
-              setTimeout(() => {
+              this.$nextTick(() => {
                 this.$emit(visible ? 'show' : 'hide')
-              }, 320)
+                setTimeout(() => {
+                  this.$emit(visible ? 'after-show' : 'after-hide')
+                }, 320)
+              })
             }
           }
         }

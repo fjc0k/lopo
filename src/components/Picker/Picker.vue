@@ -58,9 +58,9 @@ export default createComponent({
     stagedValue: []
   }),
 
-  beforeMount() {
+  created() {
     this.stagedValue = this.localValue.slice()
-    this.$on('show', () => {
+    this.$on('after-show', () => {
       this.$refs.view.update()
     })
   },
