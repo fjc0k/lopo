@@ -17,12 +17,27 @@ import { createComponent } from '../_utils'
 export default createComponent({
   name: 'Marquee',
 
+  props: {
+    fps: {
+      numeric: true,
+      default: 60
+    },
+    delayBeforeStart: {
+      numeric: true,
+      default: 1000
+    },
+    delayAfterEnd: {
+      numeric: true,
+      default: 1000
+    }
+  },
+
   data: () => ({
     translateX: 0
   }),
 
   methods: {
-    run() {
+    run(boot) {
       this.delayTimer = setTimeout(() => {
         this.translateX = 0
         const wrapperWidth = this.$el.clientWidth
@@ -35,15 +50,15 @@ export default createComponent({
                 clearInterval(this.translateTimer)
                 this.run()
               }
-            }, 20)
+            }, 1000 / this.fps)
           }
-        }, 500)
-      }, 500)
+        }, this.delayBeforeStart)
+      }, boot ? 0 : this.delayAfterEnd)
     }
   },
 
   mounted() {
-    this.run()
+    this.run(true)
   },
 
   beforeDestroy() {
