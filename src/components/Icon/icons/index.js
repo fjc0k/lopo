@@ -4,6 +4,7 @@ import fail from './lopo-fail.svg'
 import star from './lopo-star.svg'
 import cross from './lopo-cross.svg'
 import plus from './lopo-plus.svg'
+import chevron from './lopo-chevron.svg'
 
 export default [
   loading,
@@ -11,5 +12,6 @@ export default [
   fail,
   star,
   cross,
-  plus
+  plus,
+  chevron
 ]

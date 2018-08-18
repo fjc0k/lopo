@@ -1,5 +1,10 @@
 <template>
   <div>
+    <h3>Marquee</h3>
+    <l-marquee>
+      千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
+    </l-marquee>
+
     <h3>ImageViewer</h3>
     <l-button @click="viewerVisible = !viewerVisible">Show</l-button>
     <l-button @click="$imageViewer(viewerList, { index: 2 })">Show $imageViewer</l-button>
@@ -10,7 +15,7 @@
       v-model="pickDddress"
       placeholder="选择地址"
     >
-      <div slot="desc">选择正确的收货地址</div>
+      <div slot="desc">ss</div>
     </l-pick-address>
 
     <h3>PickDate</h3>
@@ -77,11 +82,18 @@
     <l-price hyphen="~" :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
 
     <h3>List</h3>
-    <l-list>
-      <l-list-item tappable>你的姓名</l-list-item>
-      <l-list-item icon="lopo-cross" desc="选择一下">你的姓名</l-list-item>
+    <l-list longDivider noBorder>
+      <l-list-item title="通知：" tappable>
+        <l-marquee slot="extra">
+          各位同事，明天起不准带宠物进入公司！请自行处理。
+        </l-marquee>
+      </l-list-item>
+      <l-list-item icon="lopo-cross" desc="选择一下">
+        你的姓名
+        <l-icon name="lopo-right" />
+      </l-list-item>
       <l-list-item extra="方剑成">你的姓名</l-list-item>
-      <l-list-item title="你的姓名" desc="选择一下" isLink>
+      <l-list-item title="你的姓名" extra="hhh" desc="选择一下" isLink>
         <l-pick-address
           v-model="pickDddress"
           placeholder="选择地址"

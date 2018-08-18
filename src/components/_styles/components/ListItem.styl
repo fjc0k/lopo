@@ -26,92 +26,73 @@
   }
 }
 
-// 左部内容
-.left {
+// 图标
+.icon {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: $h-spacing-md 0;
-
-  // 图标
-  .icon {
-    display: flex;
-    align-items: center;
-    font-size: 21px;
-  }
+  font-size: 21px;
 }
 
 // 主内容
 .body {
   reset: box-model;
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   min-height: 44px;
+  overflow: hidden;
   padding: $h-spacing-md $h-spacing-md $h-spacing-md 0;
 
-  // 中部内容
-  .center {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
+  // 左部内容
+  .left {
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
-    // 标题区
-    .caption {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      // 标题
-      .title {
-        flex-basis: 100%;
-        font-size: $font-size-heading;
-      }
-
-      // 简介
-      .desc {
-        font-size: $font-size-base;
-        flex-basis: 100%;
-        color: $color-text-caption;
-        margin-top: $v-spacing-xs;
-      }
+    // 标题
+    .title {
+      flex-basis: 100%;
+      overflow: hidden;
+      font-size: $font-size-heading;
     }
 
-    // 内容区
-    .value {
-      flex: 1;
-      font-size: $font-size-heading;
+    // 简介
+    .desc {
+      font-size: $font-size-base;
+      flex-basis: 100%;
+      overflow: hidden;
+      color: $color-text-caption;
+      line-height: 1.5;
     }
   }
 
-  // 右部内容
-  .right {
-    display: flex;
-    align-items: center;
+  // 内容区
+  .value {
+    flex-grow: 1;
+    overflow: hidden;
+    font-size: $font-size-heading;
+  }
 
-    // 其他信息
-    .extra {
-      flex: 1;
-      font-size: $font-size-base;
-      color: $color-text-caption;
-      text-wrap: true;
-    }
+  // 其他信息
+  .extra {
+    font-size: $font-size-base;
+    color: $color-text-caption;
+    text-wrap: true;
+    overflow: hidden;
+  }
 
-    // 链接箭头
-    .chevron {
-      display: inline-block;
-      height: 6px;
-      width: 6px;
-      border-width: 2px 2px 0 0;
-      border-color: $color-line-dark;
-      border-style: solid;
-      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-      margin-left: $h-spacing-xs;
-    }
+  // 链接箭头
+  .chevron {
+    flex-shrink: 0;
+    font-size: $font-size-base;
+    color: $color-line-dark;
+    margin-left: $h-spacing-xs;
   }
 }
 
 // 间隔
-.left + .body, .center + .right, .caption + .value {
+.icon + .body, .left + .value, .value + .extra {
   margin-left: $h-spacing-md;
 }

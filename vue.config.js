@@ -12,13 +12,15 @@ module.exports = {
       .use('svg-to-symbol-loader')
       .loader('svg-to-symbol-loader')
 
-    // HTML
-    config
-      .plugin('html')
-      .tap(args => {
-        args[0].template = resolveRoot('demo/index.html')
-        return args
-      })
+    if (process.env.NODE_ENV !== 'production') {
+      // HTML
+      config
+        .plugin('html')
+        .tap(args => {
+          args[0].template = resolveRoot('demo/index.html')
+          return args
+        })
+    }
   },
   css: {
     loaderOptions: {
