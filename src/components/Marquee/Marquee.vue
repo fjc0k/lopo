@@ -1,50 +1,55 @@
 <template>
-  <div
-    :class="[
-      _.wrapper,
-      _[type],
-      _[shape],
-      plain && _.plain,
-      dot && _.dot
-    ]">
-    <slot />
-    <div :class="_.badge">
-      <slot name="text">
-        {{ localText }}
-      </slot>
+  <div :class="_.wrapper">
+    <div :class="_.marquee">
+      <div
+        :class="_.content"
+        :style="{ transform: `translateX(${translateX}px) translateZ(0px)` }"
+        ref="content">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { createComponent, isNumeric } from '../_utils'
+import { createComponent } from '../_utils'
 
 export default createComponent({
   name: 'Marquee',
 
-  props: {
-    text: {
-      type: null,
-      transform(text) {
-        return isNumeric(text) && text > this.threshold
-          ? `${this.threshold}+`
-          : text
-      }
-    },
-    threshold: {
-      numeric: true,
-      default: 99
-    },
-    type: {
-      type: String,
-      enum: ['default', 'primary', 'warning', 'danger']
-    },
-    shape: {
-      type: String,
-      enum: ['round', 'flat', 'square']
-    },
-    plain: Boolean,
-    dot: Boolean
+  data: () => ({
+    translateX: 0
+  }),
+
+  methods: {
+    run() {
+      this.delayTimer = setTimeout(() => {
+        this.translateX = 0
+        const wrapperWidth = this.$el.clientWidth
+        const contentWidth = this.$refs.content.clientWidth
+        this.delayTimer2 = setTimeout(() => {
+          if (contentWidth > wrapperWidth) {
+            this.translateTimer = setInterval(() => {
+              this.translateX -= 1
+              if (this.translateX < -(contentWidth - wrapperWidth) - 10) {
+                clearInterval(this.translateTimer)
+                this.run()
+              }
+            }, 20)
+          }
+        }, 500)
+      }, 500)
+    }
+  },
+
+  mounted() {
+    this.run()
+  },
+
+  beforeDestroy() {
+    clearInterval(this.translateTimer)
+    clearTimeout(this.delayTimer)
+    clearTimeout(this.delayTimer2)
   }
 })
 </script>
