@@ -1,6 +1,6 @@
 <template>
   <div :class="_.holder">
-    <div :class="[_.bar, noBorder && _.borderless]">
+    <div :class="[_.actionBar, noBorder && _.borderless]">
       <slot />
     </div>
   </div>

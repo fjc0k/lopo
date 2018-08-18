@@ -1,6 +1,6 @@
 @require '../settings';
 
-.item {
+.list-item {
   reset: font;
   display: flex;
   align-items: center;
@@ -11,6 +11,18 @@
     &.active {
       background-color: $fill-tap;
     }
+  }
+
+  // 分隔线
+  &.long-divider {
+    margin-left: 0;
+    padding-left: $h-spacing-md;
+    &:not(:last-child) {
+      hairline(bottom);
+    }
+  }
+  &:not(.long-divider):not(.no-divider):not(:last-child) .body {
+    hairline(bottom);
   }
 }
 
@@ -97,18 +109,6 @@
       margin-left: $h-spacing-xs;
     }
   }
-}
-
-// 分隔线
-.item.long-divider {
-  margin-left: 0;
-  padding-left: $h-spacing-md;
-  &:not(:last-child) {
-    hairline(bottom);
-  }
-}
-.item:not(.long-divider):not(.no-divider):not(:last-child) .body {
-  hairline(bottom);
 }
 
 // 间隔

@@ -1,5 +1,16 @@
+<template>
+  <XButton
+    :class="_.actionBarButton"
+    :shape="square"
+    noBorder
+    v-bind="$attrs"
+    v-on="$listeners">
+    <slot />
+  </XButton>
+</template>
+
 <script>
-import Button from '../Button/Button.vue'
+import XButton from '../Button/Button.vue'
 import { createComponent } from '../_utils'
 
 export default createComponent({
@@ -7,21 +18,7 @@ export default createComponent({
 
   inheritAttrs: false,
 
-  render(h) {
-    return h(
-      Button,
-      {
-        class: this._.button,
-        attrs: {
-          ...this.$attrs,
-          shape: 'square',
-          noBorder: true
-        },
-        on: { ...this.$listeners }
-      },
-      this.$slots.default
-    )
-  }
+  components: { XButton }
 })
 </script>
 

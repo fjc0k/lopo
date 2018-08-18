@@ -1,6 +1,6 @@
 <template>
   <div :class="[
-    _.item,
+    _.listItem,
     localTappable && _.tappable,
     List.noDivider && _['no-divider'],
     List.longDivider && _['long-divider']

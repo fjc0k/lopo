@@ -63,10 +63,10 @@ export default createComponent({
       const { _ } = this
       return positions.reduce((transitions, position) => {
         transitions[position] = {
-          enterClass: _[`${position}-enter`],
-          enterActiveClass: _[`${position}-enter-active`],
-          leaveActiveClass: _[`${position}-leave-active`],
-          leaveToClass: _[`${position}-leave-to`]
+          enterClass: _[`${position}Enter`],
+          enterActiveClass: _[`${position}EnterActive`],
+          leaveActiveClass: _[`${position}LeaveActive`],
+          leaveToClass: _[`${position}LeaveTo`]
         }
         return transitions
       }, {})
