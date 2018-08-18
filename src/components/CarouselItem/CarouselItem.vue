@@ -17,19 +17,9 @@ export default createComponent({
     to: [String, Object]
   },
 
-  computed: {
-    isUrl() {
-      return typeof this.to === 'string' && /^https?:\/\//.test(this.to)
-    }
-  },
-
   methods: {
     handleClick() {
-      if (this.isUrl) {
-        location.href = this.to
-      } else if (this.$router && this.$router.push) {
-        this.$router.push(this.to)
-      }
+      this.$goto(this.to)
     }
   }
 })

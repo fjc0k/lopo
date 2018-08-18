@@ -1,5 +1,14 @@
 <template>
   <div>
+    <h3>NoticeBar</h3>
+    <l-notice-bar to="http://baiu.com">
+      千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
+      <div slot="action" style="color:gray;">关闭</div>
+    </l-notice-bar>
+    <l-notice-bar closable>
+      千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
+    </l-notice-bar>
+
     <h3>Marquee</h3>
     <l-marquee>
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。

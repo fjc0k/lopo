@@ -63,6 +63,13 @@ export default componentDefinition => {
       },
       $isNonNil(value) {
         return !isNil(value)
+      },
+      $goto(to, replace) {
+        if (typeof to === 'string' && /^https?:\/\//i.test(to)) {
+          location.href = to
+        } else if (this.$router) {
+          this.$router[replace ? 'replace' : 'push'](to)
+        }
       }
     }
   })

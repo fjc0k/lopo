@@ -5,6 +5,8 @@ import star from './lopo-star.svg'
 import cross from './lopo-cross.svg'
 import plus from './lopo-plus.svg'
 import chevron from './lopo-chevron.svg'
+import sound from './lopo-sound.svg'
+import right from './lopo-right.svg'
 
 export default [
   loading,
@@ -13,5 +15,7 @@ export default [
   star,
   cross,
   plus,
-  chevron
+  chevron,
+  sound,
+  right
 ]
