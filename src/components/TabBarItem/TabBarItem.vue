@@ -48,13 +48,13 @@ export default createComponent({
 
   computed: {
     active() {
-      return this.TabBar && this.TabBar.localIndex === this.index
+      return this.TabBar && this.TabBar.localIndex === this.localIndex
     }
   },
 
   methods: {
     handleClick() {
-      this.TabBar && this.TabBar.sendIndex(this.index)
+      this.TabBar && this.TabBar.sendIndex(this.localIndex)
     }
   }
 })
