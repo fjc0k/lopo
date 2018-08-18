@@ -91,8 +91,8 @@
     <l-price hyphen="~" :value="76.3847848" deleted symbolPosition="bottom" style="font-size:14px" decimalSize="small"></l-price>
 
     <h3>List</h3>
-    <l-list longDivider noBorder>
-      <l-list-item title="通知：" tappable>
+    <l-list>
+      <l-list-item icon="lopo-sound" tappable>
         <l-marquee slot="extra">
           各位同事，明天起不准带宠物进入公司！请自行处理。
         </l-marquee>
@@ -101,8 +101,8 @@
         你的姓名
         <l-icon name="lopo-right" />
       </l-list-item>
-      <l-list-item extra="方剑成">你的姓名</l-list-item>
-      <l-list-item title="你的姓名" extra="hhh" desc="选择一下" isLink>
+      <l-list-item title="你的姓名" extra="方剑成"></l-list-item>
+      <l-list-item title="地址">
         <l-pick-address
           v-model="pickDddress"
           placeholder="选择地址"

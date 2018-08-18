@@ -23,7 +23,7 @@
           </slot>
         </div>
       </div>
-      <div :class="_.value">
+      <div :class="_.value" v-if="$slots.default">
         <slot />
       </div>
       <div :class="_.extra" v-if="$slots.extra || extra">
