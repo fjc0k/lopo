@@ -1,5 +1,5 @@
 import Messenger from 'vue-messenger'
-import { castArray, omit } from 'lodash'
+import { castArray, omit, isNil } from 'lodash'
 
 const appendToBody = function () {
   if (!this._isDestroyed && (!this.$el.parentNode || this.$el.parentNode !== document.body)) {
@@ -57,6 +57,12 @@ export default componentDefinition => {
       $passListeners(exclude) {
         const listeners = this.$listeners
         return exclude ? omit(listeners, castArray(exclude)) : listeners
+      },
+      $isNil(value) {
+        return isNil(value)
+      },
+      $isNonNil(value) {
+        return !isNil(value)
       }
     }
   })

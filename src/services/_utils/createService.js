@@ -7,6 +7,7 @@ export default ({ Vue, Component }) => {
           options.on = options.on || {}
           options.on['after-hide'] = () => {
             this.$destroy()
+            this.$el && this.$el.parentNode && this.$el.parentNode.removeChild(this.$el)
           }
           return options
         },

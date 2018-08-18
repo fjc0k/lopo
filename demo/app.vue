@@ -91,6 +91,16 @@
       </l-list-item>
     </l-list>
 
+    <l-tab-bar>
+      <l-tab-bar-item icon="lopo-star" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
+      <l-tab-bar-item icon="lopo-cross" v-if="viewerIndex===1">
+        <div slot="icon" slot-scope="{ active }">
+          {{ active ? '1' : '2' }}
+        </div>
+      </l-tab-bar-item>
+      <l-tab-bar-item icon="lopo-star" activeIcon="lopo-loading" :badge="{ dot: true }">我的收藏</l-tab-bar-item>
+    </l-tab-bar>
+
   </div>
 </template>
 

@@ -1,4 +1,5 @@
 const path = require('path')
+const { kebabCase } = require('lodash')
 
 const resolveRoot = path.resolve.bind(path, __dirname)
 
@@ -18,5 +19,22 @@ module.exports = {
         args[0].template = resolveRoot('demo/index.html')
         return args
       })
+  },
+  css: {
+    loaderOptions: {
+      css: {
+        camelCase: 'only',
+        getLocalIdent: ({ resourcePath }, _, localName) => {
+          let { name } = path.parse(resourcePath)
+          name = kebabCase(name)
+          localName = kebabCase(localName)
+          return [
+            'l',
+            name,
+            name === localName ? '' : localName
+          ].filter(v => !!v).join('-')
+        }
+      }
+    }
   }
 }
