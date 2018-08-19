@@ -50,7 +50,7 @@ export default createComponent({
       type: Boolean,
       default: true
     },
-    swiperOptions: {
+    options: {
       type: Object,
       default: () => ({})
     }
@@ -71,7 +71,7 @@ export default createComponent({
     this.$nextTick(() => {
       const self = this
       this.swiper = new Swiper(this.$el, {
-        ...this.swiperOptions,
+        ...this.options,
         init: true, // Whether Swiper should be initialised automatically when you create an instance.
         initialSlide: this.index, // Index number of initial slide.
         direction: this.direction, // Could be 'horizontal' or 'vertical' (for vertical slider).
@@ -83,7 +83,7 @@ export default createComponent({
           el: '.swiper-pagination'
         },
         on: {
-          ...this.swiperOptions.on,
+          ...this.options.on,
           init() {
             self.$emit('ready', this)
           },

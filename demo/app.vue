@@ -1,9 +1,9 @@
 <template>
   <div>
     <h3>Grid</h3>
-    <l-grid cols="6" rows="2">
+    <l-grid cols="4" rows="2">
       <l-grid-item icon="lopo-star">课表</l-grid-item>
-      <l-grid-item>教室</l-grid-item>
+      <l-grid-item @click.native="w.alert(22)">教室</l-grid-item>
       <l-grid-item>表白墙</l-grid-item>
       <l-grid-item>课表</l-grid-item>
       <l-grid-item>教室</l-grid-item>

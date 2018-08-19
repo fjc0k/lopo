@@ -50,13 +50,21 @@ export default createComponent({
   render() {
     const { _, noBorder } = this
     const pages = this.getPages()
-    return <Carousel>
-      {pages.map((page, index) => (
-        <CarouselItem class={[_.grid, noBorder && _.noBorder]} key={index}>
-          {page}
-        </CarouselItem>
-      ))}
-    </Carousel>
+    return pages.length === 1
+      ? (
+        <div class={[_.grid, noBorder && _.noBorder]}>
+          {pages[0]}
+        </div>
+      )
+      : (
+        <Carousel autoplay={false}>
+          {pages.map((page, index) => (
+            <CarouselItem class={[_.grid, noBorder && _.noBorder]} key={index}>
+              {page}
+            </CarouselItem>
+          ))}
+        </Carousel>
+      )
   }
 })
 </script>

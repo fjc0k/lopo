@@ -32,7 +32,7 @@
             :autoplay="false"
             :loop="false"
             :indicator="false"
-            :swiperOptions="swiperOptions"
+            :options="swiperOptions"
             :class="_.group"
             :style="styles.group"
             :key="groupIndex"
