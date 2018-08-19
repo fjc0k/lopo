@@ -1,5 +1,5 @@
 const path = require('path')
-const { kebabCase } = require('lodash')
+const { kebabCase, endsWith } = require('lodash')
 
 const resolveRoot = path.resolve.bind(path, __dirname)
 
