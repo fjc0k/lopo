@@ -1,5 +1,13 @@
 <template>
   <div>
+    <h3>Counter</h3>
+    <l-counter readonly min="1" max="5" step="2" />
+
+    <h3>Card</h3>
+    <l-card title="明天" square>
+      千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
+    </l-card>
+
     <h3>Switch</h3>
     <l-switch />, <l-switch style="color:red;" />
 

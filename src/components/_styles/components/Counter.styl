@@ -1,5 +1,32 @@
 @require '../settings';
 
 .counter {
+  reset: base;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  line-height: 30px;
+  font-size: $font-size-base;
+  hairline(all);
+}
 
+.input {
+  reset: box-model;
+  width: 60px;
+  text-align: center;
+  hairline(right left);
+}
+
+.button {
+  text-align: center;
+  width: 30px;
+  &:not(.disabled).active {
+    background: $fill-tap;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  background: rgba($fill-tap, 25%);
+  color: rgba($color-text-base, 40%);
 }
