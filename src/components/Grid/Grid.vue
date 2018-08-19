@@ -1,6 +1,8 @@
 <script>
 import { createComponent, chunk } from '../_utils'
 import GridItem from '../GridItem/GridItem.vue'
+import Carousel from '../Carousel/Carousel.vue'
+import CarouselItem from '../CarouselItem/CarouselItem.vue'
 
 export default createComponent({
   name: 'Grid',
@@ -18,7 +20,8 @@ export default createComponent({
     },
     rows: {
       numeric: true,
-      default: 0
+      infinite: true,
+      default: Infinity
     },
     noBorder: Boolean,
     noDivider: Boolean,
@@ -27,17 +30,33 @@ export default createComponent({
     adaptive: Boolean
   },
 
-  render() {
-    const { _, cols, noBorder } = this
-    return (
-      <div class={[_.grid, noBorder && _.noBorder]}>
-        {chunk(this.$slots.default, cols, <GridItem noFeedback />).map(group => (
-          <div class={_.group}>
+  methods: {
+    getPages() {
+      const { _, cols, rows } = this
+      const children = this.$slots.default
+      const childrenCount = children.length
+      const realRows = Math.ceil(childrenCount / cols)
+      const perPage = realRows > rows ? cols * rows : childrenCount
+      return chunk(children, perPage, <GridItem noFeedback />).map(grids => {
+        return chunk(grids, cols, <GridItem noFeedback />).map((group, index) => (
+          <div class={_.group} key={index}>
             {group}
           </div>
-        ))}
-      </div>
-    )
+        ))
+      })
+    }
+  },
+
+  render() {
+    const { _, noBorder } = this
+    const pages = this.getPages()
+    return <Carousel>
+      {pages.map((page, index) => (
+        <CarouselItem class={[_.grid, noBorder && _.noBorder]} key={index}>
+          {page}
+        </CarouselItem>
+      ))}
+    </Carousel>
   }
 })
 </script>
