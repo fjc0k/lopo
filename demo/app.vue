@@ -1,5 +1,15 @@
 <template>
   <div>
+    <h3>Grid</h3>
+    <l-grid cols="5">
+      <l-grid-item icon="lopo-star">课表</l-grid-item>
+      <l-grid-item>教室</l-grid-item>
+      <l-grid-item>表白墙</l-grid-item>
+      <l-grid-item>课表</l-grid-item>
+      <l-grid-item>教室</l-grid-item>
+      <l-grid-item>表白墙</l-grid-item>
+    </l-grid>
+
     <h3>NoticeBar</h3>
     <l-notice-bar to="http://baiu.com">
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
