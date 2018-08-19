@@ -9,7 +9,7 @@
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
     </l-notice-bar>
 
-    <h3 v-hairline.x>Marquee</h3>
+    <h3 v-hairline.b>Marquee</h3>
     <l-marquee>
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
     </l-marquee>

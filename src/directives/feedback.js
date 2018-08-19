@@ -1,3 +1,5 @@
+const defaultActiveClass = 'active'
+
 function addActiveClass(el) {
   el.classList.add(el.dataset.activeClass)
 }
@@ -39,12 +41,12 @@ function unbind(el) {
 }
 
 export default {
-  bind(el, { value }) {
-    el.dataset.activeClass = value
+  bind(el, { value: activeClass = defaultActiveClass }) {
+    el.dataset.activeClass = activeClass
     bind(el)
   },
-  update(el, { value }) {
-    el.dataset.activeClass = value
+  update(el, { value: activeClass = defaultActiveClass }) {
+    el.dataset.activeClass = activeClass
   },
   unbind(el) {
     unbind(el)
