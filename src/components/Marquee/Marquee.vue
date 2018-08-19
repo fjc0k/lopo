@@ -38,11 +38,11 @@ export default createComponent({
 
   methods: {
     run(boot) {
-      this.delayTimer = setTimeout(() => {
+      this.delayTimerAfterEnd = setTimeout(() => {
         this.translateX = 0
         const wrapperWidth = this.$el.clientWidth
         const contentWidth = this.$refs.content.clientWidth
-        this.delayTimer2 = setTimeout(() => {
+        this.delayTimerBeforeStart = setTimeout(() => {
           if (contentWidth > wrapperWidth) {
             this.translateTimer = setInterval(() => {
               this.translateX -= 1
@@ -63,8 +63,8 @@ export default createComponent({
 
   beforeDestroy() {
     clearInterval(this.translateTimer)
-    clearTimeout(this.delayTimer)
-    clearTimeout(this.delayTimer2)
+    clearTimeout(this.delayTimerBeforeStart)
+    clearTimeout(this.delayTimerAfterEnd)
   }
 })
 </script>
