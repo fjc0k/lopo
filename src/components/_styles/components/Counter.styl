@@ -4,22 +4,22 @@
   reset: base;
   display: inline-flex;
   align-items: center;
-  height: 30px;
-  line-height: 30px;
+  height: $counter-height;
+  line-height: $counter-height;
   font-size: $font-size-base;
   hairline(all);
 }
 
 .input {
   reset: box-model;
-  width: 60px;
+  width: $counter-height * 2;
   text-align: center;
   hairline(right left);
 }
 
 .button {
   text-align: center;
-  width: 30px;
+  width: $counter-height;
   &:not(.disabled).active {
     background: $fill-tap;
   }
