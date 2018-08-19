@@ -1,8 +1,8 @@
 <template>
   <div :class="_.noticeBar" @click="handleClick" v-if="localVisible">
-    <div :class="_.icon">
+    <div :class="_.left">
       <slot name="icon">
-        <Icon :name="icon" />
+        <Icon :class="_.icon" :name="icon" />
       </slot>
     </div>
     <Marquee :class="_.content" v-bind="marquee">
@@ -10,8 +10,8 @@
     </Marquee>
     <div :class="_.action" @click="handleActionClick">
       <slot name="action">
-        <Icon name="lopo-right" v-if="to" />
-        <Icon name="lopo-cross" v-else-if="closable" />
+        <Icon :class="_.icon" name="l-right" v-if="to" />
+        <Icon :class="_.icon" name="l-close" v-else-if="closable" />
       </slot>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default createComponent({
   props: {
     icon: {
       type: String,
-      default: 'lopo-sound'
+      default: 'l-sound'
     },
     to: [String, Object],
     marquee: {

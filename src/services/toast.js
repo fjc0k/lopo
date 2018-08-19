@@ -26,8 +26,8 @@ export default Vue => {
     message,
     duration
   })
-  getToast.fail = (message, duration) => getToast({
-    type: 'fail',
+  getToast.error = (message, duration) => getToast({
+    type: 'error',
     message,
     duration
   })

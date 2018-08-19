@@ -9,8 +9,8 @@
       :class="[
         _.toast,
         _[position],
-        localIcon && _['with-icon'],
-        !$slots.default && _['no-message']
+        localIcon && _.withIcon,
+        !$slots.default && _noMessage
       ]"
       v-show="localVisible">
       <div :class="_.icon" v-if="localIcon">
@@ -49,7 +49,7 @@ export default createComponent({
   props: {
     type: {
       type: String,
-      enum: ['default', 'success', 'fail', 'loading']
+      enum: ['default', 'success', 'error', 'loading']
     },
     icon: String,
     position: {
@@ -70,11 +70,11 @@ export default createComponent({
       const { type } = this
       if (type === 'default') return this.icon
       return type === 'loading'
-        ? 'lopo-loading'
+        ? 'l-loading'
         : type === 'success'
-          ? 'lopo-success'
-          : type === 'fail'
-            ? 'lopo-fail'
+          ? 'l-check-circle-o'
+          : type === 'error'
+            ? 'l-close-circle-o'
             : null
     }
   },

@@ -31,7 +31,7 @@
           {{ extra }}
         </slot>
       </div>
-      <Icon :class="_.chevron" name="lopo-chevron" v-if="isLink" />
+      <Icon :class="_.chevron" name="l-right" v-if="isLink" />
     </div>
   </div>
 </template>

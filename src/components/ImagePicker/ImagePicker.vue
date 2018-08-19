@@ -3,7 +3,7 @@
     <div :class="_.list" v-for="(list, listIndex) in lists" :key="listIndex">
       <div :class="_.item" v-for="(item, itemIndex) in list" :key="itemIndex">
         <div :class="[_.content, _.select]" v-if="item === IMAGE_SELECTOR">
-          <Icon :class="_.add" name="lopo-plus" />
+          <Icon :class="_.add" name="l-plus" />
           <input
             :class="_.input"
             type="file"
@@ -15,11 +15,12 @@
         <template v-else-if="item">
           <Icon
             :class="_.remove"
-            name="lopo-cross"
+            name="l-close"
             @click.native="handleRemoveClick(item, (listIndex * cols) + itemIndex)"
           />
           <XImage
             :class="_.content"
+            :fit="fit"
             :src="item.url"
             :style="{
               transform: `rotate(${item.rotation}deg)`
@@ -66,6 +67,10 @@ export default createComponent({
     cols: {
       numeric: true,
       default: 4
+    },
+    fit: {
+      type: String,
+      enum: ['cover', 'contain', 'fill']
     }
   },
 

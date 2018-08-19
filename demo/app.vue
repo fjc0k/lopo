@@ -1,5 +1,19 @@
 <template>
   <div>
+    <h3>Switch</h3>
+    <l-switch />, <l-switch style="color:red;" />
+
+    <h3>Toast</h3>
+    <l-button mini @click="$toast.loading('加载中...')">Loading</l-button>,
+    <l-button mini @click="$toast.success('加载成功')">Success</l-button>,
+    <l-button mini @click="$toast.error('加载失败')">Error</l-button>,
+    <l-button mini @click="$toast('内容写错了')">Toast</l-button>,
+    <l-button mini @click="$toast.top('内容写错了')">Toast Top</l-button>,
+    <l-button mini @click="$toast.bottom('内容写错了')">Toast Bottom</l-button>
+
+    <h3>ImagePicker</h3>
+    <l-image-picker v-model="viewerList" />
+
     <h3>Grid</h3>
     <l-grid cols="4" rows="2">
       <l-grid-item icon="lopo-star">课表</l-grid-item>
@@ -18,7 +32,6 @@
     <h3>NoticeBar</h3>
     <l-notice-bar to="http://baiu.com">
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
-      <div slot="action" style="color:gray;">关闭</div>
     </l-notice-bar>
     <l-notice-bar closable>
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
@@ -128,7 +141,7 @@
     </l-list>
 
     <l-tab-bar>
-      <l-tab-bar-item icon="lopo-star" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
+      <l-tab-bar-item icon="l-star" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
       <l-tab-bar-item icon="lopo-cross" v-if="viewerIndex===1">
         <div slot="icon" slot-scope="{ active }">
           {{ active ? '1' : '2' }}

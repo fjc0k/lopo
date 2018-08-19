@@ -1046,6 +1046,10 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
+ant-design-icons@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/ant-design-icons/-/ant-design-icons-1.2.2.tgz#ccd84508dd62fc9e32a95d312071ea1f5802d897"
+
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -3609,6 +3613,10 @@ invariant@^2.2.0, invariant@^2.2.2:
 invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
+
+ionicons@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-4.3.0.tgz#89a7060e6bde412275a7083a029e010b66da897d"
 
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"

@@ -11,6 +11,11 @@ module.exports = {
     SVGRule
       .use('svg-to-symbol-loader')
       .loader('svg-to-symbol-loader')
+      .options({
+        extractId({ name }) {
+          return `l-${name}`
+        }
+      })
 
     if (process.env.NODE_ENV !== 'production') {
       // HTML

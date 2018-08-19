@@ -13,6 +13,10 @@ module.exports = {
     ['import', {
       libraryName: 'date-fns',
       customName: name => `date-fns/${snakeCase(name)}`
-    }, 'date-fns']
+    }, 'date-fns'],
+    ['import', {
+      libraryName: 'ant-design-icons',
+      customName: name => `ant-design-icons/dist/svg/${name}.svg`
+    }, 'ant-design-icons']
   ]
 }
