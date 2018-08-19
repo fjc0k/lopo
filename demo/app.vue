@@ -9,7 +9,7 @@
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
     </l-notice-bar>
 
-    <h3>Marquee</h3>
+    <h3 v-hairline.x>Marquee</h3>
     <l-marquee>
       千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。
     </l-marquee>
@@ -102,7 +102,7 @@
         <l-icon name="lopo-right" />
       </l-list-item>
       <l-list-item title="你的姓名" extra="方剑成"></l-list-item>
-      <l-list-item title="地址">
+      <l-list-item title="地址" isLink>
         <l-pick-address
           v-model="pickDddress"
           placeholder="选择地址"

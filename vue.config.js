@@ -28,6 +28,7 @@ module.exports = {
         camelCase: 'only',
         getLocalIdent: ({ resourcePath }, _, localName) => {
           let { name } = path.parse(resourcePath)
+          name = name.replace(/\.module$/, '')
           name = kebabCase(name)
           localName = kebabCase(localName)
           return [

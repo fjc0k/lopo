@@ -1,5 +1,6 @@
 import * as components from './components'
 import * as services from './services'
+import * as directives from './directives'
 
 export default {
   addIcon: components.Icon.add,
@@ -11,6 +12,10 @@ export default {
     Object.keys(services).forEach(serviceName => {
       const service = services[serviceName]
       Vue.prototype[`$${serviceName}`] = service(Vue)
+    })
+    Object.keys(directives).forEach(directiveName => {
+      const directive = directives[directiveName]
+      Vue.directive(directiveName, directive)
     })
   }
 }
