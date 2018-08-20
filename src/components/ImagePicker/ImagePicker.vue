@@ -133,7 +133,7 @@ export default createComponent({
       files.splice(index, 1)
       this.$emit('remove', image, index)
       this.$emit('change', files, localValue)
-      this.sendFiles(files)
+      this.sendValue(files)
     },
     handleInputChange({ target: { files } }) {
       toArray(files).forEach(this.parseFile)

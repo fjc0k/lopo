@@ -1,17 +1,15 @@
 <template>
-  <CarouselItem :class="[_.tab, active && _.active]" @click.native="handleClick">
+  <div :class="[_.tab, active && _.active]" @click="handleClick">
     <slot />
-  </CarouselItem>
+  </div>
 </template>
 
 <script>
+import scrollIntoView from 'scroll-into-view-if-needed'
 import { createComponent } from '../_utils'
-import CarouselItem from '../CarouselItem/CarouselItem.vue'
 
 export default createComponent({
   name: 'Tab',
-
-  components: { CarouselItem },
 
   inject: {
     Tabs: {
@@ -38,8 +36,23 @@ export default createComponent({
   },
 
   methods: {
+    scrollIntoView(options) {
+      scrollIntoView(this.$el, {
+        scrollMode: 'if-needed',
+        behavior: 'smooth',
+        inline: 'center',
+        ...options
+      })
+    },
     handleClick() {
-      this.Tabs && this.Tabs.sendValue(this.actualValue)
+      const { Tabs, actualValue, localIndex } = this
+      if (Tabs) {
+        const { $children: children, activeIndex } = Tabs
+        const vnode = children[localIndex + (localIndex > activeIndex ? 1 : -1)] || this
+        vnode.scrollIntoView()
+        Tabs.sendValue(actualValue)
+        Tabs.activeIndex = localIndex
+      }
     }
   }
 })

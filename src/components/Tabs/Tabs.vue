@@ -1,24 +1,19 @@
 <template>
-  <Carousel :class="_.tabs" :indicator="false" :autoplay="false" :loop="false" :options="{
-    slidesPerView: 'auto',
-    freeMode: true,
-    slideToClickedSlide: true
-  }">
+  <div :class="_.tabs">
     <IndexNodes :nodes="$slots.default" />
-  </Carousel>
+  </div>
 </template>
 
 <script>
+import { find } from 'lodash'
 import { createComponent } from '../_utils'
 import IndexNodes from '../IndexNodes/IndexNodes.vue'
-import Carousel from '../Carousel/Carousel.vue'
 
 export default createComponent({
   name: 'Tabs',
 
   components: {
-    IndexNodes,
-    Carousel
+    IndexNodes
   },
 
   provide() {
@@ -30,7 +25,31 @@ export default createComponent({
   props: {
     value: {
       type: null,
-      default: 0
+      default: 0,
+      on: {
+        receive() {
+          this.update()
+        }
+      }
+    }
+  },
+
+  data: () => ({ activeIndex: 0 }),
+
+  mounted() {
+    this.update()
+  },
+
+  methods: {
+    update() {
+      this.$nextTick(() => {
+        const activeVNode = find(this.$children, vnode => vnode.active)
+        if (activeVNode) {
+          activeVNode.scrollIntoView({
+            behavior: 'instant'
+          })
+        }
+      })
     }
   }
 })

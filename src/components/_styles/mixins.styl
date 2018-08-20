@@ -188,6 +188,16 @@ hairline-style($style) {
   }
 }
 
+hairline-width($width, $directions = all) {
+  $directions = $directions == all ? (top right bottom left) : $directions;
+
+  &::before {
+    for $direction in $directions {
+      border-{$direction}-width: $width;
+    }
+  }
+}
+
 hairline-remove($directions = all) {
   $directions = $directions == all ? (top right bottom left) : $directions;
 
