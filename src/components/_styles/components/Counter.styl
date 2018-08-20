@@ -3,9 +3,8 @@
 .counter {
   reset: base;
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   height: $counter-height;
-  line-height: $counter-height;
   font-size: $font-size-base;
   hairline(all);
 }
@@ -18,7 +17,9 @@
 }
 
 .button {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: $counter-height;
   &:not(.disabled).active {
     background: $fill-tap;

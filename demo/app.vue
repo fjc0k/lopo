@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>Rate</h3>
+    <l-rate />
+
     <h3>Tabs</h3>
     <l-tabs>
       <l-tab>下凌晨凌晨10分10分午早上</l-tab>
@@ -157,7 +160,7 @@
     </l-list>
 
     <l-tab-bar>
-      <l-tab-bar-item icon="l-star" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
+      <l-tab-bar-item icon="l-star-fill" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
       <l-tab-bar-item icon="lopo-cross" v-if="viewerIndex===1">
         <div slot="icon" slot-scope="{ active }">
           {{ active ? '1' : '2' }}

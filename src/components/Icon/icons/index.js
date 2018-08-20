@@ -5,10 +5,10 @@ import {
   minus,
   close,
   closeCircle,
-  closeCircleO,
-  star,
+  closeCircleFill,
+  starFill,
   sound,
-  checkCircleO
+  checkCloseCircle as checkCircle
 } from 'ant-design-icons'
 
 export default [
@@ -18,8 +18,8 @@ export default [
   minus,
   close,
   closeCircle,
-  closeCircleO,
-  star,
+  closeCircleFill,
+  starFill,
   sound,
-  checkCircleO
+  checkCircle
 ]

@@ -16,7 +16,7 @@ module.exports = {
     }, 'date-fns'],
     ['import', {
       libraryName: 'ant-design-icons',
-      customName: name => `ant-design-icons/dist/svg/${name}.svg`
+      customName: name => `ant-design-icons/dist/standalone/svg/${name}.svg`
     }, 'ant-design-icons']
   ]
 }

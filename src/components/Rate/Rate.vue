@@ -29,7 +29,7 @@ export default createComponent({
     },
     icon: {
       type: String,
-      default: 'l-star'
+      default: 'l-star-fill'
     },
     count: {
       numeric: true,

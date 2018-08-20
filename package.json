@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@lopo/china-division-data": "^0.0.2",
-    "ant-design-icons": "^1.2.2",
+    "ant-design-icons": "^1.3.2",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.10",
     "photoswipe": "^4.1.2",

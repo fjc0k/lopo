@@ -72,9 +72,9 @@ export default createComponent({
       return type === 'loading'
         ? 'l-loading'
         : type === 'success'
-          ? 'l-check-circle-o'
+          ? 'l-check-circle'
           : type === 'error'
-            ? 'l-close-circle-o'
+            ? 'l-close-circle'
             : null
     }
   },
