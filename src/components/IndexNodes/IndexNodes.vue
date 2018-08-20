@@ -3,12 +3,16 @@ import { set } from 'lodash'
 import { createComponent } from '../_utils'
 
 export default createComponent({
-  name: 'IndexSlots',
+  name: 'IndexNodes',
 
   functional: true,
 
-  render(h, { parent: { $slots = {} } }) {
-    return ($slots.default || []).map((vnode, index) => {
+  props: {
+    nodes: Array
+  },
+
+  render(h, { props: { nodes = [] } }) {
+    return nodes.map((vnode, index) => {
       set(vnode, ['componentOptions', 'propsData', 'index'], index)
       return vnode
     })

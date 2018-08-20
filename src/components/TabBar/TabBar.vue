@@ -2,19 +2,19 @@
   <div :class="_.wrapper">
     <div :class="_.holder" />
     <div :class="_.tabBar">
-      <IndexSlots />
+      <IndexNodes :nodes="$slots.default" />
     </div>
   </div>
 </template>
 
 <script>
 import { createComponent } from '../_utils'
-import IndexSlots from '../IndexSlots/IndexSlots.vue'
+import IndexNodes from '../IndexNodes/IndexNodes.vue'
 
 export default createComponent({
   name: 'TabBar',
 
-  components: { IndexSlots },
+  components: { IndexNodes },
 
   provide() {
     return {

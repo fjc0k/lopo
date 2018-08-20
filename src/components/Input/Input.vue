@@ -12,6 +12,22 @@ export default createComponent({
       type: String,
       default: 'text'
     },
+    autocomplete: {
+      type: String,
+      default: 'off'
+    },
+    autocapitalize: {
+      type: String,
+      default: 'off'
+    },
+    autocorrect: {
+      type: String,
+      default: 'off'
+    },
+    spellcheck: {
+      type: String,
+      default: 'false'
+    },
     disabled: Boolean,
     clearable: Boolean
   },
@@ -38,11 +54,11 @@ export default createComponent({
     const {
       _,
       tag,
-      type,
       localValue,
       clearable,
       disabled,
       $attrs,
+      $props,
       $listeners
     } = this
 
@@ -51,8 +67,8 @@ export default createComponent({
         class: _.input,
         attrs: {
           ...$attrs,
-          type,
-          disabled
+          ...$props,
+          value: undefined
         },
         domProps: {
           value: localValue

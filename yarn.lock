@@ -3614,10 +3614,6 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-ionicons@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-4.3.0.tgz#89a7060e6bde412275a7083a029e010b66da897d"
-
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"

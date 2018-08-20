@@ -1,7 +1,15 @@
 <template>
   <div>
+    <h3>Tabs</h3>
+    <l-tabs>
+      <l-tab>下凌晨凌晨10分10分午早上</l-tab>
+      <l-tab>下凌晨凌晨10分10分午</l-tab>
+      <l-tab>晚上</l-tab>
+      <l-tab>凌晨凌晨10分10分</l-tab>
+    </l-tabs>
+
     <h3>Counter</h3>
-    <l-counter readonly min="1" max="5" step="2" />
+    <l-counter readonly min="-21" max="15" step="2" />
 
     <h3>Card</h3>
     <l-card title="明天" square>
