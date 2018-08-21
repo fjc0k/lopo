@@ -72,7 +72,7 @@ export default createComponent({
           },
           children.map(
             vnode => (
-              <CarouselItem class="item">{
+              <CarouselItem class={_.content}>{
                 vnode.componentOptions.children.filter(
                   vnode => vnode.data && vnode.data.slot === 'content'
                 )

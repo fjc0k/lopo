@@ -6,6 +6,7 @@
 
 <script>
 import scrollIntoView from 'scroll-into-view-if-needed'
+import { isNil } from 'lodash'
 import { createComponent } from '../_utils'
 
 export default createComponent({
@@ -26,9 +27,11 @@ export default createComponent({
     value: null
   },
 
+  data: () => ({ isTab: true }),
+
   computed: {
     actualValue() {
-      return this.$isNil(this.value) ? this.localIndex : this.value
+      return isNil(this.value) ? this.localIndex : this.value
     },
     active() {
       return this.Tabs && this.Tabs.localValue === this.actualValue
@@ -48,7 +51,8 @@ export default createComponent({
       const { Tabs, actualValue, localIndex } = this
       if (Tabs) {
         const { $children: children, activeIndex } = Tabs
-        const vnode = children[localIndex + (localIndex > activeIndex ? 1 : -1)] || this
+        let vnode = children[localIndex + (localIndex > activeIndex ? 1 : -1)]
+        vnode = vnode && vnode.isTab ? vnode : this
         vnode.scrollIntoView()
         Tabs.sendValue(actualValue)
         Tabs.activeIndex = localIndex
