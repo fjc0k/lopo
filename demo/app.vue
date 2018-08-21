@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Divider</h3>
-    <l-divider style="color:red;" full>
+    <l-divider style="color:red;">
       红色
     </l-divider>
     <l-divider vertical style="color:red;" full>
