@@ -1,5 +1,13 @@
 <template>
   <div>
+    <h3>Divider</h3>
+    <l-divider style="color:red;" full>
+      红色
+    </l-divider>
+    <l-divider vertical style="color:red;" full>
+      红色
+    </l-divider>
+
     <h3>Rate</h3>
     <l-rate />
 
