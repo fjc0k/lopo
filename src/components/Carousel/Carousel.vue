@@ -27,7 +27,12 @@ export default createComponent({
     index: {
       numeric: true,
       default: 0,
-      transform: Number
+      transform: parseInt,
+      on: {
+        receive(index) {
+          this.swiper && this.swiper.slideTo(index)
+        }
+      }
     },
     direction: {
       type: String,
@@ -53,17 +58,6 @@ export default createComponent({
     options: {
       type: Object,
       default: () => ({})
-    }
-  },
-
-  computed: {
-    isOn: {
-      get() {
-        return this.localValue === this.onValue
-      },
-      set(state) {
-        this.sendValue(state ? this.onValue : this.offValue)
-      }
     }
   },
 

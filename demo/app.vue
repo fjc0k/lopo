@@ -4,19 +4,21 @@
     <l-rate />
 
     <h3>Tabs</h3>
-    <l-tabs :value="222">
-      <l-tab>分类</l-tab>
-      <l-tab>推荐</l-tab>
-      <l-tab>全部</l-tab>
-      <l-tab :value="222">LOL</l-tab>
-      <l-tab>绝地求生</l-tab>
-      <l-tab>王者荣耀</l-tab>
-      <l-tab>堡垒之夜堡垒之夜堡垒之夜</l-tab>
-      <l-tab>主机游戏</l-tab>
-      <l-tab>DOTA2</l-tab>
-      <l-tab>刺激战场</l-tab>
-      <l-tab value="222">DNF</l-tab>
-      <l-tab>炉石传说</l-tab>
+    <l-tabs value="消消乐">
+      <l-tab :value="tab" v-for="tab in [
+        '王者荣耀',
+        '英雄联盟',
+        '绝地求生',
+        '刺激战场',
+        '24',
+        '消消乐',
+        '球球大作战'
+      ]" :key="tab">
+        {{ tab }}
+        <div slot="content">
+          {{ tab }}内容
+        </div>
+      </l-tab>
     </l-tabs>
 
     <h3>Counter</h3>
@@ -309,5 +311,8 @@ export default {
 <style>
 body {
   font-size: 30px;
+  background: #eeeef2;
+  margin: 0;
+  padding: 0;
 }
 </style>
