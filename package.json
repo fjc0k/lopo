@@ -1,6 +1,6 @@
 {
   "name": "lopo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "一款基于 Vue 的精选移动端 UI 组件库。",
   "main": "dist/lopo.common.js",
   "unpkg": "dist/lopo.umd.min.js",
@@ -20,6 +20,7 @@
     "url": "https://github.com/fjc0k/lopo/issues"
   },
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
@@ -28,7 +29,7 @@
   },
   "dependencies": {
     "@lopo/china-division-data": "^0.0.2",
-    "ant-design-icons": "^1.3.2",
+    "ant-design-icons": "^1.3.3",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.10",
     "photoswipe": "^4.1.2",

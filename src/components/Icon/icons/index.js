@@ -8,7 +8,7 @@ import {
   closeCircleFill,
   starFill,
   sound,
-  checkCloseCircle as checkCircle
+  checkCircle
 } from 'ant-design-icons'
 
 export default [
