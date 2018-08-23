@@ -36,4 +36,3 @@ export default createComponent({
   }
 })
 </script>
-

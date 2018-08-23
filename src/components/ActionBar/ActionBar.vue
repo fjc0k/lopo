@@ -17,4 +17,3 @@ export default createComponent({
   }
 })
 </script>
-

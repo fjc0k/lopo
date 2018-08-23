@@ -96,4 +96,3 @@ export default createComponent({
 </script>
 
 <style src="swiper/dist/css/swiper.css" />
-
