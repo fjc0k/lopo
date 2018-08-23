@@ -13,11 +13,6 @@
           />
         </div>
         <template v-else-if="item">
-          <Icon
-            :class="_.remove"
-            name="l-close"
-            @click.native="handleRemoveClick(item, (listIndex * cols) + itemIndex)"
-          />
           <XImage
             :class="_.content"
             :fit="fit"
@@ -26,6 +21,11 @@
               transform: `rotate(${item.rotation}deg)`
             }"
             @click.native="handleImageClick(item, (listIndex * cols) + itemIndex)"
+          />
+          <Icon
+            :class="_.remove"
+            name="l-close"
+            @click.native="handleRemoveClick(item, (listIndex * cols) + itemIndex)"
           />
         </template>
       </div>
