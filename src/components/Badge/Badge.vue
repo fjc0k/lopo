@@ -50,3 +50,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/Badge.module.styl" module />

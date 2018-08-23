@@ -168,3 +168,4 @@ export default createComponent({
 
 <style src="photoswipe/dist/photoswipe.css" />
 <style src="photoswipe/dist/default-skin/default-skin.css" />
+<style lang="stylus" src="../_styles/components/ImageViewer.module.styl" module />

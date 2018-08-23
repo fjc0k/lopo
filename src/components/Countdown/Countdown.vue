@@ -66,3 +66,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/Countdown.module.styl" module />

@@ -6,9 +6,9 @@
 
 <script>
 import { createComponent } from '../_utils'
-import Pick from '../Pick/Pick.vue'
-import DatePicker from '../DatePicker/DatePicker.vue'
-import PassSlots from '../PassSlots/PassSlots.vue'
+import Pick from './Pick.vue'
+import DatePicker from './DatePicker.vue'
+import PassSlots from '../Functional/PassSlots.vue'
 
 export default createComponent({
   name: 'PickDate',

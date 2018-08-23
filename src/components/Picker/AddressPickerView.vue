@@ -11,7 +11,7 @@
 <script>
 import divisionData from '@lopo/china-division-data'
 import { createComponent } from '../_utils'
-import PickerView from '../PickerView/PickerView.vue'
+import PickerView from './PickerView.vue'
 
 export default createComponent({
   name: 'AddressPickerView',

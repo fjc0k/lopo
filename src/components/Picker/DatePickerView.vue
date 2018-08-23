@@ -13,7 +13,7 @@
 import { range } from 'lodash'
 import { subYears, addYears, parse, getDaysInMonth } from 'date-fns'
 import { createComponent, dateToArray, formatDate } from '../_utils'
-import PickerView from '../PickerView/PickerView.vue'
+import PickerView from './PickerView.vue'
 
 const now = new Date()
 const RANGE_12 = range(1, 13)

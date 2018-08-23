@@ -25,7 +25,8 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve --copy --port 5962 demo/index.js",
-    "build": "vue-cli-service build --report --target lib --name lopo src/index.js"
+    "build": "vue-cli-service build --report --target lib --name lopo src/index.js",
+    "com": "node scripts/component.js"
   },
   "dependencies": {
     "@lopo/china-division-data": "^0.0.2",
@@ -46,6 +47,7 @@
     "commander": "^2.17.1",
     "eslint": "^5.1.0",
     "fs-extra": "^7.0.0",
+    "globby": "^8.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "svg-to-symbol-loader": "^1.1.3",

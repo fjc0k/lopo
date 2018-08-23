@@ -63,7 +63,7 @@ import { fill } from 'lodash'
 import { createComponent, parseCSSUnit } from '../_utils'
 import { normalizeData, groupData } from './_utils'
 import Carousel from '../Carousel/Carousel.vue'
-import CarouselItem from '../CarouselItem/CarouselItem.vue'
+import CarouselItem from '../Carousel/CarouselItem.vue'
 
 export default createComponent({
   name: 'PickerView',
@@ -267,3 +267,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/PickerView.module.styl" module />

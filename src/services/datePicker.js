@@ -1,5 +1,5 @@
 import { createService } from './_utils'
-import { default as Component } from '../components/DatePicker/DatePicker.vue'
+import { default as Component } from '../components/Picker/DatePicker.vue'
 
 export default Vue => (attrs, children = {}, options = {}) => {
   return createService({ Vue, Component })({

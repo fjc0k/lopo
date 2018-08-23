@@ -18,8 +18,8 @@
 <script>
 import { createComponent } from '../_utils'
 import Sheet from '../Sheet/Sheet.vue'
-import PickerView from '../PickerView/PickerView.vue'
-import PassSlots from '../PassSlots/PassSlots.vue'
+import PickerView from './PickerView.vue'
+import PassSlots from '../Functional/PassSlots.vue'
 
 export default createComponent({
   name: 'Picker',

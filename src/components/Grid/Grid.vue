@@ -1,8 +1,8 @@
 <script>
 import { createComponent, chunk } from '../_utils'
-import GridItem from '../GridItem/GridItem.vue'
+import GridItem from './GridItem.vue'
 import Carousel from '../Carousel/Carousel.vue'
-import CarouselItem from '../CarouselItem/CarouselItem.vue'
+import CarouselItem from '../Carousel/CarouselItem.vue'
 
 export default createComponent({
   name: 'Grid',
@@ -68,3 +68,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/Grid.module.styl" module />

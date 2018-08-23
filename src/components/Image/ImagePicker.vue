@@ -44,8 +44,8 @@ import { isPlainObject, toArray } from 'lodash'
 import { createComponent, chunk } from '../_utils'
 import { getOrientation, getRotation } from './_utils'
 import Icon from '../Icon/Icon.vue'
-import XImage from '../Image/Image.vue'
-import ImageViewer from '../ImageViewer/ImageViewer.vue'
+import XImage from './Image.vue'
+import ImageViewer from './ImageViewer.vue'
 
 const IMAGE_SELECTOR = 0
 
@@ -146,3 +146,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/ImagePicker.module.styl" module />

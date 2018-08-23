@@ -1,9 +1,9 @@
 <script>
 import { find } from 'lodash'
 import { createComponent } from '../_utils'
-import IndexNodes from '../IndexNodes/IndexNodes.vue'
+import IndexNodes from '../Functional/IndexNodes.vue'
 import Carousel from '../Carousel/Carousel.vue'
-import CarouselItem from '../CarouselItem/CarouselItem.vue'
+import CarouselItem from '../Carousel/CarouselItem.vue'
 
 export default createComponent({
   name: 'Tabs',
@@ -85,3 +85,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/Tabs.module.styl" module />

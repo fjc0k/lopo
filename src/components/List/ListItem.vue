@@ -69,3 +69,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/ListItem.module.styl" module />

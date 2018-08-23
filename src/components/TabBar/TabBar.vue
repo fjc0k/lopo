@@ -9,7 +9,7 @@
 
 <script>
 import { createComponent } from '../_utils'
-import IndexNodes from '../IndexNodes/IndexNodes.vue'
+import IndexNodes from '../Functional/IndexNodes.vue'
 
 export default createComponent({
   name: 'TabBar',
@@ -36,3 +36,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/TabBar.module.styl" module />

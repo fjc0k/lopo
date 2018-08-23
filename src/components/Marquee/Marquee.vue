@@ -68,3 +68,5 @@ export default createComponent({
   }
 })
 </script>
+
+<style lang="stylus" src="../_styles/components/Marquee.module.styl" module />
