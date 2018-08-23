@@ -1,8 +1,11 @@
 const path = require('path')
 const fs = require('fs-extra')
 
-const lopoPath = path.parse(require.resolve('lopo/src/components/_styles/settings.styl')).dir
+const resolvePath = path.resolve.bind(path, process.cwd())
 
-fs.copySync(lopoPath, path.join(__dirname, '../styles/lopo'))
+const themePath = resolvePath('node_modules/lopo/src/components/_styles')
+const ejectToPath = resolvePath('src/styles/lopo')
 
-console.log(lopoPath)
+fs.ensureDirSync(ejectToPath)
+fs.emptyDirSync(ejectToPath)
+fs.copySync(themePath, ejectToPath)

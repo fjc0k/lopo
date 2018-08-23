@@ -44,6 +44,7 @@
     "@vue/cli-service": "^3.0.0",
     "babel-plugin-import": "^1.8.0",
     "eslint": "^5.1.0",
+    "fs-extra": "^7.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "svg-to-symbol-loader": "^1.1.3",

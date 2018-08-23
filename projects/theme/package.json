@@ -35,13 +35,16 @@
     "build": "bili --format es,cjs,umd,umd-min --moduleName ChinaDivisionData",
     "gb": "yarn generate & yarn build"
   },
-  "devDependencies": {
-    "axios": "^0.18.0",
-    "bili": "^3.1.2",
-    "fs-extra": "^7.0.0",
-    "lodash": "^4.17.10"
-  },
   "peerDependencies": {
     "lopo": "^0.0.3"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.1.3",
+    "fs-extra": "^7.0.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-stylus": "^2.7.0",
+    "postcss-modules": "^1.3.2"
   }
 }
