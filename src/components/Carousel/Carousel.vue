@@ -97,4 +97,3 @@ export default createComponent({
 
 <style src="swiper/dist/css/swiper.css" />
 
-<style lang="stylus" src="../_styles/components/Carousel.styl" module />

@@ -60,4 +60,3 @@ export default createComponent({
 })
 </script>
 
-<style lang="stylus" src="../_styles/components/TabBarItem.styl" module />

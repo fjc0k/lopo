@@ -89,4 +89,3 @@ export default createComponent({
 })
 </script>
 
-<style lang="stylus" src="../_styles/components/Input.styl" module />

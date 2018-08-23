@@ -21,5 +21,3 @@ export default createComponent({
   components: { XButton }
 })
 </script>
-
-<style lang="stylus" src="../_styles/components/ActionBarButton.styl" module />
