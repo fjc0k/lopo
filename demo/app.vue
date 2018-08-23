@@ -1,11 +1,24 @@
 <template>
   <div>
+    <h3>Preview</h3>
+    <l-preview>
+      <l-preview-item title="姓名">
+        方剑成
+      </l-preview-item>
+      <l-preview-item title="年龄">
+        22岁
+      </l-preview-item>
+    </l-preview>
+
     <h3>Divider</h3>
-    <l-divider style="color:red;">
-      红色
+    <l-divider type="dotted">
+      完
     </l-divider>
-    <l-divider vertical style="color:red;" full>
-      红色
+    <l-divider type="dashed">
+      到底了
+    </l-divider>
+    <l-divider full>
+      没有了
     </l-divider>
 
     <h3>Rate</h3>
