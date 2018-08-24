@@ -1,12 +1,26 @@
 <template>
   <div>
     <h3>Preview</h3>
-    <l-preview>
-      <l-preview-item title="姓名">
-        方剑成
+    <l-preview plain>
+      <l-preview-item title="购买数量">
+        21
       </l-preview-item>
-      <l-preview-item title="年龄">
-        22岁
+      <l-preview-item title="个性签名">
+        千山鸟飞绝万径人踪灭孤舟蓑笠翁独钓寒江雪
+      </l-preview-item>
+      <l-preview-item title="收货地址">
+        东大43号 416
+      </l-preview-item>
+      <l-preview-divider />
+      <l-preview-item title="快递公司">
+        顺丰快递
+      </l-preview-item>
+      <l-preview-item title="快递单号">
+        33848595850940558
+      </l-preview-item>
+      <l-preview-divider />
+      <l-preview-item title="备注">
+        亲亲我的宝贝
       </l-preview-item>
     </l-preview>
 

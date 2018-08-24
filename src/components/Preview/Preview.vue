@@ -10,6 +10,12 @@ import { createComponent } from '../_utils'
 export default createComponent({
   name: 'Preview',
 
+  provide() {
+    return {
+      Preview: this
+    }
+  },
+
   props: {
     plain: Boolean,
     noBorder: Boolean
