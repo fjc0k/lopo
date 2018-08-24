@@ -1,0 +1,18 @@
+@require '../settings';
+
+for $size in (xs sm md lg xl) {
+  .{$size} {
+    &-top {
+      margin-top: lookup('$v-spacing-' + $size);
+    }
+    &-bottom {
+      margin-bottom: lookup('$v-spacing-' + $size);
+    }
+    &-left {
+      margin-left: lookup('$h-spacing-' + $size);
+    }
+    &-right {
+      margin-right: lookup('$h-spacing-' + $size);
+    }
+  }
+}

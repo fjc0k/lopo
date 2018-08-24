@@ -1,5 +1,11 @@
 <template>
   <div>
+    <h3>Spacing</h3>
+    <l-spacing x="md" y="lg" left="lg">
+      <div>hello</div>
+      <div>world</div>
+    </l-spacing>
+
     <h3>Dialog</h3>
     <l-button mini @click="dialogVisible = true">Open Dialog</l-button>
     <l-dialog
@@ -53,15 +59,17 @@
     </l-preview>
 
     <h3>Divider</h3>
-    <l-divider type="dotted">
-      完
-    </l-divider>
-    <l-divider type="dashed">
-      到底了
-    </l-divider>
-    <l-divider full>
-      没有了
-    </l-divider>
+    <l-spacing y="xl">
+      <l-divider type="dotted">
+        完
+      </l-divider>
+      <l-divider type="dashed">
+        到底了
+      </l-divider>
+      <l-divider full>
+        没有了
+      </l-divider>
+    </l-spacing>
 
     <h3>Rate</h3>
     <l-rate />
@@ -135,9 +143,11 @@
     </l-marquee>
 
     <h3>ImageViewer</h3>
-    <l-button @click="viewerVisible = !viewerVisible">Show</l-button>
-    <l-button @click="$imageViewer(viewerList, { index: 2 })">Show $imageViewer</l-button>
-    <l-image-viewer :history="false" :data="viewerList" :index.sync="viewerIndex" v-model="viewerVisible" />
+    <l-spacing y="md">
+      <l-button @click="viewerVisible = !viewerVisible">Show</l-button>
+      <l-button @click="$imageViewer(viewerList, { index: 2 })">Show $imageViewer</l-button>
+      <l-image-viewer :history="false" :data="viewerList" :index.sync="viewerIndex" v-model="viewerVisible" />
+    </l-spacing>
 
     <h3>PickAddress</h3>
     <l-pick-address

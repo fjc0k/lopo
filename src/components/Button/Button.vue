@@ -1,18 +1,21 @@
 <template>
-  <button
-    v-feedback="_.active"
-    :type="nativeType"
-    :class="[
-      _.button,
-      _[type],
-      _[shape],
-      plain && _.plain,
-      mini && _.mini,
-      noBorder && _.borderless
-    ]"
-    @click="handleClick">
-    <slot />
-  </button>
+  <div>
+    <button
+      v-feedback="_.active"
+      :type="nativeType"
+      :class="[
+        _.button,
+        _[type],
+        _[shape],
+        plain && _.plain,
+        mini && _.mini,
+        noBorder && _.borderless
+      ]"
+      v-bind="$attrs"
+      @click="handleClick">
+      <slot />
+    </button>
+  </div>
 </template>
 
 <script>
@@ -21,6 +24,8 @@ import { feedback } from '../../directives'
 
 export default createComponent({
   name: 'Button',
+
+  inheritAttrs: false,
 
   directives: { feedback },
 
