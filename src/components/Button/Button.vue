@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[_.wrapper, mini && _.mini]">
     <button
       v-feedback="_.active"
       :type="nativeType"
@@ -9,7 +9,7 @@
         _[shape],
         plain && _.plain,
         mini && _.mini,
-        noBorder && _.borderless
+        noBorder && _.noBorder
       ]"
       v-bind="$attrs"
       @click="handleClick">
