@@ -12,7 +12,8 @@
         ]"
         :style="{ zIndex }"
         v-show="localVisible"
-        @click="handleMaskClick">
+        @click="handleMaskClick"
+        @touchmove.prevent>
         <transition
           :appear="appear"
           v-bind="transitions[position]"

@@ -9,7 +9,7 @@
       $slots.default && _.corner
     ]">
     <slot />
-    <div :class="_.badge" v-if="dot || $isNonNil(localText)">
+    <div :class="_.badge" v-if="dot || $isNotEmpty(localText)">
       <slot name="text" v-if="!dot">
         {{ localText }}
       </slot>

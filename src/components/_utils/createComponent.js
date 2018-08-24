@@ -58,11 +58,11 @@ export default componentDefinition => {
         const listeners = this.$listeners
         return exclude ? omit(listeners, castArray(exclude)) : listeners
       },
-      $isNil(value) {
-        return isNil(value)
+      $isEmpty(value) {
+        return isNil(value) || value === ''
       },
-      $isNonNil(value) {
-        return !isNil(value)
+      $isNotEmpty(value) {
+        return !this.$isEmpty(value)
       },
       $goto(to, replace) {
         if (typeof to === 'string' && /^https?:\/\//i.test(to)) {

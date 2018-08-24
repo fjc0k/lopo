@@ -29,6 +29,6 @@ export default ({ Vue, Component }) => {
 
     document.body.appendChild(instance.$el)
 
-    return instance.$children[0]
+    return Promise.resolve(instance.$children[0])
   }
 }

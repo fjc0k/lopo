@@ -1,7 +1,30 @@
 <template>
   <div>
+    <h3>Dialog</h3>
+    <l-button mini @click="dialogVisible = true">Open Dialog</l-button>
+    <l-dialog
+      type="prompt"
+      title="弹窗标题"
+      confirmText="我知道了"
+      :autoClose="false"
+      v-model="dialogVisible"
+      @confirm="done => {
+        $loading('确认中...').then(loading => {
+          w.setTimeout(() => {
+            loading.hide()
+            $confirm({
+              title: '确认失败',
+              message: '请确定你的姓名、电话等信息是否正确~',
+              confirmText: '我知道了'
+            })
+          }, 2000)
+        })
+      }">
+      弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内
+    </l-dialog>
+
     <h3>Preview</h3>
-    <l-preview plain>
+    <l-preview>
       <l-preview-item title="购买数量">
         21
       </l-preview-item>
@@ -225,6 +248,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    dialogVisible: false,
     viewerVisible: false,
     viewerIndex: 1,
     viewerList: [
