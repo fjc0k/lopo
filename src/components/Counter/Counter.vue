@@ -10,8 +10,7 @@
       type="number"
       :class="[_.input, disabled && _.disabled]"
       v-model="localValue"
-      :readonly="readonly"
-      :disabled="disabled"
+      :disabled="localDisableInput"
     />
     <div
       :class="[_.button, disableAdd && _.disabled]"
@@ -61,7 +60,7 @@ export default createComponent({
       default: 1,
       transform: Number
     },
-    readonly: Boolean,
+    disableInput: Boolean,
     disabled: Boolean
   },
 
@@ -71,6 +70,9 @@ export default createComponent({
     },
     disableAdd() {
       return this.disabled || (this.localValue + this.localStep > this.localMax)
+    },
+    localDisableInput() {
+      return this.disabled || this.disableInput
     }
   },
 

@@ -14,7 +14,7 @@ export default createComponent({
     return Object
       .keys($slots)
       .map(slot => {
-        return exclude.indexOf(slot) > -1
+        return exclude && exclude.indexOf(slot) > -1
           ? null
           : h('template', { slot }, $slots[slot])
       })

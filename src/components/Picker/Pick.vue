@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div @click="handleClick">
     <XInput
       :value="formattedValue"
       :placeholder="placeholder"
-      :disabled="disabled"
       :clearable="clearable"
-      readonly
-      @click="handleClick"
+      disabled
     />
     <component
       :is="picker"

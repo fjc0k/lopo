@@ -1,16 +1,27 @@
 <template>
   <div>
     <h3>Form</h3>
-    <l-spacing x="md">
+    <l-spacing>
       <l-form>
-        <l-field label="姓名" desc="两个两个字两个字两个字字" extra=">">
-          <l-input placeholder="输入你的姓名"></l-input>
+        <l-field label="姓名">
+          <l-input v-model="inputText" placeholder="输入你的姓名1"></l-input>
         </l-field>
-        <l-field label="电话号码电话号码电话号码">
+        <l-field label="电话号码">
           <l-input placeholder="输入你的电话号码"></l-input>
+        </l-field>
+        <l-field label="备注">
+          <l-input type="textarea" rows="1" placeholder="备注信息"></l-input>
         </l-field>
         <l-field label="记住我">
           <l-switch placeholder="输入你的电话号码"></l-switch>
+        </l-field>
+        <l-field label="记住我">
+          <l-pick-date
+            v-model="pickDate"
+            mode="month"
+            placeholder="选择日期"
+            :format="([year, month]) => `${year}年${month}月`">
+          </l-pick-date>
         </l-field>
       </l-form>
     </l-spacing>
@@ -69,7 +80,7 @@
       </l-preview-item>
       <l-preview-divider />
       <l-preview-item title="备注">
-        亲亲我的宝贝
+        亲亲我的宝贝13
       </l-preview-item>
     </l-preview>
 
@@ -90,7 +101,7 @@
     <l-rate />
 
     <h3>Tabs</h3>
-    <l-tabs value="消消乐">
+    <!-- <l-tabs value="消消乐">
       <l-tab :value="tab" v-for="tab in [
         '王者荣耀',
         '英雄联盟',
@@ -105,10 +116,10 @@
           {{ tab }}内容
         </div>
       </l-tab>
-    </l-tabs>
+    </l-tabs> -->
 
     <h3>Counter</h3>
-    <l-counter readonly min="-21" max="15" step="2" />
+    <l-counter disableInput min="-21" max="15" step="2" />
 
     <h3>Card</h3>
     <l-card title="明天" square>
@@ -197,14 +208,6 @@
     <l-badge text="1" type="warning"></l-badge>
     ,
     <l-badge text="01" dot></l-badge>
-    ,
-    <l-badge>
-      <l-icon name="lopo-cross" slot="text" />
-    </l-badge>
-    ,
-    <l-badge text="!">
-      <l-button mini>dd</l-button>
-    </l-badge>
     <br>
     <l-badge text="world" plain></l-badge>
     ,
@@ -217,14 +220,6 @@
     <l-badge text="1" type="warning" plain></l-badge>
     ,
     <l-badge text="01" dot plain></l-badge>
-    ,
-    <l-badge plain>
-      <l-icon name="lopo-cross" slot="text" />
-    </l-badge>
-    ,
-    <l-badge text="!" plain>
-      <l-button type="primary" mini @click="w.alert(1)">dd</l-button>
-    </l-badge>
 
     <h3>Price</h3>
     <l-price value="20" symbolPosition="top"></l-price>
@@ -401,7 +396,7 @@ export default {
 body {
   font-size: 30px;
   background: #eeeef2;
-  margin: 0;
+  margin: 20px;
   padding: 0;
 }
 </style>
