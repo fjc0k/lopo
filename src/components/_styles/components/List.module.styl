@@ -3,9 +3,7 @@
 .list {
   reset: base;
   background: $fill-base;
-  hairline(top bottom);
-
-  &.borderless {
-    hairline-remove(top bottom);
+  &:not(.no-border) {
+    hairline(top bottom);
   }
 }

@@ -11,7 +11,7 @@
       </slot>
     </div>
     <div :class="_.body">
-      <div :class="_.left" v-if="$slots.title || title || $slots.desc || desc">
+      <div :class="_.left" :style="leftStyle" v-if="$slots.title || title || $slots.desc || desc">
         <div :class="_.title" v-if="$slots.title || title">
           <slot name="title">
             {{ title }}
@@ -53,6 +53,7 @@ export default createComponent({
     title: null,
     desc: null,
     extra: null,
+    leftStyle: null,
     isLink: Boolean,
     tappable: {
       type: Boolean,

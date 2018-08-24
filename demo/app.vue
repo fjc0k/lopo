@@ -1,5 +1,17 @@
 <template>
   <div>
+    <h3>Form</h3>
+    <l-spacing x="md">
+      <l-form>
+        <l-field label="姓名" desc="两个两个字两个字两个字字" extra=">">
+          <l-input placeholder="输入你的姓名"></l-input>
+        </l-field>
+        <l-field label="电话号码电话号码电话号码">
+          <l-input placeholder="输入你的电话号码"></l-input>
+        </l-field>
+      </l-form>
+    </l-spacing>
+
     <h3>Spacing</h3>
     <l-spacing x="md" y="lg" left="lg">
       <div>hello</div>

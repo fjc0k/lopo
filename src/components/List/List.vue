@@ -1,7 +1,7 @@
 <template>
-  <div :class="[_.list, noBorder && _.borderless]">
+  <component :is="tag" :class="[_.list, noBorder && _.noBorder]">
     <slot />
-  </div>
+  </component>
 </template>
 
 <script>
@@ -11,6 +11,10 @@ export default createComponent({
   name: 'List',
 
   props: {
+    tag: {
+      type: String,
+      default: 'div'
+    },
     noBorder: Boolean,
     noDivider: Boolean,
     longDivider: Boolean
