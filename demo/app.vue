@@ -9,6 +9,9 @@
         <l-field label="电话号码电话号码电话号码">
           <l-input placeholder="输入你的电话号码"></l-input>
         </l-field>
+        <l-field label="记住我">
+          <l-switch placeholder="输入你的电话号码"></l-switch>
+        </l-field>
       </l-form>
     </l-spacing>
 
