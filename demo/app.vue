@@ -15,7 +15,12 @@
             $confirm({
               title: '确认失败',
               message: '请确定你的姓名、电话等信息是否正确~',
-              confirmText: '我知道了'
+              confirmText: '我知道了',
+              on: {
+                confirm: () => {
+                  w.alert('ok')
+                }
+              }
             })
           }, 2000)
         })

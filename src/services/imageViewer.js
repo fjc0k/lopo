@@ -2,16 +2,14 @@ import { isPlainObject } from 'lodash'
 import { createService } from './_utils'
 import { default as Component } from '../components/Image/ImageViewer.vue'
 
-export default Vue => (data, attrs = {}) => {
+export default Vue => (data, options = {}) => {
   if (isPlainObject(data)) {
-    attrs = data
+    options = data
   } else {
-    attrs.data = data
+    options.data = data
   }
   return createService({ Vue, Component })({
-    attrs: {
-      ...attrs,
-      visible: true
-    }
+    ...options,
+    visible: true
   })
 }

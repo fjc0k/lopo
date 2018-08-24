@@ -16,8 +16,8 @@
       <div :class="_.icon" v-if="localIcon">
         <Icon :name="localIcon" />
       </div>
-      <div :class="_.message" v-if="$slots.default">
-        <slot />
+      <div :class="_.message" v-if="$slots.default || $isNotEmpty(message)">
+        <slot>{{ message }}</slot>
       </div>
     </div>
   </Popup>
@@ -52,6 +52,7 @@ export default createComponent({
       enum: ['default', 'success', 'error', 'loading']
     },
     icon: String,
+    message: null,
     position: {
       type: String,
       enum: positions

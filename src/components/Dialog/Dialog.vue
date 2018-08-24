@@ -76,12 +76,13 @@ export default createComponent({
 
   methods: {
     handleCancelClick() {
-      this.sendVisible(false)
       this.$emit('cancel')
+      this.sendVisible(false)
     },
     handleConfirmClick() {
       const done = () => this.sendVisible(false)
       if (this.autoClose) {
+        this.$emit('confirm')
         done()
       } else {
         this.$emit('confirm', done)

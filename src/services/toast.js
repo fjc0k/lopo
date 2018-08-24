@@ -1,24 +1,16 @@
+import { isPlainObject, isNumber } from 'lodash'
 import { createService } from './_utils'
 import { default as Component } from '../components/Toast/Toast.vue'
 
 export default Vue => {
   const getToast = (payload, duration) => {
-    let attrs
-    let message
-    if (payload && typeof payload === 'object') {
-      attrs = payload
-      message = payload.message
-    } else {
-      attrs = { duration }
-      message = payload
-    }
+    payload = isPlainObject(payload) ? payload : { message: payload }
+    payload.duration = isNumber(duration) ? duration : payload.duration
     return createService({ Vue, Component })({
-      attrs: {
-        visible: true,
-        ...attrs
-      }
+      ...payload,
+      visible: true
     }, {
-      default: message
+      default: payload.message
     })
   }
   getToast.success = (message, duration) => getToast({
