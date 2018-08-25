@@ -2,18 +2,18 @@
   <div>
     <h3>Form</h3>
     <l-spacing>
-      <l-form>
-        <l-field label="姓名">
-          <l-input v-model="inputText" placeholder="输入你的姓名1"></l-input>
+      <l-form v-bind="form1">
+        <l-field label="姓名" prop="name">
+          <l-input v-model="form1.model.name" placeholder="输入你的姓名"></l-input>
         </l-field>
-        <l-field label="电话号码">
-          <l-input placeholder="输入你的电话号码"></l-input>
+        <l-field label="电话号码" prop="phone">
+          <l-input v-model="form1.model.phone" placeholder="输入你的电话号码"></l-input>
         </l-field>
-        <l-field label="备注">
-          <l-input type="textarea" rows="1" placeholder="备注信息"></l-input>
+        <l-field label="年龄">
+          <l-input v-model="form1.model.age" type="textarea" rows="1" placeholder="年龄"></l-input>
         </l-field>
-        <l-field label="记住我">
-          <l-switch placeholder="输入你的电话号码"></l-switch>
+        <l-field label="身份证号">
+          <l-input v-model="form1.model.id" type="textarea" rows="1" placeholder="身份证号"></l-input>
         </l-field>
         <l-field label="记住我">
           <l-pick-date
@@ -273,6 +273,20 @@ export default {
   name: 'app',
 
   data: () => ({
+    form1: {
+      model: {
+        name: '',
+        phone: '',
+        age: '',
+        id: ''
+      },
+      rules: {
+        name: { required: true, message: '姓名不能为空' },
+        phone: { required: true, type: 'mobile', message: '电话号码有误' },
+        age: { min: 10, max: 20, message: '年龄应介于10到20岁之间' },
+        id: { type: 'id', message: '身份证号有误' }
+      }
+    },
     dialogVisible: false,
     viewerVisible: false,
     viewerIndex: 1,

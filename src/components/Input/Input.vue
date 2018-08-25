@@ -6,6 +6,8 @@ export default createComponent({
 
   inheritAttrs: false,
 
+  formValidator: true,
+
   props: {
     value: null,
     type: {
@@ -44,6 +46,9 @@ export default createComponent({
         this.sendValue(newValue)
       }
     },
+    handleChange() {
+      this.$validate()
+    },
     handleClear(e) {
       e.stopPropagation()
       this.sendValue('')
@@ -75,7 +80,8 @@ export default createComponent({
         },
         on: {
           ...$listeners,
-          input: this.handleInput
+          input: this.handleInput,
+          change: this.handleChange
         }
       }),
       clearable && !disabled && localValue && h('div', {

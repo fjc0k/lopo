@@ -3514,6 +3514,10 @@ icss-utils@^2.1.0:
   dependencies:
     postcss "^6.0.1"
 
+id-validator@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/id-validator/-/id-validator-1.3.0.tgz#5e0546803c0d17f4680c31f2c8c8194c582d695a"
+
 ieee754@^1.1.11, ieee754@^1.1.4:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.12.tgz#50bf24e5b9c8bb98af4964c941cdb0918da7b60b"
@@ -3677,6 +3681,10 @@ is-builtin-module@^1.0.0:
 is-callable@^1.1.1, is-callable@^1.1.3:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.4.tgz#1e1adf219e1eeb684d691f9d6a05ff0d30a24d75"
+
+is-chinese-phone-number@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/is-chinese-phone-number/-/is-chinese-phone-number-0.1.7.tgz#83044ecd3eaa679a0780b96ac5767113ad93e505"
 
 is-ci@^1.0.10:
   version "1.1.0"

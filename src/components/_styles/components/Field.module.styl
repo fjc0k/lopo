@@ -1,9 +1,22 @@
 @require '../settings';
 
 .field {
-  :global {
-    .l-list-item-title, .l-list-item-desc {
-      ellipsis: 1;
+  :global(.l-list-item-title, .l-list-item-desc) {
+    ellipsis: 1;
+  }
+  &.left {
+    :global(.l-list-item-value) {
+      text-align: left;
+    }
+  }
+  &.center {
+    :global(.l-list-item-value) {
+      text-align: center;
+    }
+  }
+  &.right {
+    :global(.l-list-item-value) {
+      text-align: right;
     }
   }
 }

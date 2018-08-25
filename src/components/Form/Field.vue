@@ -1,8 +1,8 @@
 <template>
   <ListItem
-    :class="_.field"
+    :class="[_.field, _[align]]"
     :title="label"
-    :leftStyle="{ width: Form.labelWidth }"
+    :leftStyle="{ width: labelWidth }"
     v-bind="$attrs">
     <PassSlots :exclude="['title', 'label']" />
     <slot name="label" slot="title" />
@@ -21,14 +21,40 @@ export default createComponent({
 
   inheritAttrs: false,
 
+  provide() {
+    return {
+      Field: this
+    }
+  },
+
   inject: {
     Form: {
-      default: () => ({})
+      default: null
     }
   },
 
   props: {
-    label: null
+    label: null,
+    prop: String,
+    align: {
+      type: String,
+      enum: ['left', 'center', 'right']
+    }
+  },
+
+  computed: {
+    labelWidth() {
+      return this.Form && this.Form.labelWidth
+    }
+  },
+
+  methods: {
+    validate() {
+      const { Form, prop } = this
+      if (Form) {
+        Form.validate(prop ? { [prop]: Form.model[prop] } : undefined)
+      }
+    }
   }
 })
 </script>

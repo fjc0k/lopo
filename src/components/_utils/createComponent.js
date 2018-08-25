@@ -74,6 +74,27 @@ export default componentDefinition => {
     }
   })
 
+  // 注入表单验证逻辑
+  if (componentDefinition.formValidator) {
+    componentDefinition.mixins.push({
+      props: {
+        noValidate: Boolean
+      },
+      inject: {
+        Field: {
+          default: null
+        }
+      },
+      methods: {
+        $validate() {
+          if (!this.noValidate && this.Field) {
+            this.Field.validate()
+          }
+        }
+      }
+    })
+  }
+
   // 注入 Messenger
   componentDefinition.mixins.push(Messenger)
 
