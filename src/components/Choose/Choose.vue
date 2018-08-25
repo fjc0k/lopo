@@ -1,5 +1,5 @@
 <template>
-  <label :class="_.choose">
+  <label :class="[_.choose, block && _.block]">
     <input
       :class="_.input"
       :type="nativeType"
@@ -41,6 +41,7 @@ export default createComponent({
       type: String,
       enum: ['auto', 'square', 'circle']
     },
+    block: Boolean,
     disabled: Boolean
   },
 

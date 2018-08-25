@@ -37,6 +37,18 @@ export default createComponent({
     all: {
       type: String,
       enum: sizeArr
+    },
+    between: {
+      type: Boolean,
+      default: false
+    },
+    betweenX: {
+      type: Boolean,
+      default: undefined
+    },
+    betweenY: {
+      type: Boolean,
+      default: undefined
     }
   },
 
@@ -50,19 +62,30 @@ export default createComponent({
         top = y,
         right = x,
         bottom = y,
-        left = x
+        left = x,
+        between,
+        betweenX = between,
+        betweenY = between
       } = {},
       children
     }
   ) {
-    return children.map(vnode => {
+    const lastChildrenIndex = children.length - 1
+    return children.map((vnode, index) => {
       if (vnode.tag) {
         (vnode.data || (vnode.data = {})).class = [
           vnode.data.class,
+          (
+            index === 0 ? _.firstChild
+              : index === lastChildrenIndex ? _.lastChild
+                : null
+          ),
           top && _[`${top}Top`],
           right && _[`${right}Right`],
           bottom && _[`${bottom}Bottom`],
-          left && _[`${left}Left`]
+          left && _[`${left}Left`],
+          betweenX && _.betweenX,
+          betweenY && _.betweenY
         ]
       }
       return vnode

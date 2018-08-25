@@ -10,20 +10,34 @@
           <l-input v-model="form1.model.phone" placeholder="输入你的电话号码"></l-input>
         </l-field>
         <l-field label="年龄" prop="age">
-          <l-input v-model="form1.model.age" type="textarea" rows="1" placeholder="年龄"></l-input>
+          <l-input v-model="form1.model.age" type="textarea" rows="2" placeholder="年龄"></l-input>
         </l-field>
         <l-field prop="id">
           <div slot="label">身份证号</div>
           <l-input v-model="form1.model.id" type="textarea" rows="1" placeholder="身份证号"></l-input>
         </l-field>
+        <l-field label="是否开启">
+          <l-switch />
+        </l-field>
+        <l-field label="支付方式">
+          <l-spacing y="sm" betweenY>
+            <l-choose block v-model="form1.model.gender" value="male">微信支付</l-choose>
+            <l-choose block v-model="form1.model.gender" value="female">余额支付（当前余额: 10元）</l-choose>
+          </l-spacing>
+        </l-field>
+        <l-field label="支付方式">
+          <l-spacing x="sm" betweenX>
+            <l-choose v-model="form1.model.gender" value="male">微信支付</l-choose>
+            <l-choose v-model="form1.model.gender" value="female">余额支付</l-choose>
+          </l-spacing>
+        </l-field>
         <l-field label="生日" arrow>
           <l-pick-date
             visibleItemCount="9"
-            :caption="['年', '月']"
+            :caption="['年', '月', '日']"
             v-model="pickDate"
-            mode="month"
             placeholder="选择日期"
-            :format="([year, month]) => `${year}年${month}月`">
+            :format="([year, month, day]) => `${year}年${month}月${day}日`">
           </l-pick-date>
         </l-field>
       </l-form>
@@ -281,7 +295,8 @@ export default {
         name: '',
         phone: '',
         age: '',
-        id: ''
+        id: '',
+        gender: 'male'
       },
       rules: {
         name: { required: true, message: '姓名不能为空' },

@@ -7,6 +7,9 @@
   align-items: center;
   vertical-align: middle;
   color: $color-primary;
+  &.block {
+    display: flex;
+  }
 }
 
 // 选择器
@@ -23,6 +26,7 @@
 // 美化容器
 .holder {
   reset: box-model;
+  flex-shrink: 0;
   position: relative;
   size: $choose-size;
   border: 1PX solid $color-line-dark;
