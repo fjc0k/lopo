@@ -4,6 +4,8 @@ import { createComponent } from '../_utils'
 
 const sizeArr = [undefined, 'xs', 'sm', 'md', 'lg', 'xl']
 
+const sizeValidator = value => sizeArr.indexOf(value) > -1
+
 export default createComponent({
   name: 'Spacing',
 
@@ -12,31 +14,31 @@ export default createComponent({
   props: {
     top: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     right: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     bottom: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     left: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     x: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     y: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     all: {
       type: String,
-      enum: sizeArr
+      validator: sizeValidator
     },
     between: {
       type: Boolean,

@@ -21,8 +21,11 @@
         </l-field>
         <l-field label="支付方式">
           <l-spacing y="sm" betweenY>
-            <l-choose block v-model="form1.model.gender" value="male">微信支付</l-choose>
-            <l-choose block v-model="form1.model.gender" value="female">余额支付（当前余额: 10元）</l-choose>
+            <l-choose block v-model="form1.model.gender" value="alipay">微信支付</l-choose>
+            <l-choose block v-model="form1.model.gender" value="male">
+              支付宝 <l-badge text="红包" />
+            </l-choose>
+            <l-choose block v-model="form1.model.gender" value="female">余额支付</l-choose>
           </l-spacing>
         </l-field>
         <l-field label="支付方式">
