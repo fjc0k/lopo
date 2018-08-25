@@ -1,8 +1,10 @@
 @require '../settings';
 
 .field {
-  :global(.l-list-item-title, .l-list-item-desc) {
-    ellipsis: 1;
+  :global {
+    .l-list-item-title, .l-list-item-desc {
+      ellipsis: 1;
+    }
   }
   &.left {
     :global(.l-list-item-value) {
@@ -19,4 +21,26 @@
       text-align: right;
     }
   }
+  &.required {
+    &::after {
+      content: '*';
+      position: absolute;
+      left: ($h-spacing-lg / 2);
+      font-size: $font-size-base;
+      color: $color-danger;
+    }
+  }
+}
+
+.error {
+  :global {
+    .l-list-item-value, .l-list-item-extra {
+      color: $color-danger;
+    }
+  }
+}
+
+.error-tip {
+  margin-left: $h-spacing-sm;
+  font-size: 18px;
 }

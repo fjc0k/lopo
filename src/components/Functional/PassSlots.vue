@@ -7,16 +7,24 @@ export default createComponent({
   functional: true,
 
   props: {
-    exclude: Array
+    exclude: Array,
+    map: {
+      type: Object,
+      default: () => ({})
+    }
   },
 
-  render(h, { parent: { $slots = {} }, props: { exclude } }) {
+  render(h, { parent: { $slots = {} }, props: { exclude, map } }) {
     return Object
       .keys($slots)
       .map(slot => {
         return exclude && exclude.indexOf(slot) > -1
           ? null
-          : h('template', { slot }, $slots[slot])
+          : h(
+            'template',
+            { slot: map[slot] || slot },
+            $slots[slot]
+          )
       })
   }
 })

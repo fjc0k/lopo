@@ -31,7 +31,7 @@
           {{ extra }}
         </slot>
       </div>
-      <Icon :class="_.chevron" name="l-right" v-if="isLink" />
+      <Icon :class="_.chevron" name="l-right" v-if="arrow" />
     </div>
   </div>
 </template>
@@ -54,11 +54,11 @@ export default createComponent({
     desc: null,
     extra: null,
     leftStyle: null,
-    isLink: Boolean,
+    arrow: Boolean,
     tappable: {
       type: Boolean,
       transform(tappable) {
-        return this.isLink || tappable
+        return this.arrow || tappable
       }
     }
   },

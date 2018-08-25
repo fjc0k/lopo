@@ -3,19 +3,20 @@
     <h3>Form</h3>
     <l-spacing>
       <l-form v-bind="form1">
-        <l-field label="姓名" prop="name">
+        <l-field label="姓名" prop="name" extra="@163.com">
           <l-input v-model="form1.model.name" placeholder="输入你的姓名"></l-input>
         </l-field>
-        <l-field label="电话号码" prop="phone">
+        <l-field label="电话号码" icon="l-star-fill" prop="phone">
           <l-input v-model="form1.model.phone" placeholder="输入你的电话号码"></l-input>
         </l-field>
-        <l-field label="年龄">
+        <l-field label="年龄" prop="age">
           <l-input v-model="form1.model.age" type="textarea" rows="1" placeholder="年龄"></l-input>
         </l-field>
-        <l-field label="身份证号">
+        <l-field prop="id">
+          <div slot="label">身份证号</div>
           <l-input v-model="form1.model.id" type="textarea" rows="1" placeholder="身份证号"></l-input>
         </l-field>
-        <l-field label="记住我">
+        <l-field label="生日" arrow>
           <l-pick-date
             v-model="pickDate"
             mode="month"

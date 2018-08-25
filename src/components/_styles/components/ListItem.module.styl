@@ -1,10 +1,10 @@
 @require '../settings';
 
 .list-item {
-  reset: font;
+  reset: base;
+  position: relative;
   display: flex;
   align-items: center;
-  margin-left: $h-spacing-md;
 
   // 点击反馈
   &.tappable {
@@ -15,8 +15,6 @@
 
   // 分隔线
   &.long-divider {
-    margin-left: 0;
-    padding-left: $h-spacing-md;
     &:not(:last-child) {
       hairline(bottom);
     }
@@ -32,6 +30,7 @@
   display: flex;
   align-items: center;
   font-size: 21px;
+  margin-left: $h-spacing-lg;
 }
 
 // 主内容
@@ -42,7 +41,8 @@
   align-items: center;
   min-height: 44px;
   overflow: hidden;
-  padding: $h-spacing-md $h-spacing-md $h-spacing-md 0;
+  margin-left: $h-spacing-lg;
+  padding: $h-spacing-md $h-spacing-lg $h-spacing-md 0;
 
   // 左部内容
   .left {
@@ -84,6 +84,8 @@
     color: $color-text-caption;
     text-wrap: true;
     overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   // 链接箭头

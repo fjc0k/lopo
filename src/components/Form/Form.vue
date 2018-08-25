@@ -1,18 +1,24 @@
 <template>
   <List tag="form" :class="_.form" v-bind="$attrs">
     <slot />
+    <Toast
+      v-model="toastVisible"
+      :message="validResult.message"
+      position="top"
+    />
   </List>
 </template>
 
 <script>
 import { createComponent } from '../_utils'
 import List from '../List/List.vue'
+import Toast from '../Toast/Toast.vue'
 import Validator from './Validator'
 
 export default createComponent({
   name: 'Form',
 
-  components: { List },
+  components: { List, Toast },
 
   inheritAttrs: false,
 
@@ -25,7 +31,7 @@ export default createComponent({
   props: {
     labelWidth: {
       type: String,
-      default: '4.5em'
+      default: '5em'
     },
     model: {
       type: Object,
@@ -38,7 +44,9 @@ export default createComponent({
   },
 
   data: () => ({
-    validator: new Validator()
+    validator: new Validator(),
+    validResult: {},
+    toastVisible: false
   }),
 
   watch: {
@@ -54,8 +62,9 @@ export default createComponent({
   methods: {
     validate(model = this.model) {
       return this.validator.validate(model).then(result => {
+        this.validResult = result
         if (!result.valid) {
-          this.$toast.top(result.message)
+          this.toastVisible = true
         }
         this.$emit(result.valid ? 'valid' : 'invalid', result)
         return result
