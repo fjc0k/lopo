@@ -6,6 +6,13 @@
       ellipsis: 1;
     }
   }
+  &.multiple-line {
+    :global {
+      .l-list-item-left {
+        align-self: flex-start;
+      }
+    }
+  }
   &.left {
     :global(.l-list-item-value) {
       text-align: left;
@@ -28,6 +35,11 @@
       left: ($h-spacing-lg / 2);
       font-size: $font-size-base;
       color: $color-danger;
+    }
+    &.multiple-line {
+      &::after {
+        top: 9px;
+      }
     }
   }
 }

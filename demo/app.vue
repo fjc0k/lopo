@@ -8,8 +8,9 @@
         </l-field>
         <l-field label="电话号码" icon="l-star-fill" prop="phone">
           <l-input v-model="form1.model.phone" placeholder="输入你的电话号码"></l-input>
+          <l-button mini type="primary" slot="extra">发送验证码</l-button>
         </l-field>
-        <l-field label="年龄" prop="age">
+        <l-field label="年龄" prop="age" multipleLine>
           <l-input v-model="form1.model.age" type="textarea" rows="2" placeholder="年龄"></l-input>
         </l-field>
         <l-field prop="id">
@@ -19,7 +20,7 @@
         <l-field label="是否开启">
           <l-switch />
         </l-field>
-        <l-field label="支付方式">
+        <l-field label="支付方式" multipleLine>
           <l-spacing y="sm" betweenY>
             <l-choose block v-model="form1.model.gender" value="alipay">微信支付</l-choose>
             <l-choose block v-model="form1.model.gender" value="male">
@@ -304,7 +305,7 @@ export default {
       rules: {
         name: { required: true, message: '姓名不能为空' },
         phone: { required: true, type: 'mobile', message: '电话号码有误' },
-        age: { min: 10, max: 20, message: '年龄应介于10到20岁之间' },
+        age: { required: true, min: 10, max: 20, message: '年龄应介于10到20岁之间' },
         id: { type: 'id', message: '身份证号有误' }
       }
     },

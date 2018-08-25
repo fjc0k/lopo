@@ -1,6 +1,12 @@
 <template>
   <ListItem
-    :class="[_.field, _[align], required && _.required, localError && _.error]"
+    :class="[
+      _.field,
+      _[align],
+      required && _.required,
+      localError && _.error,
+      multipleLine && _.multipleLine
+    ]"
     :title="label"
     :extra="null"
     :icon="null"
@@ -65,7 +71,8 @@ export default createComponent({
       type: Boolean,
       default: false,
       sync: true
-    }
+    },
+    multipleLine: Boolean
   },
 
   data: () => ({
