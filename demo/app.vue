@@ -18,6 +18,8 @@
         </l-field>
         <l-field label="生日" arrow>
           <l-pick-date
+            visibleItemCount="9"
+            :caption="['年', '月']"
             v-model="pickDate"
             mode="month"
             placeholder="选择日期"

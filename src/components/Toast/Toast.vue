@@ -10,7 +10,7 @@
         _.toast,
         _[position],
         localIcon && _.withIcon,
-        !$slots.default && _noMessage
+        !$slots.default && _.noMessage
       ]"
       v-show="localVisible">
       <div :class="_.icon" v-if="localIcon">
