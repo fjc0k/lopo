@@ -5,6 +5,9 @@ const resolveRoot = path.resolve.bind(path, __dirname)
 
 module.exports = {
   chainWebpack: config => {
+    // export default
+    config.output.libraryExport('default')
+
     // SVG
     const SVGRule = config.module.rule('svg')
     SVGRule.uses.clear()
