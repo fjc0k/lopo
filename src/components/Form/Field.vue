@@ -16,7 +16,7 @@
       :exclude="['title', 'extra', 'icon']"
       :map="{ label: 'title' }"
     />
-    <template slot="extra">
+    <template slot="extra" v-if="localError || $slots.extra || $isNotEmpty(extra)">
       <slot name="extra">{{ extra }}</slot>
       <l-icon
         :class="_.errorTip"

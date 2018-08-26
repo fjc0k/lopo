@@ -10,7 +10,7 @@
           <l-input v-model="form1.model.phone" placeholder="输入你的电话号码"></l-input>
           <l-button mini type="primary" slot="extra">发送验证码</l-button>
         </l-field>
-        <l-field label="年龄" prop="age" multipleLine>
+        <l-field label="年龄" align="right" prop="age" multipleLine>
           <l-input v-model="form1.model.age" type="textarea" rows="2" placeholder="年龄"></l-input>
         </l-field>
         <l-field prop="id">
@@ -29,13 +29,13 @@
             <l-choose block v-model="form1.model.gender" value="female">余额支付</l-choose>
           </l-spacing>
         </l-field>
-        <l-field label="支付方式">
+        <l-field label="支付方式" align="right">
           <l-spacing x="sm" betweenX>
             <l-choose v-model="form1.model.gender" value="male">微信支付</l-choose>
             <l-choose v-model="form1.model.gender" value="female">余额支付</l-choose>
           </l-spacing>
         </l-field>
-        <l-field label="生日" arrow>
+        <l-field label="生日" align="right" arrow>
           <l-pick-date
             visibleItemCount="9"
             :caption="['年', '月', '日']"

@@ -1,6 +1,6 @@
 import loading from './loading.svg'
+import chevron from './chevron.svg'
 import {
-  right,
   plus,
   minus,
   close,
@@ -14,7 +14,7 @@ import {
 
 export default [
   loading,
-  right,
+  chevron,
   plus,
   minus,
   close,

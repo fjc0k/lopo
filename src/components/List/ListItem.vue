@@ -31,7 +31,7 @@
           {{ extra }}
         </slot>
       </div>
-      <Icon :class="_.chevron" name="l-right" v-if="arrow" />
+      <Icon :class="_.chevron" name="l-chevron" v-if="arrow" />
     </div>
   </div>
 </template>
