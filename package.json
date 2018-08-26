@@ -21,7 +21,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "scripts"
   ],
   "scripts": {
     "serve": "vue-cli-service serve --copy --port 5962 demo/index.js",

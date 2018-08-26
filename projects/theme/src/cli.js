@@ -1,38 +1,27 @@
-const _ = require('lodash')
-const http = require('axios')
-const fs = require('fs-extra')
+const program = require('commander')
 const path = require('path')
+const fs = require('fs-extra')
 
-const resolveSrc = path.resolve.bind(path, __dirname, '../src')
+const resolvePath = path.resolve.bind(path, process.cwd())
 
-const divisionDataUrl = 'https://division-data.alicdn.com/simple/addr_4_1111_1_0.js'
+const themePath = resolvePath('node_modules/lopo/src/components/_styles')
 
-const removeEmpty = arr => arr.filter(item => item && String(item).length)
+program
+  .command('eject', '提取源样式')
+  .option('-o, --output [dir]', '源样式存放目录', 'src/styles/lopo')
+  .action(({ output }) => {
+    console.log(3333333333)
+    const ejectToPath = resolvePath(output)
+    fs.copySync(themePath, ejectToPath)
+  })
 
-;(async () => {
-  const { data } = await http.get(divisionDataUrl)
-  const listStr = data.match(/tdist=(.+?);/)[1].trim()
-  const listObj = eval(`true, ${listStr}`) // eslint-disable-line no-eval
-  const listArr = _.reduce(listObj, (arr, item, code) => {
-    if (item[0] !== '其它区') {
-      item.push(code)
-      arr.push(item)
-    }
-    return arr
-  }, [])
-  const divisionList = listArr.filter(item => +item[1] === 1)
-    .map(item => {
-      return removeEmpty([
-        item[0],
-        listArr.filter(item2 => +item2[1] === +_.last(item)).map(item2 => {
-          return removeEmpty([
-            item2[0],
-            listArr.filter(item3 => +item3[1] === +_.last(item2)).map(item3 => {
-              return item3[0]
-            })
-          ])
-        })
-      ])
-    })
-  fs.outputJsonSync(resolveSrc('data.json'), divisionList, { spaces: 2 })
-})()
+program
+  .command('build <entry>', '编译源样式')
+  .option('-o, --output [file]', '编译后样式存放文件', 'src/styles/lopo.css')
+  .action((x, { output }) => {
+    console.log(33333333333333333333333333333333333333333)
+    console.log(x, output)
+    // fs.copySync(themePath, ejectToPath)
+  })
+
+program.parse(process.argv)
