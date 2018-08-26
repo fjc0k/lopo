@@ -1,9 +1,9 @@
 <template>
   <div :class="[
-    _.listItem,
+    _['list-item'],
     localTappable && _.tappable,
-    List.noDivider && _.noDivider,
-    List.longDivider && _.longDivider
+    List.noDivider && _['no-divider'],
+    List.longDivider && _['long-divider']
   ]" v-feedback="_.active">
     <div :class="_.icon" v-if="$slots.icon || icon">
       <slot name="icon">

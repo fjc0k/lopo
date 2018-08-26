@@ -40,11 +40,11 @@ export default createComponent({
     klass() {
       const { _, noFeedback, Grid } = this
       return [
-        _.gridItem,
-        noFeedback && _.noFeedback,
+        _['grid-item'],
+        noFeedback && _['no-feedback'],
         Grid.adaptive || _.square,
-        (Grid.noDivider || Grid.noVerticalDivider) && _.noVerticalDivider,
-        (Grid.noDivider || Grid.noHorizontalDivider) && _.noHorizontalDivider
+        (Grid.noDivider || Grid.noVerticalDivider) && _['no-vertical-divider'],
+        (Grid.noDivider || Grid.noHorizontalDivider) && _['no-horizontal-divider']
       ]
     }
   }

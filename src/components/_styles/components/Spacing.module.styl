@@ -1,19 +1,17 @@
 @require '../settings';
 
 for $size in (xs sm md lg xl) {
-  .{$size} {
-    &-top {
-      margin-top: lookup('$v-spacing-' + $size);
-    }
-    &-bottom {
-      margin-bottom: lookup('$v-spacing-' + $size);
-    }
-    &-left {
-      margin-left: lookup('$h-spacing-' + $size);
-    }
-    &-right {
-      margin-right: lookup('$h-spacing-' + $size);
-    }
+  .top-{$size} {
+    margin-top: lookup('$v-spacing-' + $size);
+  }
+  .bottom-{$size} {
+    margin-bottom: lookup('$v-spacing-' + $size);
+  }
+  .left-{$size} {
+    margin-left: lookup('$h-spacing-' + $size);
+  }
+  .right-{$size} {
+    margin-right: lookup('$h-spacing-' + $size);
   }
 }
 

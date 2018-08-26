@@ -1,7 +1,7 @@
 <template>
   <div :class="_.wrapper">
     <div :class="_.holder" />
-    <div :class="_.tabBar">
+    <div :class="_['tab-bar']">
       <IndexNodes :nodes="$slots.default" />
     </div>
   </div>

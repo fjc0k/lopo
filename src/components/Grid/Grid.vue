@@ -52,14 +52,14 @@ export default createComponent({
     const pages = this.getPages()
     return pages.length === 1
       ? (
-        <div class={[_.grid, noBorder && _.noBorder]}>
+        <div class={[_.grid, noBorder && _['no-border']]}>
           {pages[0]}
         </div>
       )
       : (
         <Carousel autoplay={false}>
           {pages.map((page, index) => (
-            <CarouselItem class={[_.grid, noBorder && _.noBorder]} key={index}>
+            <CarouselItem class={[_.grid, noBorder && _['no-border']]} key={index}>
               {page}
             </CarouselItem>
           ))}

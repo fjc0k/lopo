@@ -9,7 +9,7 @@
         _[shape],
         plain && _.plain,
         mini && _.mini,
-        noBorder && _.noBorder
+        noBorder && _['no-border']
       ]"
       v-bind="$attrs"
       @click="handleClick">

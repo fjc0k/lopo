@@ -1,5 +1,5 @@
 <template>
-  <div :class="_.actionSheet">
+  <div :class="_['action-sheet']">
 
   </div>
 </template>

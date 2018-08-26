@@ -1,5 +1,5 @@
 <template>
-  <div :class="_.pickerView">
+  <div :class="_['picker-view']">
     <!-- // 提示 -->
     <div :class="_.caption">
       <template v-for="(caption, groupIndex) in localCaption">

@@ -33,7 +33,6 @@ module.exports = {
   css: {
     loaderOptions: {
       css: {
-        camelCase: 'only',
         getLocalIdent: ({ resourcePath }, _, localName) => {
           let { name } = path.parse(resourcePath)
           name = name.replace(/\.module$/, '')

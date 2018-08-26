@@ -5,7 +5,7 @@
       _[align],
       required && _.required,
       localError && _.error,
-      multipleLine && _.multipleLine
+      multipleLine && _['multiple-line']
     ]"
     :title="label"
     :extra="null"
@@ -19,7 +19,7 @@
     <template slot="extra" v-if="localError || $slots.extra || $isNotEmpty(extra)">
       <slot name="extra">{{ extra }}</slot>
       <l-icon
-        :class="_.errorTip"
+        :class="_['error-tip']"
         name="l-warning-circle"
         v-if="localError"
         @click.native="handleErrorTipClick"

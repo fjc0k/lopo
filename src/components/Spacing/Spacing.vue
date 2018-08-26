@@ -78,16 +78,16 @@ export default createComponent({
         (vnode.data || (vnode.data = {})).class = [
           vnode.data.class,
           (
-            index === 0 ? _.firstChild
-              : index === lastChildrenIndex ? _.lastChild
+            index === 0 ? _['first-child']
+              : index === lastChildrenIndex ? _['last-child']
                 : null
           ),
-          top && _[`${top}Top`],
-          right && _[`${right}Right`],
-          bottom && _[`${bottom}Bottom`],
-          left && _[`${left}Left`],
-          betweenX && _.betweenX,
-          betweenY && _.betweenY
+          top && _[`top-${top}`],
+          right && _[`right-${right}`],
+          bottom && _[`bottom-${bottom}`],
+          left && _[`left-${left}`],
+          betweenX && _['between-x'],
+          betweenY && _['between-y']
         ]
       }
       return vnode

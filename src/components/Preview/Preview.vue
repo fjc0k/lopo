@@ -1,5 +1,5 @@
 <template>
-  <div :class="[_.preview, plain && _.plain, noBorder && _.noBorder]">
+  <div :class="[_.preview, plain && _.plain, noBorder && _['no-border']]">
     <slot />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[_.previewItem, Preview.plain && _.plain]">
+  <div :class="[_['preview-item'], Preview.plain && _.plain]">
     <div :class="_.title" v-if="title || $slots.title">
       <slot name="title">{{ title }}</slot>
     </div>

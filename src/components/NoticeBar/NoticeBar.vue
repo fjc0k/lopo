@@ -1,5 +1,5 @@
 <template>
-  <div :class="_.noticeBar" @click="handleClick" v-if="localVisible">
+  <div :class="_['notice-bar']" @click="handleClick" v-if="localVisible">
     <div :class="_.left">
       <slot name="icon">
         <Icon :class="_.icon" :name="icon" />

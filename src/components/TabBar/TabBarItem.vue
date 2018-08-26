@@ -1,5 +1,5 @@
 <template>
-  <div :class="[_.tabBarItem, active && _.active]" @click="handleClick">
+  <div :class="[_['tab-bar-item'], active && _.active]" @click="handleClick">
     <Badge v-bind="badge">
       <div :class="_.icon">
         <slot name="icon" :active="active">

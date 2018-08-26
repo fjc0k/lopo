@@ -44,6 +44,13 @@
             :format="([year, month, day]) => `${year}年${month}月${day}日`">
           </l-pick-date>
         </l-field>
+        <l-field label="城市" align="right" arrow>
+          <l-pick-one
+            v-model="form1.model.city"
+            placeholder="选择一个你最喜欢的城市"
+            :data="['北京', '上海', '成都', '贵阳', '大连', '北海道', '拉萨']"
+          />
+        </l-field>
       </l-form>
     </l-spacing>
 
@@ -300,7 +307,8 @@ export default {
         phone: '',
         age: '',
         id: '',
-        gender: 'male'
+        gender: 'male',
+        city: ''
       },
       rules: {
         name: { required: true, message: '姓名不能为空' },

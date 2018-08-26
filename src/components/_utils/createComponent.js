@@ -1,17 +1,19 @@
 import Messenger from 'vue-messenger'
 import { castArray, omit, isNil } from 'lodash'
 
-const appendToBody = function () {
-  if (!this._isDestroyed && (!this.$el.parentNode || this.$el.parentNode !== document.body)) {
-    document.body.appendChild(this.$el)
+const appendToBody = function (el) {
+  const node = el === true ? this.$el : this.$refs[el]
+  if (!this._isDestroyed && (!node.parentNode || node.parentNode !== document.body)) {
+    document.body.appendChild(node)
   }
 }
 
-const removeFromBody = function () {
+const removeFromBody = function (el) {
+  const node = el === true ? this.$el : this.$refs[el]
   if (this.$options.hidable && this.visible === true) {
-    this.hide().then(() => this.$el.parentNode && this.$el.parentNode.removeChild(this.$el))
+    this.hide().then(() => node.parentNode && node.parentNode.removeChild(node))
   } else {
-    this.$el.parentNode && this.$el.parentNode.removeChild(this.$el)
+    node.parentNode && node.parentNode.removeChild(node)
   }
 }
 
@@ -156,11 +158,21 @@ export default componentDefinition => {
   // 注入 body
   if (componentDefinition.renderToBody) {
     componentDefinition.mixins.push({
-      mounted: appendToBody,
-      updated: appendToBody,
-      activated: appendToBody,
-      deactivated: removeFromBody,
-      beforeDestroy: removeFromBody
+      mounted() {
+        appendToBody.call(this, componentDefinition.renderToBody)
+      },
+      updated() {
+        appendToBody.call(this, componentDefinition.renderToBody)
+      },
+      activated() {
+        appendToBody.call(this, componentDefinition.renderToBody)
+      },
+      deactivated() {
+        removeFromBody.call(this, componentDefinition.renderToBody)
+      },
+      beforeDestroy() {
+        removeFromBody.call(this, componentDefinition.renderToBody)
+      }
     })
   }
 

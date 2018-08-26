@@ -1,5 +1,5 @@
 <template>
-  <div :class="_.imagePicker">
+  <div :class="_['image-picker']">
     <div :class="_.list" v-for="(list, listIndex) in lists" :key="listIndex">
       <div :class="_.item" v-for="(item, itemIndex) in list" :key="itemIndex">
         <div :class="[_.content, _.select]" v-if="item === IMAGE_SELECTOR">

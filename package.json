@@ -37,6 +37,7 @@
     "is-chinese-phone-number": "^0.1.7",
     "lodash": "^4.17.10",
     "photoswipe": "^4.1.2",
+    "popper.js": "^1.14.4",
     "scroll-into-view-if-needed": "^2.2.16",
     "swiper": "^4.3.5",
     "vue-iconfont": "^2.5.1",

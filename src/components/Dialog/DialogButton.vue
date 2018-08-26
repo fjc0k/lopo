@@ -1,7 +1,7 @@
 <template>
   <button
     v-feedback="_.active"
-    :class="[_.dialogButton, _[type]]"
+    :class="[_['dialog-button'], _[type]]"
     @click="handleClick">
     <slot />
   </button>

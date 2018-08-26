@@ -1,5 +1,5 @@
 <template>
-  <div :class="_.previewDivider" />
+  <div :class="_['preview-divider']" />
 </template>
 
 <script>

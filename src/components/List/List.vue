@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="[_.list, noBorder && _.noBorder]">
+  <component :is="tag" :class="[_.list, noBorder && _['no-border']]">
     <slot />
   </component>
 </template>
