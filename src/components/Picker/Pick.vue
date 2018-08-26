@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { isArray } from 'lodash'
 import { createComponent } from '../_utils'
 import XInput from '../Input/Input.vue'
 import Picker from './Picker.vue'
@@ -50,7 +51,7 @@ export default createComponent({
     },
     format: {
       type: Function,
-      default: value => value.join(', ')
+      default: value => isArray(value) ? value.join(', ') : value
     },
     placeholder: null,
     picker: {
