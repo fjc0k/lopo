@@ -1,5 +1,10 @@
 <template>
   <div>
+    <h3>Popover</h3>
+    <l-popover message="床前明月光~" placement="right" visible>
+        <l-button mini>吟诗一首</l-button>
+    </l-popover>
+
     <h3>Form</h3>
     <l-spacing>
       <l-form v-bind="form1">
