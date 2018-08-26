@@ -22,12 +22,14 @@ $popover-arrow-width = 7px;
 
 .message {
   flex: 1;
-  background: white;
   order: 1;
-  padding: $v-spacing-md $h-spacing-md;
   font-size: $font-size-base;
+  background-color: $fill-base;
   hairline(all);
   hairline-radius(3px);
+  .no-border & {
+    hairline-remove(all);
+  }
 }
 
 .arrow {
@@ -36,6 +38,9 @@ $popover-arrow-width = 7px;
   background-color: $fill-base;
   hairline(top right);
   position: absolute;
+  .no-border & {
+    hairline-remove(top right);
+  }
   [x-placement^=top] & {
     order: 2;
     transform: rotate(135deg);

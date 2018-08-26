@@ -1,9 +1,9 @@
 <template>
   <div>
     <h3>Popover</h3>
-    <l-popover message="床前明月光~" placement="right" visible>
-        <l-button mini>吟诗一首</l-button>
-    </l-popover>
+    <l-tip placement="right" message="点击了解更多~" visible>
+      <l-button mini>删除1</l-button>
+    </l-tip>
 
     <h3>Form</h3>
     <l-spacing>

@@ -30,7 +30,9 @@ export default createComponent({
         'left-end'
       ]
     },
-    message: null
+    message: null,
+    popperClass: null,
+    noBorder: Boolean
   },
 
   watch: {
@@ -55,6 +57,7 @@ export default createComponent({
       })
     }
   },
+
   beforeDestroy() {
     this.popper && this.popper.destroy()
   },
@@ -69,15 +72,25 @@ export default createComponent({
     })
   },
 
+  updated() {
+    this.createPopper()
+  },
+
   render() {
-    const { _, placement, localVisible } = this
+    const { _, placement, localVisible, noBorder, popperClass } = this
     const child = this.$slots.default && this.$slots.default[0]
     if (!child) return null
     return <div>
       {child}
       <div
         ref="popper"
-        class={[_.popover, _[placement], localVisible && _.visible]}>
+        class={[
+          _.popover,
+          _[placement],
+          localVisible && _.visible,
+          noBorder && _['no-border'],
+          popperClass
+        ]}>
         <div class={_.message}>
           {this.$slots.message || this.message}
         </div>
