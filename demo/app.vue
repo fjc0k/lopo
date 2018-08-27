@@ -1,5 +1,13 @@
 <template>
   <div>
+    <h3>VueRouter</h3>
+    <l-button mini @click="$router.push('/')">/</l-button>
+    <l-button mini @click="$router.push('/foo')">/foo</l-button>
+    <l-button mini @click="$router.push('/bar')">/bar</l-button>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+
     <h3>Popover</h3>
     <l-tip placement="right" message="点击了解更多~" visible>
       <l-button mini>删除1</l-button>

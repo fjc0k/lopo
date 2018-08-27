@@ -158,20 +158,30 @@ export default componentDefinition => {
   // 注入 body
   if (componentDefinition.renderToBody) {
     componentDefinition.mixins.push({
+      // 操作 DOM
       mounted() {
         appendToBody.call(this, componentDefinition.renderToBody)
       },
       updated() {
         appendToBody.call(this, componentDefinition.renderToBody)
       },
-      activated() {
-        appendToBody.call(this, componentDefinition.renderToBody)
-      },
-      deactivated() {
-        removeFromBody.call(this, componentDefinition.renderToBody)
-      },
       beforeDestroy() {
         removeFromBody.call(this, componentDefinition.renderToBody)
+      },
+
+      // 兼容 <keep-alive />
+      deactivated() {
+        if (componentDefinition.hidable && this.localVisible) {
+          this.shouldRestoreVisibility = true
+          this.sendVisible(false)
+        } else {
+          this.shouldRestoreVisibility = false
+        }
+      },
+      activated() {
+        if (this.shouldRestoreVisibility) {
+          this.sendVisible(true)
+        }
       }
     })
   }
