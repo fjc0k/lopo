@@ -54,7 +54,8 @@
             :caption="['年', '月', '日']"
             v-model="pickDate"
             placeholder="选择日期"
-            :format="([year, month, day]) => `${year}年${month}月${day}日`">
+            :format="([year, month, day]) => `${year}年${month}月${day}日`"
+            :formatYear="({ year }) => year === 2018 ? '今年' : year">
           </l-pick-date>
         </l-field>
         <l-field label="城市" align="right" arrow>

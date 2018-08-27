@@ -67,6 +67,7 @@ export default componentDefinition => {
         return !this.$isEmpty(value)
       },
       $goto(to, replace) {
+        if (isNil(to)) return
         if (typeof to === 'string' && /^https?:\/\//i.test(to)) {
           location.href = to
         } else if (this.$router) {

@@ -10,7 +10,7 @@
 
 <script>
 /* eslint max-nested-callbacks: 0 */
-import { range } from 'lodash'
+import { isFunction, range } from 'lodash'
 import { subYears, addYears, parse, getDaysInMonth } from 'date-fns'
 import { createComponent, dateToArray, formatDate } from '../_utils'
 import PickerView from './PickerView.vue'
@@ -60,15 +60,75 @@ export default createComponent({
     filterHour: Function,
     filterMinute: Function,
     filterSecond: Function,
-    formatYear: String,
-    formatMonth: String,
-    formatDay: String,
-    formatHour: String,
-    formatMinute: String,
-    formatSecond: String
+    formatYear: [String, Function],
+    formatMonth: [String, Function],
+    formatDay: [String, Function],
+    formatHour: [String, Function],
+    formatMinute: [String, Function],
+    formatSecond: [String, Function]
   },
 
   computed: {
+    localFormatYear() {
+      const { formatYear } = this
+      if (!formatYear) return
+      const isCustomFunction = isFunction(formatYear)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatYear(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatYear)
+      }
+    },
+    localFormatMonth() {
+      const { formatMonth } = this
+      if (!formatMonth) return
+      const isCustomFunction = isFunction(formatMonth)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatMonth(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatMonth)
+      }
+    },
+    localFormatDay() {
+      const { formatDay } = this
+      if (!formatDay) return
+      const isCustomFunction = isFunction(formatDay)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatDay(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatDay)
+      }
+    },
+    localFormatHour() {
+      const { formatHour } = this
+      if (!formatHour) return
+      const isCustomFunction = isFunction(formatHour)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatHour(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatHour)
+      }
+    },
+    localFormatMinute() {
+      const { formatMinute } = this
+      if (!formatMinute) return
+      const isCustomFunction = isFunction(formatMinute)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatMinute(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatMinute)
+      }
+    },
+    localFormatSecond() {
+      const { formatSecond } = this
+      if (!formatSecond) return
+      const isCustomFunction = isFunction(formatSecond)
+      return (paramsForCustomFunction, paramsForFormatDate) => {
+        return isCustomFunction
+          ? formatSecond(paramsForCustomFunction)
+          : formatDate(paramsForFormatDate, formatSecond)
+      }
+    },
     is12HourClock() {
       return this.localClock === 12
     },
@@ -94,9 +154,9 @@ export default createComponent({
         filterYear,
         filterMonth,
         filterDay,
-        formatYear,
-        formatMonth,
-        formatDay,
+        localFormatYear,
+        localFormatMonth,
+        localFormatDay,
         noMonth,
         noDay
       } = this
@@ -106,7 +166,7 @@ export default createComponent({
       }
       return years.map(year => {
         return {
-          label: formatYear ? formatDate({ y: year }, formatYear) : year,
+          label: localFormatYear ? localFormatYear({ year }, { y: year }) : year,
           value: year,
           children: noMonth ? undefined : (() => {
             let months = RANGE_12
@@ -121,7 +181,7 @@ export default createComponent({
             }
             return [months.map(month => {
               return {
-                label: formatMonth ? formatDate({ y: year, m: month }, formatMonth) : month,
+                label: localFormatMonth ? localFormatMonth({ year, month }, { y: year, m: month }) : month,
                 value: month,
                 children: noDay ? undefined : (() => {
                   let days = range(1, getDaysInMonth(new Date(year, month - 1)) + 1)
@@ -136,7 +196,7 @@ export default createComponent({
                   }
                   return [days.map(day => {
                     return {
-                      label: formatDay ? formatDate({ y: year, m: month, d: day }, formatDay) : day,
+                      label: localFormatDay ? localFormatDay({ year, month, day }, { y: year, m: month, d: day }) : day,
                       value: day
                     }
                   })]
@@ -151,8 +211,8 @@ export default createComponent({
       const {
         filterHour,
         filterMinute,
-        formatHour,
-        formatMinute,
+        localFormatHour,
+        localFormatMinute,
         is12HourClock
       } = this
 
@@ -172,7 +232,7 @@ export default createComponent({
             return [hours.map(hour => {
               const realHour = hour || 12
               return {
-                label: formatHour ? formatDate({ h: realHour }, formatHour) : realHour,
+                label: localFormatHour ? localFormatHour({ hour: realHour }, { h: realHour }) : realHour,
                 value: realHour,
                 children: (() => {
                   let minutes = RANGE_60
@@ -181,7 +241,7 @@ export default createComponent({
                   }
                   return [minutes.map(minute => {
                     return {
-                      label: formatMinute ? formatDate({ h: realHour, i: minute }, formatMinute) : minute,
+                      label: localFormatMinute ? localFormatMinute({ hour: realHour, minute }, { h: realHour, i: minute }) : minute,
                       value: minute
                     }
                   })]
@@ -200,7 +260,7 @@ export default createComponent({
       }
       return hours.map(hour => {
         return {
-          label: formatHour ? formatDate({ h: hour }, formatHour) : hour,
+          label: localFormatHour ? localFormatHour({ hour }, { h: hour }) : hour,
           value: hour,
           children: (() => {
             let minutes = RANGE_60
@@ -209,7 +269,7 @@ export default createComponent({
             }
             return [minutes.map(minute => {
               return {
-                label: formatMinute ? formatDate({ h: hour, i: minute }, formatMinute) : minute,
+                label: localFormatMinute ? localFormatMinute({ hour, minute }, { h: hour, i: minute }) : minute,
                 value: minute
               }
             })]
@@ -220,7 +280,7 @@ export default createComponent({
     secondData() {
       const {
         filterSecond,
-        formatSecond
+        localFormatSecond
       } = this
       let seconds = RANGE_60
       if (filterSecond) {
@@ -228,7 +288,7 @@ export default createComponent({
       }
       return seconds.map(second => {
         return {
-          label: formatSecond ? formatDate({ s: second }, formatSecond) : second,
+          label: localFormatSecond ? localFormatSecond({ second }, { s: second }) : second,
           value: second
         }
       })
