@@ -4,22 +4,22 @@
     <l-choose
       v-model="chosenValue"
       :value="{ id: 1, x: '4' }"
-      valueKey="id"
+      :index="({ id, x }) => +id + +x"
     >1</l-choose>
     <l-choose
       v-model="chosenValue"
       :value="{ id: '1', x: 4 }"
-      valueKey="id"
+      :index="({ id, x }) => +id + +x"
     >1+</l-choose>
     <l-choose
       v-model="chosenValue"
       :value="{ id: 2, d: 99 }"
-      valueKey="id"
+      index="id"
     >2</l-choose>
     <l-choose
       v-model="chosenValue"
       :value="{ id: 2 }"
-      valueKey="id"
+      index="id"
     >2+</l-choose>
 
     <h3>VueRouter</h3>
