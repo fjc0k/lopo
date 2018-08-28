@@ -4,22 +4,23 @@
     <l-choose
       v-model="chosenValue"
       :value="{ id: 1, x: '4' }"
-      :index="({ id, x }) => +id + +x"
+      :primaryKey="({ id, x }) => +id + +x"
     >1</l-choose>
     <l-choose
       v-model="chosenValue"
       :value="{ id: '1', x: 4 }"
-      :index="({ id, x }) => +id + +x"
+      :primaryKey="({ id, x }) => +id + +x"
     >1+</l-choose>
     <l-choose
       v-model="chosenValue"
       :value="{ id: 2, d: 99 }"
-      index="id"
+      primaryKey="id"
     >2</l-choose>
     <l-choose
+      block
       v-model="chosenValue"
       :value="{ id: 2 }"
-      index="id"
+      primaryKey="id"
     >2+</l-choose>
 
     <h3>VueRouter</h3>
@@ -31,6 +32,9 @@
     </keep-alive>
 
     <h3>Popover</h3>
+    <l-popover placement="top" message="点击了解更多~" visible>
+      <l-button mini>删除1</l-button>
+    </l-popover>
     <l-tip placement="right" message="点击了解更多~" visible>
       <l-button mini>删除1</l-button>
     </l-tip>
@@ -85,6 +89,7 @@
             v-model="form1.model.city"
             placeholder="选择一个你最喜欢的城市"
             :data="['北京', '上海', '成都', '贵阳', '大连', '北海道', '拉萨']"
+            :postData="[['d', 'd']]"
           />
         </l-field>
       </l-form>

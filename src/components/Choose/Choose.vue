@@ -13,7 +13,7 @@ export default createComponent({
   props: {
     chosenValue: null,
     value: null,
-    index: [String, Number, Function],
+    primaryKey: [String, Number, Function],
     type: {
       type: String,
       enum: ['auto', 'radio', 'checkbox', 'agree']
@@ -50,25 +50,25 @@ export default createComponent({
       return this.localType === 'agree' ? true : this.value
     },
     isChosen() {
-      const { localType, index, localChosenValue, localValue } = this
+      const { localType, primaryKey, localChosenValue, localValue } = this
       return (
         localType === 'checkbox'
           ? (
-            isNil(index)
+            isNil(primaryKey)
               ? localChosenValue.indexOf(localValue) > -1
               : localChosenValue.some(
-                isFunction(index)
-                  ? one => index(one) === index(localValue)
-                  : one => one[index] === localValue[index]
+                isFunction(primaryKey)
+                  ? one => primaryKey(one) === primaryKey(localValue)
+                  : one => one[primaryKey] === localValue[primaryKey]
               )
           )
           : localType === 'radio'
             ? (
-              isNil(index)
+              isNil(primaryKey)
                 ? localChosenValue === localValue
-                : isFunction(index)
-                  ? index(localChosenValue) === index(localValue)
-                  : localChosenValue[index] === localValue[index]
+                : isFunction(primaryKey)
+                  ? primaryKey(localChosenValue) === primaryKey(localValue)
+                  : localChosenValue[primaryKey] === localValue[primaryKey]
 
             )
             : localChosenValue
@@ -78,7 +78,7 @@ export default createComponent({
 
   methods: {
     handleChange({ target: { checked } }) {
-      const { localType, localChosenValue, localValue, index } = this
+      const { localType, localChosenValue, localValue, primaryKey } = this
       let chosenValue
       if (localType === 'checkbox') {
         chosenValue = localChosenValue.slice()
@@ -87,13 +87,13 @@ export default createComponent({
         } else {
           chosenValue.splice(
             (
-              isNil(index)
+              isNil(primaryKey)
                 ? localChosenValue.indexOf(localValue)
                 : findIndex(
                   chosenValue,
-                  isFunction(index)
-                    ? one => index(one) === index(localValue)
-                    : one => one[index] === localValue[index]
+                  isFunction(primaryKey)
+                    ? one => primaryKey(one) === primaryKey(localValue)
+                    : one => one[primaryKey] === localValue[primaryKey]
                 )
             ),
             1

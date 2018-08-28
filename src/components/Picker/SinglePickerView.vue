@@ -4,6 +4,8 @@
     v-bind="$attrs"
     v-on="$passListeners('input')"
     :data="localData"
+    :preData="undefined"
+    :postData="undefined"
     ref="view"
   />
 </template>
