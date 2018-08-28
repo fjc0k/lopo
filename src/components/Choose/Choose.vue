@@ -1,25 +1,5 @@
-<template>
-  <label :class="[_.choose, block && _.block]">
-    <input
-      :class="_.input"
-      :type="nativeType"
-      v-model="localChosenValue"
-      :value="localValue"
-    />
-    <div
-      :class="[
-        _.holder,
-        _[nativeType],
-        _[localShape]
-      ]"
-    />
-    <div :class="_.label" v-if="$slots.default">
-      <slot />
-    </div>
-  </label>
-</template>
-
 <script>
+import { isNil, isArray, isBoolean, findIndex } from 'lodash'
 import { createComponent } from '../_utils'
 
 export default createComponent({
@@ -33,6 +13,7 @@ export default createComponent({
   props: {
     chosenValue: null,
     value: null,
+    valueKey: [String, Number],
     type: {
       type: String,
       enum: ['auto', 'radio', 'checkbox', 'agree']
@@ -49,9 +30,9 @@ export default createComponent({
     localType() {
       return this.type === 'auto'
         ? (
-          Array.isArray(this.chosenValue)
+          isArray(this.localChosenValue)
             ? 'checkbox'
-            : typeof this.chosenValue === 'boolean'
+            : isBoolean(this.localChosenValue)
               ? 'agree'
               : 'radio'
         )
@@ -67,7 +48,83 @@ export default createComponent({
     },
     localValue() {
       return this.localType === 'agree' ? true : this.value
+    },
+    isChosen() {
+      const { localType, valueKey, localChosenValue, localValue } = this
+      return (
+        localType === 'checkbox'
+          ? (
+            isNil(valueKey)
+              ? localChosenValue.indexOf(localValue) > -1
+              : localChosenValue.some(one => one[valueKey] === localValue[valueKey])
+          )
+          : localType === 'radio'
+            ? (
+              isNil(valueKey)
+                ? localChosenValue === localValue
+                : localChosenValue[valueKey] === localValue[valueKey]
+            )
+            : localChosenValue
+      )
     }
+  },
+
+  methods: {
+    handleChange({ target: { checked } }) {
+      const { localType, localChosenValue, localValue, valueKey } = this
+      let chosenValue
+      if (localType === 'checkbox') {
+        chosenValue = localChosenValue.slice()
+        if (checked) {
+          chosenValue.push(localValue)
+        } else {
+          chosenValue.splice(
+            (
+              isNil(valueKey)
+                ? localChosenValue.indexOf(localValue)
+                : findIndex(chosenValue, one => one[valueKey] === localValue[valueKey])
+            ),
+            1
+          )
+        }
+      } else if (localType === 'agree') {
+        chosenValue = checked
+      } else {
+        chosenValue = localValue
+      }
+      this.sendChosenValue(chosenValue)
+    }
+  },
+
+  render() {
+    const children = this.$slots.default
+    const {
+      _,
+      block,
+      nativeType,
+      localShape,
+      isChosen,
+      disabled,
+      handleChange
+    } = this
+
+    return (
+      <label class={[_.choose, block && _.block]}>
+        <input
+          class={_.input}
+          type={nativeType}
+          domPropsChecked={isChosen}
+          disabled={disabled}
+          onChange={handleChange}
+        />
+        <div class={[_.holder, _[nativeType], _[localShape]]} />
+        {children && (
+          <div class={_.label}>
+            {children}
+          </div>
+        )}
+      </label>
+    )
   }
 })
 </script>

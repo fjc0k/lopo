@@ -1,5 +1,27 @@
 <template>
   <div>
+    <h3>Choose</h3>
+    <l-choose
+      v-model="chosenValue"
+      :value="{ id: 1, x: '4' }"
+      valueKey="id"
+    >1</l-choose>
+    <l-choose
+      v-model="chosenValue"
+      :value="{ id: '1', x: 4 }"
+      valueKey="id"
+    >1+</l-choose>
+    <l-choose
+      v-model="chosenValue"
+      :value="{ id: 2, d: 99 }"
+      valueKey="id"
+    >2</l-choose>
+    <l-choose
+      v-model="chosenValue"
+      :value="{ id: 2 }"
+      valueKey="id"
+    >2+</l-choose>
+
     <h3>VueRouter</h3>
     <l-button mini @click="$router.push('/')">/</l-button>
     <l-button mini @click="$router.push('/foo')">/foo</l-button>
@@ -315,6 +337,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    chosenValue: [],
     form1: {
       model: {
         name: '',
@@ -417,7 +440,6 @@ export default {
     slideIndex: 1,
     switchValue: true,
     w: window,
-    chosenValue: 1,
     chosenValueAgree: false,
     inputText: 'hello'
   }),
