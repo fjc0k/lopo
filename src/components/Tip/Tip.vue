@@ -2,12 +2,15 @@
   <Popover
     v-model="localVisible"
     v-bind="$attrs"
-    :popperClass="_.tip"
-    noBorder>
+    :popperClass="_.tip">
     <slot />
     <template slot="message">
       <slot name="message">{{ message }}</slot>
-      <Icon name="l-close" />
+      <Icon
+        :class="_.close"
+        name="l-close"
+        @click.native="handleCloseClick"
+      />
     </template>
   </Popover>
 </template>
@@ -28,6 +31,12 @@ export default createComponent({
 
   props: {
     message: null
+  },
+
+  methods: {
+    handleCloseClick() {
+      this.sendVisible(false)
+    }
   }
 })
 </script>

@@ -32,12 +32,12 @@
     </keep-alive>
 
     <h3>Popover</h3>
-    <l-popover placement="top" message="点击了解更多~" visible>
-      <l-button mini>删除1</l-button>
-    </l-popover>
-    <l-tip placement="right" message="点击了解更多~" visible>
-      <l-button mini>删除1</l-button>
+    <l-tip placement="top" message="点击这里查看东财GPA计算方式~" visible>
+      <l-button>删除1</l-button>
     </l-tip>
+    <!-- <l-tip placement="right" message="点击了解更多~" visible>
+      <l-button mini>删除1</l-button>
+    </l-tip> -->
 
     <h3>Form</h3>
     <l-spacing>

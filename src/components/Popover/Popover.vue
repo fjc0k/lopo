@@ -31,11 +31,11 @@ export default createComponent({
       ]
     },
     message: null,
-    popperClass: null,
-    noBorder: Boolean
+    popperClass: null
   },
 
   watch: {
+    message: 'createPopper',
     placement: 'createPopper'
   },
 
@@ -77,7 +77,7 @@ export default createComponent({
   },
 
   render() {
-    const { _, placement, localVisible, noBorder, popperClass } = this
+    const { _, placement, localVisible, popperClass } = this
     const child = this.$slots.default && this.$slots.default[0]
     if (!child) return null
     return <div>
@@ -88,7 +88,6 @@ export default createComponent({
           _.popover,
           _[placement],
           localVisible && _.visible,
-          noBorder && _['no-border'],
           popperClass
         ]}>
         <div class={_.message}>

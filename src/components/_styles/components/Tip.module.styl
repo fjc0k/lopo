@@ -1,19 +1,16 @@
 @require '../settings';
 
 .tip {
-  :global {
-    .l-popover-message {
-      color: $fill-base;
-      padding: $v-spacing-xs $h-spacing-sm;
-      background-color: rgba(black, 50%);
-    }
-    .l-popover-arrow {
-      background-color: transparent;
-      background-image: linear-gradient(
-        45deg,
-        transparent 50%,
-        rgba(black, 50%) 50%
-      );
-    }
+  &:global(.l-popover) {
+    color: $fill-base;
+    background-color: $tip-bg-color;
   }
+  :global(.l-popover-arrow) {
+    color: $tip-bg-color;
+  }
+}
+
+.close {
+  color: rgba(white, 40%);
+  margin-left: $h-spacing-sm;
 }
