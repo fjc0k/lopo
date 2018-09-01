@@ -3,7 +3,7 @@
     <h3>Choose</h3>
     <l-choose
       v-model="chosenValue"
-      :value="{ id: 1, x: '4' }"
+      :value="{ id: 1, x: '4222' }"
       :primaryKey="({ id, x }) => +id + +x"
     >1</l-choose>
     <l-choose
@@ -32,8 +32,16 @@
     </keep-alive>
 
     <h3>Popover</h3>
-    <l-tip placement="top" message="点击这里查看东财GPA计算方式~" visible>
-      <l-button>删除1</l-button>
+    <l-input v-model="popoverMessage" />
+    <l-spacing x="md" betweenX>
+      <l-choose v-model="popoverPlacement" value="top">top</l-choose>
+      <l-choose v-model="popoverPlacement" value="bottom">bottom</l-choose>
+      <l-choose v-model="popoverPlacement" value="bottom-end">bottom-end</l-choose>
+    </l-spacing>
+    <br />
+    <br />
+    <l-tip :placement="popoverPlacement" :message="popoverMessage" visible>
+      <l-button>删除21</l-button>
     </l-tip>
     <!-- <l-tip placement="right" message="点击了解更多~" visible>
       <l-button mini>删除1</l-button>
@@ -74,7 +82,7 @@
             <l-choose v-model="form1.model.gender" value="female">余额支付</l-choose>
           </l-spacing>
         </l-field>
-        <l-field label="生日" align="right" arrow>
+        <!-- <l-field label="生日" align="right" arrow>
           <l-pick-date
             visibleItemCount="9"
             :caption="['年', '月', '日']"
@@ -91,7 +99,7 @@
             :data="['北京', '上海', '成都', '贵阳', '大连', '北海道', '拉萨']"
             :postData="[['d', 'd']]"
           />
-        </l-field>
+        </l-field> -->
       </l-form>
     </l-spacing>
 
@@ -244,7 +252,7 @@
       <l-image-viewer :history="false" :data="viewerList" :index.sync="viewerIndex" v-model="viewerVisible" />
     </l-spacing>
 
-    <h3>PickAddress</h3>
+    <!-- <h3>PickAddress</h3>
     <l-pick-address
       v-model="pickDddress"
       placeholder="选择地址"
@@ -263,7 +271,7 @@
     <l-pick :data="[
       ['明天', '今天'],
       ['11点', '12点']
-    ]" :format="value => value.join('-')" title="选择收货地址" placeholder="选择收货地址" />
+    ]" :format="value => value.join('-')" title="选择收货地址" placeholder="选择收货地址" /> -->
 
     <h3>Badge</h3>
     <l-badge text="world"></l-badge>
@@ -336,12 +344,14 @@
 
 <script>
 import cdd from '@lopo/china-division-data'
-console.log(cdd)
+console.log(cdd, 'dddd')
 // const ps = ['云南', '贵州', '山东', '浙江', '上海', '台湾']
 export default {
   name: 'app',
 
   data: () => ({
+    popoverPlacement: 'top',
+    popoverMessage: 'hello3',
     chosenValue: [],
     form1: {
       model: {

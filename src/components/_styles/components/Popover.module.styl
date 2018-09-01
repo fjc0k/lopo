@@ -8,10 +8,11 @@
   padding: $v-spacing-md $h-spacing-md;
   visibility: hidden;
   pointer-events: none;
+  max-width: 90%;
 
   // 显示时
   &.visible {
-    z-index: 1;
+    z-index: $popover-z-index;
     visibility: visible;
     pointer-events: auto;
   }
@@ -68,6 +69,7 @@
 
   .message {
     font-size: $font-size-base;
+    text-wrap: true;
   }
 
   .arrow {

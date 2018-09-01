@@ -31,18 +31,15 @@ export default createComponent({
       ]
     },
     message: null,
-    popperClass: null
-  },
-
-  watch: {
-    message: 'createPopper',
-    placement: 'createPopper'
+    popperClass: null,
+    popperStyle: null
   },
 
   methods: {
-    createPopper() {
+    createOrUpdatePopper() {
       if (this.popper) {
-        this.popper.destroy()
+        this.popper.options.placement = this.placement
+        return this.popper.scheduleUpdate()
       }
       this.popper = new Popper(this.target, this.$refs.popper, {
         placement: this.placement,
@@ -64,38 +61,34 @@ export default createComponent({
 
   mounted() {
     this.$nextTick(() => {
-      if (this.$el.firstChild) {
-        this.target = this.$el.firstChild
-        this.$el.parentNode.replaceChild(this.target, this.$el)
-        this.createPopper()
-      }
+      this.target = this.$el
+      this.createOrUpdatePopper()
     })
   },
 
   updated() {
-    this.createPopper()
+    this.createOrUpdatePopper()
   },
 
   render() {
-    const { _, placement, localVisible, popperClass } = this
+    const { _, placement, localVisible, popperClass, popperStyle } = this
     const child = this.$slots.default && this.$slots.default[0]
     if (!child) return null
-    return <div>
-      {child}
-      <div
-        ref="popper"
-        class={[
-          _.popover,
-          _[placement],
-          localVisible && _.visible,
-          popperClass
-        ]}>
-        <div class={_.message}>
-          {this.$slots.message || this.message}
-        </div>
-        <div ref="arrow" class={_.arrow} />
+    child.componentOptions.children && child.componentOptions.children.push(<div
+      ref="popper"
+      class={[
+        _.popover,
+        _[placement],
+        localVisible && _.visible,
+        popperClass
+      ]}
+      style={popperStyle}>
+      <div class={_.message}>
+        {this.$slots.message || this.message}
       </div>
-    </div>
+      <div ref="arrow" class={_.arrow} />
+    </div>)
+    return child
   }
 })
 </script>
