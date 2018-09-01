@@ -37,6 +37,13 @@ export default createComponent({
 
   methods: {
     createOrUpdatePopper() {
+      if (!this.localVisible) {
+        if (this.popper) {
+          this.popper.destroy()
+          this.popper = null
+        }
+        return
+      }
       if (this.popper) {
         this.popper.options.placement = this.placement
         return this.popper.scheduleUpdate()
@@ -56,13 +63,19 @@ export default createComponent({
   },
 
   beforeDestroy() {
-    this.popper && this.popper.destroy()
+    if (this.popper) {
+      this.popper.destroy()
+      this.popper = null
+    }
   },
 
   mounted() {
     this.$nextTick(() => {
-      this.target = this.$el
-      this.createOrUpdatePopper()
+      if (this.$el.firstChild) {
+        this.target = this.$el.firstChild
+        this.$el.parentNode.replaceChild(this.target, this.$el)
+        this.createOrUpdatePopper()
+      }
     })
   },
 
@@ -74,21 +87,23 @@ export default createComponent({
     const { _, placement, localVisible, popperClass, popperStyle } = this
     const child = this.$slots.default && this.$slots.default[0]
     if (!child) return null
-    child.componentOptions.children && child.componentOptions.children.push(<div
-      ref="popper"
-      class={[
-        _.popover,
-        _[placement],
-        localVisible && _.visible,
-        popperClass
-      ]}
-      style={popperStyle}>
-      <div class={_.message}>
-        {this.$slots.message || this.message}
+    return <div>
+      {child}
+      <div
+        ref="popper"
+        class={[
+          _.popover,
+          _[placement],
+          localVisible && _.visible,
+          popperClass
+        ]}
+        style={popperStyle}>
+        <div class={_.message}>
+          {this.$slots.message || this.message}
+        </div>
+        <div ref="arrow" class={_.arrow} />
       </div>
-      <div ref="arrow" class={_.arrow} />
-    </div>)
-    return child
+    </div>
   }
 })
 </script>

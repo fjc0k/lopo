@@ -5,12 +5,12 @@
     :popperClass="_.tip">
     <slot />
     <template slot="message">
-      <slot name="message">{{ message }}</slot>
-      <Icon
-        :class="_.close"
-        name="l-close"
-        @click.native="handleCloseClick"
-      />
+      <div :class="_.message">
+        <slot name="message">{{ message }}</slot>
+      </div>
+      <div :class="_.close" @click="handleCloseClick">
+        <Icon name="l-close" />
+      </div>
     </template>
   </Popover>
 </template>

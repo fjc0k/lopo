@@ -34,13 +34,14 @@
     <h3>Popover</h3>
     <l-input v-model="popoverMessage" />
     <l-spacing x="md" betweenX>
+      <l-choose v-model="popoverVisible">visible</l-choose>
       <l-choose v-model="popoverPlacement" value="top">top</l-choose>
       <l-choose v-model="popoverPlacement" value="bottom">bottom</l-choose>
       <l-choose v-model="popoverPlacement" value="bottom-end">bottom-end</l-choose>
     </l-spacing>
     <br />
     <br />
-    <l-tip :placement="popoverPlacement" :message="popoverMessage" visible>
+    <l-tip :placement="popoverPlacement" :message="popoverMessage" v-model="popoverVisible">
       <l-button>删除21</l-button>
     </l-tip>
     <!-- <l-tip placement="right" message="点击了解更多~" visible>
@@ -350,6 +351,7 @@ export default {
   name: 'app',
 
   data: () => ({
+    popoverVisible: false,
     popoverPlacement: 'top',
     popoverMessage: 'hello3',
     chosenValue: [],
