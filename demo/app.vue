@@ -34,7 +34,9 @@
     <h3>Popover</h3>
     <l-input v-model="popoverMessage" />
     <l-spacing x="md" betweenX>
-      <l-choose v-model="popoverVisible">visible</l-choose>
+      <l-tip message="点击切换隐藏" placement="top-start" visible :closable="false">
+        <l-choose v-model="popoverVisible">visible</l-choose>
+      </l-tip>
       <l-choose v-model="popoverPlacement" value="top">top</l-choose>
       <l-choose v-model="popoverPlacement" value="bottom">bottom</l-choose>
       <l-choose v-model="popoverPlacement" value="bottom-end">bottom-end</l-choose>

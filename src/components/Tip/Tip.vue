@@ -8,7 +8,7 @@
       <div :class="_.message">
         <slot name="message">{{ message }}</slot>
       </div>
-      <div :class="_.close" @click="handleCloseClick">
+      <div :class="_.close" @click="handleCloseClick" v-if="closable">
         <Icon name="l-close" />
       </div>
     </template>
@@ -30,7 +30,11 @@ export default createComponent({
   components: { Popover, Icon },
 
   props: {
-    message: null
+    message: null,
+    closable: {
+      type: Boolean,
+      default: true
+    }
   },
 
   methods: {
