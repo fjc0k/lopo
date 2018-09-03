@@ -25,8 +25,10 @@
     "scripts"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve --copy --port 5962 demo/index.js",
+    "dev": "vue-cli-service serve --copy --port 5962 demo/index.js",
     "build": "vue-cli-service build --report --target lib --name lopo src/index.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "com": "node scripts/component.js"
   },
   "dependencies": {
@@ -57,7 +59,8 @@
     "svg-to-symbol-loader": "^1.1.3",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "vuepress": "^0.14.2"
   },
   "peerDependencies": {
     "vue": "^2.5.17"
