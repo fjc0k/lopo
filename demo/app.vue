@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>Input</h3>
+    <l-input type="digital" placeholder="输入数字" />
+
     <h3>Choose</h3>
     <l-choose
       v-model="chosenValue"

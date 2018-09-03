@@ -35,6 +35,12 @@ export default createComponent({
   },
 
   computed: {
+    isDigitalType() {
+      return this.type === 'digital'
+    },
+    nativeType() {
+      return this.isDigitalType ? 'tel' : this.type
+    },
     tag() {
       return this.type === 'textarea' ? 'textarea' : 'input'
     }
@@ -58,6 +64,8 @@ export default createComponent({
   render(h) {
     const {
       _,
+      isDigitalType,
+      nativeType,
       tag,
       localValue,
       clearable,
@@ -73,6 +81,8 @@ export default createComponent({
         attrs: {
           ...$attrs,
           ...$props,
+          ...(isDigitalType ? { pattern: '[0-9]*' } : {}),
+          type: nativeType,
           value: undefined
         },
         domProps: {
