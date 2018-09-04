@@ -47,6 +47,20 @@ module.exports = {
           '/components/Icon',
           '/components/Button'
         ]
+      },
+      {
+        title: '表单组件',
+        collapsable: false,
+        children: [
+          '/components/Rate'
+        ]
+      },
+      {
+        title: '商城组件',
+        collapsable: false,
+        children: [
+          '/components/Price'
+        ]
       }
     ]
   }

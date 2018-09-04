@@ -3,6 +3,7 @@ import * as services from './services'
 import * as directives from './directives'
 
 export default {
+  ...components,
   addIcon: components.Icon.add,
   install(Vue) {
     Object.keys(components).forEach(componentName => {

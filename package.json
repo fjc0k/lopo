@@ -58,6 +58,7 @@
     "stylus-loader": "^3.0.2",
     "svg-to-symbol-loader": "^1.1.3",
     "vue": "^2.5.17",
+    "vue-clipboard2": "^0.2.1",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
     "vuepress": "^0.14.2"
