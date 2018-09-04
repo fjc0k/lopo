@@ -37,8 +37,8 @@ module.exports = {
       }
     ],
     sidebar: [
-      '/quick-start',
-      '/customize-theme',
+      '/QuickStart',
+      '/CustomizeTheme',
       {
         title: '基础组件',
         collapsable: false,

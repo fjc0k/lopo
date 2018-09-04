@@ -12,7 +12,7 @@ import {
   warningCircle
 } from 'ant-design-icons'
 
-export default [
+export default {
   loading,
   chevron,
   plus,
@@ -24,4 +24,4 @@ export default [
   sound,
   checkCircle,
   warningCircle
-]
+}

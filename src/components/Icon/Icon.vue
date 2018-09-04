@@ -1,12 +1,16 @@
 <script>
+import { values } from 'lodash'
 import getIcon from 'vue-iconfont'
 import { createComponent } from '../_utils'
-import icons from './icons'
+import localIcons from './icons'
 
+const icons = values(localIcons)
 let Icon = null
 
 export default createComponent({
   name: 'Icon',
+
+  localIcons,
 
   props: {
     name: {
