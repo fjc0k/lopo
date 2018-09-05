@@ -6,14 +6,13 @@
   align-items: stretch;
   height: $counter-height;
   font-size: $font-size-base;
-  hairline(all);
+  hairline(top bottom);
 }
 
 .input {
-  reset: box-model;
+  reset: input;
   width: $counter-height * 2;
   text-align: center;
-  hairline(right left);
 }
 
 .button {
@@ -21,6 +20,7 @@
   align-items: center;
   justify-content: center;
   width: $counter-height;
+  hairline(right left);
   &:not(.disabled).active {
     background: $fill-tap;
   }

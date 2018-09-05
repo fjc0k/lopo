@@ -7,7 +7,7 @@ export default createComponent({
 
   model: {
     prop: 'chosenValue',
-    event: 'choose'
+    event: 'input'
   },
 
   props: {
@@ -121,7 +121,7 @@ export default createComponent({
     } = this
 
     return (
-      <label class={[_.choose, block && _.block]}>
+      <label class={[_.choose, block && _.block, disabled && _.disabled]}>
         <input
           class={_.input}
           type={nativeType}

@@ -19,7 +19,7 @@ SVG 图标。
 点击可复制图标代码。
 
 <p>
-  <l-grid :cols="5">
+  <l-grid :cols="cols">
     <l-grid-item class="icon" v-for="(symbol, name) in icons" :key="name" :icon="name" @click.native="handleIconClick(name)">{{ name }}</l-grid-item>
   </l-grid>
 </p>
@@ -44,6 +44,12 @@ export default {
         icons[kebabCase(`l-${name}`)] = localIcons[name]
         return icons
       }, {})
+    },
+    cols() {
+      const width = typeof window === 'undefined' ? 1000 : window.innerWidth
+      return width < 400 ? 3
+        : width < 650 ? 4
+        : 5
     }
   },
   methods: {

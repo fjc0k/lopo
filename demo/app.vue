@@ -202,7 +202,9 @@
     </l-tabs> -->
 
     <h3>Counter</h3>
-    <l-counter disableInput min="-21" max="15" step="2" />
+    <l-card>
+      <l-counter disableInput min="-21" max="15" step="2" />
+    </l-card>
 
     <h3>Card</h3>
     <l-card title="明天" square>
