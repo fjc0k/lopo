@@ -7,10 +7,11 @@
       <Icon name="l-minus" />
     </div>
     <XInput
-      type="number"
       :class="[_.input, disabled && _.disabled]"
       v-model="localValue"
-      :disabled="localDisableInput"
+      type="number"
+      :disabled="disableInput"
+      @keydown="handleKeyPress"
     />
     <div
       :class="[_.button, disableAdd && _.disabled]"
@@ -60,28 +61,50 @@ export default createComponent({
       default: 1,
       transform: Number
     },
-    disableInput: Boolean,
+    noInput: Boolean,
     disabled: Boolean
   },
 
   computed: {
+    normalizedLocalValue() {
+      return +this.localValue
+    },
     disableSubtract() {
-      return this.disabled || (this.localValue - this.localStep < this.localMin)
+      return this.disabled || (this.normalizedLocalValue - this.localStep < this.localMin)
     },
     disableAdd() {
-      return this.disabled || (this.localValue + this.localStep > this.localMax)
+      return this.disabled || (this.normalizedLocalValue + this.localStep > this.localMax)
     },
-    localDisableInput() {
-      return this.disabled || this.disableInput
+    disableInput() {
+      return this.disabled || this.noInput
     }
   },
 
   methods: {
     handleSubtract() {
-      this.sendValue(this.localValue - this.localStep)
+      this.sendValue(this.normalizedLocalValue - this.localStep)
     },
     handleAdd() {
-      this.sendValue(this.localValue + this.localStep)
+      this.sendValue(this.normalizedLocalValue + this.localStep)
+    },
+    handleKeyPress(e) {
+      const { localValue, localMin, localMax } = this
+      let value = e.target.value
+      value = value && +value
+      console.log(e)
+      if (value !== localValue) {
+        let newValue = value
+        if (value !== '') {
+          newValue = value < localMin
+            ? localMin
+            : value > localMax
+              ? localMax
+              : value
+        }
+        if (newValue !== value) {
+          e.preventDefault()
+        }
+      }
     }
   }
 })

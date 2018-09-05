@@ -52,7 +52,9 @@ module.exports = {
         title: '表单组件',
         collapsable: false,
         children: [
-          '/components/Rate'
+          '/components/Rate',
+          '/components/Switch',
+          '/components/Counter'
         ]
       },
       {

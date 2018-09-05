@@ -3,9 +3,10 @@
     <input
       :class="_.input"
       type="checkbox"
-      v-model="isOn"
+      :checked="isOn"
       :disabled="disabled"
       v-bind="$attrs"
+      @click.prevent="handleChange"
     />
     <div :class="_.holder" />
   </div>
@@ -19,11 +20,6 @@ export default createComponent({
 
   inheritAttrs: false,
 
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-
   props: {
     value: null,
     onValue: {
@@ -34,6 +30,10 @@ export default createComponent({
       type: null,
       default: false
     },
+    autoChange: {
+      type: Boolean,
+      default: true
+    },
     disabled: Boolean
   },
 
@@ -43,8 +43,17 @@ export default createComponent({
         return this.localValue === this.onValue
       },
       set(state) {
-        this.sendValue(state ? this.onValue : this.offValue)
+        const value = state ? this.onValue : this.offValue
+        const done = () => this.sendValue(value)
+        this.$emit('change', value, done)
+        this.autoChange && done()
       }
+    }
+  },
+
+  methods: {
+    handleChange() {
+      this.isOn = !this.isOn
     }
   }
 })
