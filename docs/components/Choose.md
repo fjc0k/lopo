@@ -128,32 +128,6 @@ export default {
 </script>
 ```
 
-### 主色调
-
-你可以直接通过 CSS 的 `color` 属性去修改主色调。
-
-<p>
-  <l-spacing x="md" betweenX>
-    <l-choose chosenValue="鲁班七号" value="鲁班七号" style="color:red;">
-      鲁班七号
-    </l-choose>
-    <l-choose :chosenValue="['马可波罗']" value="马可波罗" style="color:blue;">
-      马可波罗
-    </l-choose>
-  </l-spacing>
-</p>
-
-```vue
-<l-spacing x="md" betweenX>
-  <l-choose chosenValue="鲁班七号" value="鲁班七号" style="color:red;">
-    鲁班七号
-  </l-choose>
-  <l-choose :chosenValue="['马可波罗']" value="马可波罗" style="color:blue;">
-    马可波罗
-  </l-choose>
-</l-spacing>
-```
-
 ### 块级展示
 
 设置 `block` 为 `true` 即可块级展示选项。
@@ -220,6 +194,86 @@ export default {
 </l-spacing>
 ```
 
+### 自定义视图
+
+默认的视图是参照 HTML 原生的 `<input type="radio" />` 以及 `<input type="checkbox" />` 实现的，并不能很好地满足各种需求，因此提供了自定义视图的 `view` 插槽。
+
+<p>
+  <l-spacing x="md" betweenX>
+    <l-choose v-model="hero" value="鲁班七号">
+      <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+        鲁班七号
+      </div>
+    </l-choose>
+    <l-choose v-model="hero" value="马可波罗">
+      <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+        马可波罗
+      </div>
+    </l-choose>
+    <l-choose v-model="hero" value="孙悟空">
+      <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+        孙悟空
+      </div>
+    </l-choose>
+    <l-choose v-model="hero" value="虞姬" disabled>
+      <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+        虞姬
+      </div>
+    </l-choose>
+  </l-spacing>
+</p>
+
+```vue
+<l-spacing x="md" betweenX>
+  <l-choose v-model="hero" value="鲁班七号">
+    <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+      鲁班七号
+    </div>
+  </l-choose>
+  <l-choose v-model="hero" value="马可波罗">
+    <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+      马可波罗
+    </div>
+  </l-choose>
+  <l-choose v-model="hero" value="孙悟空">
+    <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+      孙悟空
+    </div>
+  </l-choose>
+  <l-choose v-model="hero" value="虞姬" disabled>
+    <div class="diy" :class="chosen && 'chosen'" slot="view" slot-scope="{ chosen }">
+      虞姬
+    </div>
+  </l-choose>
+</l-spacing>
+
+<script>
+export default {
+  data: () => ({
+    hero: '鲁班七号'
+  })
+}
+</script>
+
+<style lang="stylus">
+.diy {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #9C27B0;
+  padding: 0 14px;
+  color: #9C27B0;
+  border-radius: 20px;
+  box-sizing: border-box;
+  transition: all .2s;
+  &.chosen {
+    background: #9C27B0;
+    color: white;
+  }
+}
+</style>
+```
+
 
 ## API
 
@@ -234,6 +288,13 @@ type        | 类型                                                  | `auto` \
 shape       | 形状                                                  | `auto` \| `square` \| `circle`             | auto
 block       | 是否块级展示                                          | boolean                                    | false
 disabled    | 是否禁用状态                                          | boolean                                    | false
+
+### Slots
+
+插槽 | 说明       | 作用域参数
+-----|------------|---------------------
+view | 自定义视图 | { chosen: boolean }
+
 
 <script>
 export default {
@@ -250,3 +311,21 @@ export default {
   })
 }
 </script>
+
+<style lang="stylus" scoped>
+.diy {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #9C27B0;
+  padding: 0 14px;
+  color: #9C27B0;
+  border-radius: 20px;
+  box-sizing: border-box;
+  transition: all .2s;
+  &.chosen {
+    background: #9C27B0;
+    color: white;
+  }
+}
+</style>

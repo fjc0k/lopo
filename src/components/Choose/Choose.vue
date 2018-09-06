@@ -1,3 +1,21 @@
+<template>
+  <label :class="[_.choose, block && _.block, disabled && _.disabled]">
+    <input
+      :class="_.input"
+      :type="nativeType"
+      :checked="isChosen"
+      :disabled="disabled"
+      @change="handleChange"
+    />
+    <slot name="view" :chosen="isChosen">
+      <div :class="[_.indicator, _[nativeType], _[localShape]]" />
+      <div :class="_.label" v-if="$slots.default">
+        <slot />
+      </div>
+    </slot>
+  </label>
+</template>
+
 <script>
 import { isNil, isArray, isBoolean, isFunction, findIndex } from 'lodash'
 import { createComponent } from '../_utils'
@@ -106,37 +124,6 @@ export default createComponent({
       }
       this.sendChosenValue(chosenValue)
     }
-  },
-
-  render() {
-    const children = this.$slots.default
-    const {
-      _,
-      block,
-      nativeType,
-      localShape,
-      isChosen,
-      disabled,
-      handleChange
-    } = this
-
-    return (
-      <label class={[_.choose, block && _.block, disabled && _.disabled]}>
-        <input
-          class={_.input}
-          type={nativeType}
-          domPropsChecked={isChosen}
-          disabled={disabled}
-          onChange={handleChange}
-        />
-        <div class={[_.holder, _[nativeType], _[localShape]]} />
-        {children && (
-          <div class={_.label}>
-            {children}
-          </div>
-        )}
-      </label>
-    )
   }
 })
 </script>

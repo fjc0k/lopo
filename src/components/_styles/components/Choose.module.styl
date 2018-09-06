@@ -6,7 +6,7 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  color: $color-primary;
+  font-size: $font-size-caption;
   &.block {
     display: flex;
   }
@@ -27,11 +27,12 @@
   z-index: 1;
 }
 
-// 美化容器
-.holder {
+// 指示器
+.indicator {
   reset: box-model;
   flex-shrink: 0;
   position: relative;
+  color: $color-primary;
   size: $choose-size;
   border: 1PX solid $color-line-dark;
   &.circle {
@@ -78,6 +79,5 @@
 // 标签
 .label {
   reset: font;
-  font-size: $font-size-caption;
   margin-left: $h-spacing-sm;
 }

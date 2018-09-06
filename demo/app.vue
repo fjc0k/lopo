@@ -25,6 +25,16 @@
       :value="{ id: 2 }"
       primaryKey="id"
     >2+</l-choose>
+    <hr />
+    <l-choose
+      block
+      v-model="chosenValue"
+      :value="{ id: 2 }"
+      primaryKey="id">
+      <div slot="view" slot-scope="{ chosen }" :chosen="chosen">
+        <l-button :type="chosen ? 'primary' : 'default'">hello</l-button>
+      </div>
+    </l-choose>
 
     <h3>VueRouter</h3>
     <l-button mini @click="$router.push('/')">/</l-button>
