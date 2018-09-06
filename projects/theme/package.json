@@ -1,6 +1,6 @@
 {
   "name": "@lopo/theme",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lopo 主题自定义工具。",
   "main": "src/cli.js",
   "bin": {

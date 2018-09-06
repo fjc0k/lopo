@@ -10,16 +10,18 @@ const postcssModules = require('postcss-modules')
 const autoprefixer = require('autoprefixer')
 const { kebabCase } = require('lodash')
 
+const DEFAULT_EJECT_TO_DIR = 'src/styles/lopo'
+const DEFAULT_BUILD_TO_FILE = 'src/styles/lopo.css'
+
 const resolvePath = path.resolve.bind(path, process.cwd())
 
 const themePath = resolvePath('node_modules/lopo/src/components/_styles')
 
 program
-  .command('eject')
-  .option('-o, --output [dir]', '源样式存放目录', 'src/styles/lopo')
-  .action(({ output }) => {
+  .command('eject [outputDir]')
+  .action((outputDir = DEFAULT_EJECT_TO_DIR) => {
     try {
-      const ejectToPath = resolvePath(output)
+      const ejectToPath = resolvePath(outputDir)
       fs.copySync(themePath, ejectToPath)
       consola.success('样式导出成功!')
     } catch (err) {
@@ -28,9 +30,8 @@ program
   })
 
 program
-  .command('build [entry]')
-  .option('-o, --output [file]', '编译后样式存放文件', 'src/styles/lopo.css')
-  .action((entry = 'src/styles/lopo', { output }) => {
+  .command('build [entry] [outputFile]')
+  .action((entry = DEFAULT_EJECT_TO_DIR, outputFile = DEFAULT_BUILD_TO_FILE) => {
     consola.start('开始编译样式...')
     const stylDir = resolvePath(entry, 'components')
     const stylFiles = globby.sync(resolvePath(stylDir, '*.styl'))
@@ -73,7 +74,7 @@ program
     runners
       .then(styles => {
         const css = styles.map(style => style.css).join('\n')
-        fs.outputFileSync(resolvePath(output), css)
+        fs.outputFileSync(resolvePath(outputFile), css)
         consola.success('样式编译成功!')
       })
       .catch(err => {

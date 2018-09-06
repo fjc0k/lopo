@@ -2,9 +2,9 @@
 
 你可以使用命令行工具进行主题定制。
 
-## 安装工具
+## 操作步骤
 
-首先，将工具安装在项目下：
+首先，将主题工具安装在项目下：
 
 ```bash
 yarn add @lopo/theme -D
@@ -14,21 +14,50 @@ yarn add @lopo/theme -D
 npm i @lopo/theme -D
 ```
 
-## 导出默认主题
-
 接着，在 `package.json` 里加上主题相关的脚本：
 
 ```json
 {
   "scripts": {
-    "theme:eject": "lt eject -o src/styles/lopo",
-    "theme:build": "lt build src/styles/lopo -o src/styles/lopo.css"
+    "theme:eject": "lt eject src/styles/lopo",
+    "theme:build": "lt build src/styles/lopo src/styles/lopo.css"
   }
 }
 ```
 
-接下来，导出默认主题，如此你可以对其进行深度改造：
+::: tip 命令行说明
+`lt eject [将默认样式导出在该目录下]`
+
+`lt build [样式所在目录] [编译后样式存放文件]`
+:::
+
+接下来，导出默认主题：
 
 ```bash
-yarn lt
+yarn theme:eject
+
+# 或者
+
+npm run theme:eject
+```
+
+
+然后，打开 `src/styles/lopo` 目录，开始主题改造：
+
+![](./images/2018-09-06-10-39-24.png)
+
+主题改造好了，要生成可用的样式文件：
+
+```bash
+yarn theme:build
+
+# 或者
+
+npm run theme:build
+```
+
+最后，在项目的入口文件，比如 `src/main.js` 引入编译好的样式文件即可：
+
+```js
+import './styles/lopo.css'
 ```
