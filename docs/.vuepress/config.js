@@ -56,7 +56,8 @@ module.exports = {
           '/components/Rate',
           '/components/Switch',
           '/components/Counter',
-          '/components/Choose'
+          '/components/Choose',
+          '/components/Input'
         ]
       },
       {

@@ -279,15 +279,15 @@ export default {
 
 ### Props
 
-属性        | 说明                                                  | 类型                                       | 默认值
-------------|-------------------------------------------------------|--------------------------------------------|--------
-chosenValue | 选中值，可使用 `v-model` 双向绑定                      | any                                        | -
-value       | 当前值                                                | any                                        | -
-primaryKey  | 主键，当 `value` 为对象时，可附加主键，以唯一标识 `value` | string \| number \| value => primaryKey              | -
-type        | 类型                                                  | `auto` \| `radio` \| `checkbox` \| `agree` | auto
-shape       | 形状                                                  | `auto` \| `square` \| `circle`             | auto
-block       | 是否块级展示                                          | boolean                                    | false
-disabled    | 是否禁用状态                                          | boolean                                    | false
+属性        | 说明                                                   | 类型                                       | 默认值
+------------|--------------------------------------------------------|--------------------------------------------|--------
+chosenValue | 选中值，可使用 `v-model` 双向绑定                       | any                                        | -
+value       | 当前值                                                 | any                                        | -
+primaryKey  | 主键，当 `value` 为对象时，可附加主键，以唯一标识 `value` | string \| number \| value => primaryKey    | -
+type        | 类型                                                   | `auto` \| `radio` \| `checkbox` \| `agree` | auto
+shape       | 形状                                                   | `auto` \| `square` \| `circle`             | auto
+block       | 是否块级展示                                           | boolean                                    | false
+disabled    | 是否禁用状态                                           | boolean                                    | false
 
 ### Slots
 
