@@ -12,12 +12,11 @@
   width: 100%;
   display: flex;
   align-items: center;
-  height: $action-bar-height;
   background: white;
-  z-index: 10;
+  height: $action-bar-height;
+  z-index: $action-bar-z-index;
   font-size: $font-size-caption;
-  hairline(top);
-  &.borderless {
-    hairline-remove(top);
+  &:not(.no-border) {
+    hairline(top);
   }
 }
