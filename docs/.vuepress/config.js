@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Lopo',
   description: '这是一个基于 Vue 的移动端 UI 组件库，希望给你柳暗花明又一村的感觉！',
+  base: '/lopo/',
   chainWebpack(config) {
     config.module
       .rule('js')
@@ -50,6 +51,15 @@ module.exports = {
         ]
       },
       {
+        title: '数据展示',
+        collapsable: false,
+        children: [
+          '/components/List',
+          '/components/ListItem',
+          '/components/Preview'
+        ]
+      },
+      {
         title: '表单组件',
         collapsable: false,
         children: [
@@ -57,7 +67,9 @@ module.exports = {
           '/components/Switch',
           '/components/Counter',
           '/components/Choose',
-          '/components/Input'
+          '/components/Input',
+          '/components/Form',
+          '/components/Field'
         ]
       },
       {

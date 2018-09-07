@@ -29,6 +29,7 @@
     "build": "vue-cli-service build --report --no-clean --target lib --name lopo src/index.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:deploy": "yarn docs:build & gh-pages -d docs/.vuepress/dist",
     "com": "node scripts/component.js"
   },
   "dependencies": {
@@ -53,6 +54,7 @@
     "commander": "^2.17.1",
     "eslint": "^5.1.0",
     "fs-extra": "^7.0.0",
+    "gh-pages": "^1.2.0",
     "globby": "^8.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",

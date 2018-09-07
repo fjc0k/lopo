@@ -225,7 +225,7 @@
     <l-switch />, <l-switch style="color:red;" />
 
     <h3>Toast</h3>
-    <l-button mini @click="$toast.loading('加载中...')">Loading</l-button>,
+    <l-button mini @click="handleLoadingClick">Loading</l-button>,
     <l-button mini @click="$toast.success('加载成功')">Success</l-button>,
     <l-button mini @click="$toast.error('加载失败')">Error</l-button>,
     <l-button mini @click="$toast('内容写错了')">Toast</l-button>,
@@ -479,6 +479,14 @@ export default {
   }),
 
   methods: {
+    handleLoadingClick() {
+      this.$loading('加载中', 200)
+        .then(loading => {
+          setTimeout(() => {
+            loading.hide()
+          }, 100)
+        })
+    },
     handleClick() {
       const l = this.$toast.fail('请输入正确的手机号码')
       setTimeout(() => {
