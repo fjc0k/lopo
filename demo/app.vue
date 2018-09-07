@@ -66,7 +66,7 @@
     <h3>Form</h3>
     <l-spacing>
       <l-form v-bind="form1">
-        <l-field label="姓名" prop="name" extra="@163.com">
+        <l-field label="姓名" desc="edk" prop="name" extra="@163.com">
           <l-input v-model="form1.model.name" placeholder="输入你的姓名"></l-input>
         </l-field>
         <l-field label="电话号码" icon="l-star-fill" prop="phone">

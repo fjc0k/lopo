@@ -55,8 +55,8 @@ module.exports = {
         collapsable: false,
         children: [
           '/components/List',
-          '/components/ListItem',
-          '/components/Preview'
+          '/components/Preview',
+          '/components/Price'
         ]
       },
       {
@@ -68,15 +68,7 @@ module.exports = {
           '/components/Counter',
           '/components/Choose',
           '/components/Input',
-          '/components/Form',
-          '/components/Field'
-        ]
-      },
-      {
-        title: '商城组件',
-        collapsable: false,
-        children: [
-          '/components/Price'
+          '/components/Form'
         ]
       }
     ]

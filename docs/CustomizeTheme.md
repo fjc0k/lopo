@@ -41,10 +41,17 @@ yarn theme:eject
 npm run theme:eject
 ```
 
-
 然后，打开 `src/styles/lopo` 目录，开始主题改造：
 
-![](./images/2018-09-06-10-39-24.png)
+```bash
+src
+└─ styles
+ 	└─ lopo
+ 	 	├─ components     # 组件样式目录
+ 	 	├─ mixins.styl    # 混入样式文件
+ 	 	├─ settings.styl  # 混入样式 + 变量文件
+ 	 	└─ variables.styl # 变量文件
+```
 
 主题改造好了，要生成可用的样式文件：
 
