@@ -43,7 +43,9 @@ export default createComponent({
       scrollIntoView(this.$el, {
         scrollMode: 'if-needed',
         behavior: 'smooth',
+        block: 'center',
         inline: 'center',
+        boundary: this.Tabs && this.Tabs.$refs.tabs,
         ...options
       })
     },

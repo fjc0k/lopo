@@ -1,6 +1,13 @@
 <template>
   <div :class="_.head">
-
+    <div :class="_.main" v-if="$slots.default">
+      <slot />
+    </div>
+    <div :class="_.extra" v-if="$slots.extra || $isNotEmpty(extra)">
+      <slot name="extra">
+        {{ extra }}
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -8,7 +15,11 @@
 import { createComponent } from '../_utils'
 
 export default createComponent({
-  name: 'Head'
+  name: 'Head',
+
+  props: {
+    extra: null
+  }
 })
 </script>
 

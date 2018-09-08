@@ -39,7 +39,8 @@ export default createComponent({
         if (activeVNode) {
           this.activeIndex = activeVNode.index
           activeVNode.scrollIntoView({
-            behavior: 'instant'
+            behavior: 'instant',
+            boundary: this.$refs.tabs
           })
         }
       })
@@ -50,7 +51,7 @@ export default createComponent({
     const { _, $slots: { default: children } } = this
     return (
       <div class={_.tabs}>
-        <div class={_.header}>
+        <div class={_.header} ref="tabs">
           <IndexNodes nodes={children} />
         </div>
         {h(

@@ -1,5 +1,27 @@
 @require '../settings';
 
 .head {
+  reset: base;
+  display: flex;
+  align-items: stretch;
+  min-height: 22px;
+  margin: .77em 0 .3em;
+  padding: 0 $h-spacing-lg;
+  font-size: $font-size-base;
+  color: $color-text-caption;
+}
 
+.main {
+  flex-grow: 1000;
+  display: flex;
+  align-items: center;
+  text-wrap: true;
+}
+
+.extra {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

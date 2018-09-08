@@ -39,30 +39,33 @@ module.exports = {
       }
     ],
     sidebar: [
-      '/QuickStart',
-      '/CustomizeTheme',
+      '/components/QuickStart',
+      '/components/CustomizeTheme',
       {
-        title: '基础组件',
+        title: '布局组件',
         collapsable: false,
         children: [
-          '/components/Spacing',
-          '/components/Icon',
-          '/components/Button'
+          '/components/Spacing'
         ]
       },
       {
-        title: '数据展示',
+        title: '数据展示组件',
         collapsable: false,
         children: [
+          '/components/Icon',
+          '/components/Carousel',
           '/components/List',
           '/components/Preview',
-          '/components/Price'
+          '/components/Price',
+          '/components/Head',
+          '/components/Foot'
         ]
       },
       {
         title: '表单组件',
         collapsable: false,
         children: [
+          '/components/Button',
           '/components/Rate',
           '/components/Switch',
           '/components/Counter',

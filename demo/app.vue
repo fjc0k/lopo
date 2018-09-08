@@ -1,5 +1,13 @@
 <template>
   <div>
+    <h3>Head</h3>
+    <l-head extra="+">个人信息</l-head>
+    <l-list longDivider>
+      <l-list-item>方剑成</l-list-item>
+      <l-list-item>方剑成</l-list-item>
+    </l-list>
+    <l-foot extra="dd">注意</l-foot>
+
     <h3>Input</h3>
     <l-input type="digital" placeholder="输入数字" />
 
@@ -64,6 +72,7 @@
     </l-tip> -->
 
     <h3>Form</h3>
+    <l-head>基本信息</l-head>
     <l-spacing>
       <l-form v-bind="form1">
         <l-field label="姓名" desc="edk" prop="name" extra="@163.com">
