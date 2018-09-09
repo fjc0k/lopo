@@ -1,0 +1,17 @@
+@require '../settings';
+
+.wrapper {
+  overflow: hidden;
+}
+
+.view {
+  transition-property: transform;
+}
+
+.x > .view {
+  display: flex;
+  flex-wrap: nowrap;
+  > * {
+    flex-shrink: 0;
+  }
+}

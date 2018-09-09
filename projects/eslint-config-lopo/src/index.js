@@ -58,6 +58,15 @@ module.exports = {
     'prefer-template': 2,
 
     // 操作符放前面
-    'operator-linebreak': [2, 'before']
+    'operator-linebreak': [2, 'before'],
+
+    // 允许操作符混合
+    'no-mixed-operators': 0,
+
+    // 允许 void
+    'no-void': 0,
+
+    // 仅在必要时指明进制
+    radix: [2, 'as-needed']
   }
 }

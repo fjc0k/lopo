@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Lopo from '../src'
-import App from './app.vue'
+// import App from './app.vue'
 
 Vue.use(VueRouter)
 Vue.use(Lopo)
@@ -13,8 +13,9 @@ Vue.use(Lopo)
 // 我们晚点再讨论嵌套路由。
 const routes = [
   { path: '/', component: { render: h => h('div', 'index') } },
-  { path: '/foo', component: require('./foo.vue').default },
-  { path: '/bar', component: require('./bar.vue').default }
+  { path: '/foo', component: () => import('./foo.vue') },
+  { path: '/bar', component: () => import('./bar.vue') },
+  { path: '/alloytouch', component: () => import('./alloytouch.vue') }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -27,5 +28,5 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h('router-view')
 })
