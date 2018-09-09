@@ -1,14 +1,17 @@
 @require '../settings';
 
 .wrapper {
+  z-index: 1;
+  height: 100%;
   overflow: hidden;
 }
 
-.view {
-  transition-property: transform;
+.vertical > .view {
+  display: flex;
+  flex-direction: column;
 }
 
-.x > .view {
+.horizontal > .view {
   display: flex;
   flex-wrap: nowrap;
   > * {

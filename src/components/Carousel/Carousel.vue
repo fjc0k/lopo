@@ -1,26 +1,40 @@
 <template>
-  <div :class="['swiper-container', _.carousel]">
-    <div class="swiper-wrapper">
+  <div :class="[_.carousel, _[direction]]">
+    <Scroll
+      v-model="localIndex"
+      :direction="direction"
+      :options="localOptions"
+      :sticky="true"
+      :loop="loop"
+      ref="scroll">
       <slot />
+    </Scroll>
+    <div :class="_.indicator" v-if="indicator">
+      <div
+        :class="[_.dot, i - 1 === localIndex && _.active]"
+        v-for="i in $slots.default.length"
+        :key="i"
+      />
     </div>
-    <div class="swiper-pagination" v-if="indicator" />
   </div>
 </template>
 
 <script>
-import { Swiper, Pagination, Autoplay } from 'swiper/dist/js/swiper.esm.js'
+import Scroll from '../Scroll/Scroll.vue'
 import { createComponent } from '../_utils'
-
-Swiper.use([Pagination, Autoplay])
 
 export default createComponent({
   name: 'Carousel',
 
   inheritAttrs: false,
 
+  components: {
+    Scroll
+  },
+
   model: {
     prop: 'index',
-    event: 'change'
+    event: 'input'
   },
 
   props: {
@@ -30,7 +44,7 @@ export default createComponent({
       transform: parseInt,
       on: {
         receive(index) {
-          this.swiper && this.swiper.slideTo(index)
+          this.$refs.scroll && this.$refs.scroll.view && this.$refs.scroll.view.toIndex(index)
         }
       }
     },
@@ -61,36 +75,35 @@ export default createComponent({
     }
   },
 
-  mounted() {
-    this.$nextTick(() => {
-      const self = this
-      this.swiper = new Swiper(this.$el, {
+  computed: {
+    localOptions() {
+      // const self = this
+      return {
         ...this.options,
-        init: true, // Whether Swiper should be initialised automatically when you create an instance.
-        initialSlide: this.index, // Index number of initial slide.
-        direction: this.direction, // Could be 'horizontal' or 'vertical' (for vertical slider).
-        loop: this.loop,
-        autoplay: this.autoplay && {
-          delay: this.interval
-        },
-        pagination: this.indicator && {
-          el: '.swiper-pagination'
-        },
-        on: {
-          ...this.options.on,
-          init() {
-            self.$emit('ready', this)
-          },
-          transitionEnd() {
-            self.sendIndex(this.realIndex)
+        inertia: false,
+        touchEnd(e, value, index) {
+          // if (self.loop) {
+          //   const children = self.$slots.default
+          //   const total = children.length
+          //   console.log(children[0].elm)
+          // }
+          const nextValue = -(index * this.step)
+          const dv = value - nextValue
+          if (value < this.min) {
+            this.to(this.min)
+          } else if (value > this.max) {
+            this.to(this.max)
+          } else if (Math.abs(dv) < 30) {
+            this.to(nextValue)
+          } else if (dv > 0) {
+            this.to(nextValue + this.step)
+          } else {
+            this.to(nextValue - this.step)
           }
+          return false
         }
-      })
-    })
-  },
-
-  beforeDestroy() {
-    this.swiper && this.swiper.destroy()
+      }
+    }
   }
 })
 </script>

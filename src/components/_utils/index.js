@@ -1,6 +1,7 @@
 export { default as chunk } from './chunk'
 export { default as createComponent } from './createComponent'
 export { default as dateToArray } from './dateToArray'
+export { default as dom } from './dom'
 export { default as formatDate } from './formatDate'
 export { default as isEmail } from './isEmail'
 export { default as isNumeric } from './isNumeric'
