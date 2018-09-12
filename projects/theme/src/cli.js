@@ -60,7 +60,8 @@ program
                   }
                 }),
                 imageInliner({
-                  maxFileSize: 0
+                  maxFileSize: 0,
+                  assetPaths: [stylDir]
                 }),
                 autoprefixer({
                   browsers: [
