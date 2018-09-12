@@ -7,6 +7,7 @@ const globby = require('globby')
 const stylus = require('stylus')
 const postcss = require('postcss')
 const postcssModules = require('postcss-modules')
+const imageInliner = require('postcss-image-inliner')
 const autoprefixer = require('autoprefixer')
 const { kebabCase } = require('lodash')
 
@@ -57,6 +58,9 @@ program
                       name === localName ? '' : localName
                     ].filter(v => !!v).join('-')
                   }
+                }),
+                imageInliner({
+                  maxFileSize: 0
                 }),
                 autoprefixer({
                   browsers: [
