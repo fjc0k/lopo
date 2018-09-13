@@ -350,6 +350,7 @@
         <l-pick-address
           v-model="pickDddress"
           placeholder="选择地址"
+          :filterProvince="({ province }) => province.label === '贵阳'"
         >
           <div slot="desc">选择正确的收货地址</div>
         </l-pick-address>

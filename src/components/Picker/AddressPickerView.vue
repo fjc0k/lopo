@@ -3,14 +3,15 @@
     v-model="localValue"
     v-bind="$attrs"
     v-on="$passListeners('input')"
-    :data="data"
+    :data="divisionData"
     ref="view"
   />
 </template>
 
 <script>
-import divisionData from '@lopo/china-division-data'
+/* eslint max-nested-callbacks: 0 */
 import { createComponent } from '../_utils'
+import { normalizeData } from './_utils'
 import PickerView from './PickerView.vue'
 
 export default createComponent({
@@ -25,6 +26,11 @@ export default createComponent({
       type: Array,
       default: () => [],
       transform: value => value.slice()
+    },
+    data: {
+      type: Array,
+      default: () => [],
+      transform: normalizeData
     },
     mode: {
       type: String,
@@ -43,8 +49,9 @@ export default createComponent({
     noDistrict() {
       return this.mode === 'city'
     },
-    data() {
+    divisionData() {
       const {
+        localData,
         filterProvince,
         filterCity,
         filterDistrict,
@@ -52,31 +59,36 @@ export default createComponent({
         noCity,
         noDistrict
       } = this
-      let data = divisionData
-      if (mainland) {
-        data = data.filter(([province]) => !/香港|澳门|台湾/.test(province))
-      }
-      if (filterProvince) {
-        data = data.filter(([province]) => filterProvince({ province }))
-      }
-      return [
-        data.map(([province, cities]) => {
-          if (!noCity && filterCity) {
-            cities = cities.filter(([city]) => filterCity({ province, city }))
-          }
-          return [
-            province,
-            noCity ? undefined : [
-              cities.map(([city, districts]) => {
-                if (!noDistrict && filterDistrict && districts) {
-                  districts = districts.filter(([district]) => filterDistrict({ province, city, district }))
-                }
-                return [city, noDistrict ? undefined : districts && [districts]]
+
+      const provinces = [[]]
+
+      localData[0].forEach(province => {
+        if (mainland && /香港|澳门|台湾/.test(province.label)) return
+        if (filterProvince && !filterProvince({ province })) return
+        provinces[0].push({
+          ...province,
+          children: (noCity || !province.children || !province.children[0]) ? undefined : (() => {
+            const cities = [[]]
+            province.children[0].forEach(city => {
+              if (filterCity && !filterCity({ province, city })) return
+              cities[0].push({
+                ...city,
+                children: (noDistrict || !city.children || !city.children[0]) ? undefined : (() => {
+                  const districts = [[]]
+                  city.children[0].forEach(district => {
+                    if (filterDistrict && !filterDistrict({ province, city, district })) return
+                    districts[0].push(district)
+                  })
+                  return districts
+                })()
               })
-            ]
-          ]
+            })
+            return cities
+          })()
         })
-      ]
+      })
+
+      return provinces
     }
   },
 
