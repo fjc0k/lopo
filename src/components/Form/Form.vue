@@ -3,7 +3,7 @@
     <slot />
     <Toast
       v-model="toastVisible"
-      :message="validResult.message"
+      :message="toastMessage"
       position="top"
     />
   </List>
@@ -46,7 +46,8 @@ export default createComponent({
   data: () => ({
     validator: new Validator(),
     validResult: {},
-    toastVisible: false
+    toastVisible: false,
+    toastMessage: ''
   }),
 
   watch: {
@@ -63,7 +64,10 @@ export default createComponent({
     validate(model = this.model) {
       return this.validator.validate(model).then(result => {
         this.validResult = result
-        if (!result.valid) {
+        if (result.valid) {
+          this.toastVisible = false
+        } else {
+          this.toastMessage = result.message
           this.toastVisible = true
         }
         this.$emit(result.valid ? 'valid' : 'invalid', result)

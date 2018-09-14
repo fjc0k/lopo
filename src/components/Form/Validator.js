@@ -38,10 +38,9 @@ export default class Validator {
     this.rules = rules
   }
 
-  async validateValue(model, key) {
+  async validateValue(model, key, rule) {
     const { rules } = this
     let value = model[key]
-    const rule = rules[key]
     const { required, type, min, max, len, trim, custom } = rule
 
     // trim?
@@ -50,16 +49,13 @@ export default class Validator {
     // required?
     if (isNil(value) || value === '') return !required
 
-    // to string
-    value = String(value)
-
     // type?
     if (type && !typeValidators[type](value)) return false
 
     // range?
     if (isNumeric(min) || isNumeric(max)) {
       const _value = (
-        isNumeric(value) ? value
+        (type === 'number' || type === 'integer') ? value
           : isArray(value) ? value.length
             : String(value).length
       )
@@ -87,10 +83,12 @@ export default class Validator {
     const keys = Object.keys(model)
     for (let i = 0, len = keys.length; i < len; i++) {
       const key = keys[i]
-      const rules = castArray(this.rules[key])
+      let rules = this.rules[key]
+      if (!rules) continue
+      rules = castArray(rules)
       for (let i2 = 0, len2 = rules.length; i2 < len2; i2++) {
         const rule = rules[i2]
-        const valid = await this.validateValue(model, key)
+        const valid = await this.validateValue(model, key, rule)
         if (!valid) {
           return {
             valid: false,
