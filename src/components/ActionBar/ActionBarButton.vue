@@ -1,7 +1,7 @@
 <template>
   <XButton
     :class="_['action-bar-button']"
-    :shape="square"
+    shape="square"
     noBorder
     v-bind="$attrs"
     v-on="$listeners">

@@ -7,9 +7,10 @@
     <PassSlots />
     <component
       :is="view"
+      :detail.sync="stagedDetail"
       v-model="stagedValue"
       v-bind="$attrs"
-      v-on="$passListeners('input')"
+      v-on="$passListeners(['input', 'update:detail'])"
       ref="view"
     />
   </Sheet>
@@ -47,6 +48,11 @@ export default createComponent({
       default: () => [],
       transform: value => value.slice()
     },
+    detail: {
+      type: Array,
+      default: () => [],
+      sync: true
+    },
     view: {
       type: null,
       default: () => PickerView
@@ -55,7 +61,8 @@ export default createComponent({
   },
 
   data: () => ({
-    stagedValue: []
+    stagedValue: [],
+    stagedDetail: []
   }),
 
   created() {
@@ -63,6 +70,12 @@ export default createComponent({
     this.$on('after-show', () => {
       this.$refs.view.update()
     })
+  },
+
+  mounted() {
+    setTimeout(() => {
+      this.sendDetail(this.stagedDetail)
+    }, 15)
   },
 
   methods: {
@@ -73,6 +86,7 @@ export default createComponent({
     handleConfirm() {
       this.$emit('confirm', ...arguments)
       this.sendValue(this.stagedValue.slice())
+      this.sendDetail(this.stagedDetail)
     }
   }
 })

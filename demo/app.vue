@@ -351,13 +351,14 @@
           v-model="pickDddress"
           placeholder="选择地址"
           :filterProvince="({ province }) => province.label === '贵阳'"
+          :data="[['贵阳']]"
         >
           <div slot="desc">选择正确的收货地址</div>
         </l-pick-address>
       </l-list-item>
     </l-list>
 
-    <l-tab-bar>
+    <!-- <l-tab-bar>
       <l-tab-bar-item icon="l-star-fill" :badge="{ text: 5 }">今日新闻</l-tab-bar-item>
       <l-tab-bar-item icon="lopo-cross" v-if="viewerIndex===1">
         <div slot="icon" slot-scope="{ active }">
@@ -365,8 +366,10 @@
         </div>
       </l-tab-bar-item>
       <l-tab-bar-item icon="lopo-star" activeIcon="lopo-loading" :badge="{ dot: true }">我的收藏</l-tab-bar-item>
-    </l-tab-bar>
-
+    </l-tab-bar> -->
+    <l-action-bar>
+      <l-action-bar-button type="primary">提交申请</l-action-bar-button>
+    </l-action-bar>
   </div>
 </template>
 
@@ -407,7 +410,7 @@ export default {
       { url: 'https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg' },
       'https://placekitten.com/200/286'
     ],
-    pickDddress: [],
+    pickDddress: ['贵阳'],
     pickDate: [],
     pickerVisible: false,
     imagePickerFiles: [],

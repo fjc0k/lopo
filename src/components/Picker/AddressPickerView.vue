@@ -60,6 +60,8 @@ export default createComponent({
         noDistrict
       } = this
 
+      if (!localData || !localData[0]) return []
+
       const provinces = [[]]
 
       localData[0].forEach(province => {
