@@ -55,6 +55,7 @@ export default componentDefinition => {
         }
       },
       $attrsAll() {
+        // vue 的 $attrs 并不会将 value 纳入
         return {
           value: this.$vnode.data.model.value,
           ...this.$attrs
