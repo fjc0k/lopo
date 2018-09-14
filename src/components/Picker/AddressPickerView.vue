@@ -66,19 +66,19 @@ export default createComponent({
 
       localData[0].forEach(province => {
         if (mainland && /香港|澳门|台湾/.test(province.label)) return
-        if (filterProvince && !filterProvince({ province })) return
+        if (filterProvince && filterProvince({ province }) === false) return
         provinces[0].push({
           ...province,
           children: (noCity || !province.children || !province.children[0]) ? undefined : (() => {
             const cities = [[]]
             province.children[0].forEach(city => {
-              if (filterCity && !filterCity({ province, city })) return
+              if (filterCity && filterCity({ province, city }) === false) return
               cities[0].push({
                 ...city,
                 children: (noDistrict || !city.children || !city.children[0]) ? undefined : (() => {
                   const districts = [[]]
                   city.children[0].forEach(district => {
-                    if (filterDistrict && !filterDistrict({ province, city, district })) return
+                    if (filterDistrict && filterDistrict({ province, city, district }) === false) return
                     districts[0].push(district)
                   })
                   return districts

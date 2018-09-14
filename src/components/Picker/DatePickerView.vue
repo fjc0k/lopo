@@ -162,7 +162,7 @@ export default createComponent({
       } = this
       let years = range(localStartDate[0], localEndDate[0] + 1)
       if (filterYear) {
-        years = years.filter(year => filterYear({ year }))
+        years = years.filter(year => filterYear({ year }) !== false)
       }
       return years.map(year => {
         return {
@@ -177,7 +177,7 @@ export default createComponent({
               months = months.filter(month => month <= localEndDate[1])
             }
             if (filterMonth) {
-              months = months.filter(month => filterMonth({ year, month }))
+              months = months.filter(month => filterMonth({ year, month }) !== false)
             }
             return [months.map(month => {
               return {
@@ -192,7 +192,7 @@ export default createComponent({
                     days = days.filter(day => day <= localEndDate[2])
                   }
                   if (filterDay) {
-                    days = days.filter(day => filterDay({ year, month, day }))
+                    days = days.filter(day => filterDay({ year, month, day }) !== false)
                   }
                   return [days.map(day => {
                     return {
@@ -227,7 +227,7 @@ export default createComponent({
           session.children = (() => {
             let hours = RANGE_12_0
             if (filterHour) {
-              hours = hours.filter(hour => filterHour({ session: sessionValue, hour: hour || 12 }))
+              hours = hours.filter(hour => filterHour({ session: sessionValue, hour: hour || 12 }) !== false)
             }
             return [hours.map(hour => {
               const realHour = hour || 12
@@ -237,7 +237,7 @@ export default createComponent({
                 children: (() => {
                   let minutes = RANGE_60
                   if (filterMinute) {
-                    minutes = minutes.filter(minute => filterMinute({ session: sessionValue, hour: realHour, minute }))
+                    minutes = minutes.filter(minute => filterMinute({ session: sessionValue, hour: realHour, minute }) !== false)
                   }
                   return [minutes.map(minute => {
                     return {
@@ -256,7 +256,7 @@ export default createComponent({
       // 24 小时制
       let hours = RANGE_24
       if (filterHour) {
-        hours = hours.filter(hour => filterHour({ hour }))
+        hours = hours.filter(hour => filterHour({ hour }) !== false)
       }
       return hours.map(hour => {
         return {
@@ -265,7 +265,7 @@ export default createComponent({
           children: (() => {
             let minutes = RANGE_60
             if (filterMinute) {
-              minutes = minutes.filter(minute => filterMinute({ hour, minute }))
+              minutes = minutes.filter(minute => filterMinute({ hour, minute }) !== false)
             }
             return [minutes.map(minute => {
               return {
@@ -284,7 +284,7 @@ export default createComponent({
       } = this
       let seconds = RANGE_60
       if (filterSecond) {
-        seconds = seconds.filter(second => filterSecond({ second }))
+        seconds = seconds.filter(second => filterSecond({ second }) !== false)
       }
       return seconds.map(second => {
         return {
