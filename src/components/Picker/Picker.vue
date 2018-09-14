@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { isArray } from 'lodash'
 import { createComponent } from '../_utils'
 import Sheet from '../Sheet/Sheet.vue'
 import PickerView from './PickerView.vue'
@@ -44,9 +45,13 @@ export default createComponent({
 
   props: {
     value: {
-      type: Array,
+      type: null,
       default: () => [],
-      transform: value => value.slice()
+      on: {
+        receive(value) {
+          this.stagedValue = isArray(value) ? value.slice() : value
+        }
+      }
     },
     detail: {
       type: Array,
@@ -66,7 +71,6 @@ export default createComponent({
   }),
 
   created() {
-    this.stagedValue = this.localValue.slice()
     this.$on('after-show', () => {
       this.$refs.view.update()
     })
@@ -80,12 +84,12 @@ export default createComponent({
 
   methods: {
     handleCancel() {
-      this.stagedValue = this.localValue.slice()
+      this.stagedValue = isArray(this.value) ? this.value.slice() : this.value
       this.$emit('cancel', ...arguments)
     },
     handleConfirm() {
       this.$emit('confirm', ...arguments)
-      this.sendValue(this.stagedValue.slice())
+      this.sendValue(isArray(this.stagedValue) ? this.stagedValue.slice() : this.stagedValue)
       this.sendDetail(this.stagedDetail)
     }
   }

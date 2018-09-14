@@ -74,7 +74,14 @@ export default createComponent({
     value: {
       type: Array,
       default: () => [],
-      transform: value => value.slice()
+      transform: value => value.slice(),
+      on: {
+        receive() {
+          // todo:当 value 由上层组件改变时
+          // this.selectedIndexes = value.map((item, index) => {
+          // })
+        }
+      }
     },
     detail: {
       type: Array,

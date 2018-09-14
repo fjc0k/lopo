@@ -1,7 +1,7 @@
 <template>
   <Picker
     :view="SinglePickerView"
-    v-bind="$attrs"
+    v-bind="$attrsAll"
     v-on="$listeners">
     <PassSlots />
   </Picker>

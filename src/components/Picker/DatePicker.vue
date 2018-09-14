@@ -1,7 +1,7 @@
 <template>
   <Picker
     :view="DatePickerView"
-    v-bind="$attrs"
+    v-bind="$attrsAll"
     v-on="$listeners">
     <PassSlots />
   </Picker>

@@ -53,6 +53,12 @@ export default componentDefinition => {
           ...(this.$style || {}),
           ...(this.$options.classNames || {})
         }
+      },
+      $attrsAll() {
+        return {
+          value: this.$vnode.data.model.value,
+          ...this.$attrs
+        }
       }
     },
     methods: {

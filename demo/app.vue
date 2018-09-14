@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>PickOne</h3>
+    <l-pick-one placeholder="选择一个" v-model="pickOne" :data="pickOneData" />
+
     <h3>Form</h3>
     <l-form v-bind="form" ref="form">
       <l-field label="姓名" prop="name">
@@ -15,6 +18,8 @@ export default {
   name: 'app',
 
   data: () => ({
+    pickOne: 2,
+    pickOneData: [['二', 2], 3, 4, 5],
     form: {
       model: {
         name: '',

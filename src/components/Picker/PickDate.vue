@@ -1,5 +1,5 @@
 <template>
-  <Pick :picker="DatePicker" v-bind="$attrs" v-on="$listeners">
+  <Pick :picker="DatePicker" v-bind="$attrsAll" v-on="$listeners">
     <PassSlots />
   </Pick>
 </template>

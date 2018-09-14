@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { isArray } from 'lodash'
+import { isArray, isNil } from 'lodash'
 import { createComponent } from '../_utils'
 import XInput from '../Input/Input.vue'
 import Picker from './Picker.vue'
@@ -41,7 +41,7 @@ export default createComponent({
 
   props: {
     value: {
-      type: Array,
+      type: null,
       default: () => []
     },
     detail: {
@@ -49,10 +49,11 @@ export default createComponent({
       default: () => [],
       sync: true
     },
-    format: {
-      type: Function,
-      default: value => isArray(value) ? value.join(', ') : value
+    separator: {
+      type: String,
+      default: ''
     },
+    format: Function,
     placeholder: null,
     picker: {
       type: null,
@@ -66,10 +67,17 @@ export default createComponent({
   },
 
   computed: {
+    formatter() {
+      return this.format ? this.format : (value, detail) => {
+        return isArray(detail)
+          ? detail.map(item => item && item.label).join(this.separator)
+          : value
+      }
+    },
     formattedValue() {
-      const { format, localValue, localDetail } = this
-      return localValue && localValue.length
-        ? (format ? format(localValue, localDetail) : localValue)
+      const { formatter, localValue, localDetail } = this
+      return (isArray(localValue) ? !!localValue.length : !isNil(localValue))
+        ? formatter(localValue, localDetail)
         : ''
     }
   },
