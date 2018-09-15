@@ -76,7 +76,7 @@ export default createComponent({
     },
     formattedValue() {
       const { formatter, localValue, localDetail } = this
-      return (isArray(localValue) ? !!localValue.length : !isNil(localValue))
+      return (isArray(localValue) ? !!localValue.length : localValue !== '' && !isNil(localValue))
         ? formatter(localValue, localDetail)
         : ''
     }

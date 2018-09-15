@@ -234,6 +234,7 @@ export default createComponent({
       const parentIndexes = this.parentIndexes
       const currentGroup = localData[groupIndex]
       const selectedItem = currentGroup[selectedIndex]
+      if (!selectedItem) return
       localValue[groupIndex] = selectedItem.value
       this.selectedIndexes.splice(groupIndex, 1, selectedIndex)
 

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>PickAddress</h3>
+    <l-pick-address v-model="pickAddr.model.value" :data="AreaData" placeholder="选择地址"></l-pick-address>
+
     <h3>PickOne</h3>
     <l-pick-one placeholder="选择一个" v-model="pickOne" :data="pickOneData" />
 
@@ -14,10 +17,18 @@
 </template>
 
 <script>
+import AreaData from './areaData'
+
 export default {
   name: 'app',
 
   data: () => ({
+    pickAddr: {
+      model: {
+        value: []
+      }
+    },
+    AreaData: [],
     pickOne: 2,
     pickOneData: [['二', 2], 3, 4, 5],
     form: {
@@ -41,7 +52,13 @@ export default {
         ]
       }
     }
-  })
+  }),
+
+  mounted() {
+    setTimeout(() => {
+      this.AreaData = AreaData
+    }, 2000)
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 {
   "name": "lopo",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "一款基于 Vue 的精选移动端 UI 组件库。",
   "main": "dist/lopo.common.js",
   "unpkg": "dist/lopo.umd.min.js",

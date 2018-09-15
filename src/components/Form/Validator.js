@@ -47,7 +47,7 @@ export default class Validator {
     if (trim && isString(value)) value = value.trim()
 
     // required?
-    if (isNil(value) || value === '') return !required
+    if (isNil(value) || value === '' || (isArray(value) && !value.length)) return !required
 
     // type?
     if (type && !typeValidators[type](value)) return false
