@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Swiper, Pagination, Autoplay } from 'swiper/dist/js/swiper.esm.js'
+import { Swiper, Pagination, Autoplay } from 'swiper/dist/js/swiper.js'
 import { createComponent } from '../_utils'
 
 Swiper.use([Pagination, Autoplay])
