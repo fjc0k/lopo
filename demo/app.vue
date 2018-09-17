@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>ImagePicker</h3>
+    <l-image-picker></l-image-picker>
+
     <h3>PickAddress</h3>
     <l-pick-address v-model="pickAddr.model.value" :data="AreaData" placeholder="选择地址"></l-pick-address>
 

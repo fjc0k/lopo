@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { Swiper } from 'swiper/dist/js/swiper.js'
+import Swiper from 'swiper/dist/js/swiper.js'
 import { createComponent } from '../_utils'
 
 export default createComponent({

@@ -9,7 +9,8 @@
             type="file"
             :accept="accept"
             :multiple="multiple"
-            @change="handleInputChange"
+            @click="handleAddClick"
+            @change="handleAdd"
           />
         </div>
         <template v-else-if="item">
@@ -135,7 +136,10 @@ export default createComponent({
       this.$emit('change', files, localValue)
       this.sendValue(files)
     },
-    handleInputChange({ target: { files } }) {
+    handleAddClick(e) {
+      this.$emit('add-click', { e, picker: this })
+    },
+    handleAdd({ target: { files } }) {
       toArray(files).forEach(this.parseFile)
     },
     handleImageClick(image, index) {

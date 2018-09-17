@@ -8,10 +8,8 @@
 </template>
 
 <script>
-import { Swiper, Pagination, Autoplay } from 'swiper/dist/js/swiper.js'
+import Swiper from 'swiper/dist/js/swiper.js'
 import { createComponent } from '../_utils'
-
-Swiper.use([Pagination, Autoplay])
 
 export default createComponent({
   name: 'Carousel',
