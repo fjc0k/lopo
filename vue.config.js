@@ -4,6 +4,7 @@ const { kebabCase } = require('lodash')
 const resolveRoot = path.resolve.bind(path, __dirname)
 
 module.exports = {
+  transpileDependencies: ['swiper', 'dom7', 'ssr-window'],
   chainWebpack: config => {
     // export default
     config.output.libraryExport('default')
