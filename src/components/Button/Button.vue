@@ -1,20 +1,17 @@
 <template>
-  <div :class="[_.wrapper, mini && _.mini]">
-    <button
-      v-feedback="_.active"
-      :type="nativeType"
-      :class="[
-        _.button,
-        _[type],
-        _[shape],
-        plain && _.plain,
-        mini && _.mini,
-        noBorder && _['no-border']
-      ]"
-      v-bind="$attrs"
-      @click="handleClick">
-      <slot />
-    </button>
+  <div
+    v-feedback="_.active"
+    :class="[
+      _.button,
+      _[type],
+      _[shape],
+      plain && _.plain,
+      mini && _.mini,
+      noBorder && _['no-border']
+    ]"
+    v-bind="$attrs"
+    @click="handleClick">
+    <slot />
   </div>
 </template>
 
@@ -30,10 +27,6 @@ export default createComponent({
   directives: { feedback },
 
   props: {
-    nativeType: {
-      type: String,
-      enum: ['button', 'submit', 'reset']
-    },
     type: {
       type: String,
       enum: ['default', 'primary', 'warning', 'danger']

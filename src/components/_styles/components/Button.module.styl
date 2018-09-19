@@ -1,15 +1,7 @@
 @require '../settings';
 
-.wrapper {
-  display: block;
-  &.mini {
-    display: inline-block;
-    font-size: 0;
-  }
-}
-
 .button {
-  reset: input;
+  reset: base;
   flex-center: true;
   ellipsis: 1;
   margin: auto;
@@ -18,12 +10,10 @@
   // 大小
   height: $button-height;
   font-size: $button-font-size;
-  width: 100%;
   &.mini {
     display: inline-flex;
     height: $button-height--mini;
     font-size: $button-font-size--mini;
-    width: auto;
   }
 
   // 形状
