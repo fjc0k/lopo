@@ -36,20 +36,16 @@ export default {
     pickOneData: [['二', 2], 3, 4, 5],
     form: {
       model: {
-        name: '',
-        agree: true
+        name: ''
       },
       rules: {
         name: [
           {
-            max: 5,
-            message: '大于5个'
+            min: 1,
+            message: '大于1个'
           },
           {
-            custom: ({ value }) => {
-              console.log(value)
-              return value > 20
-            },
+            max: 20,
             message: '大于20'
           }
         ]

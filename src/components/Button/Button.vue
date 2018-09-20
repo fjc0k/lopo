@@ -7,7 +7,8 @@
       _[shape],
       plain && _.plain,
       mini && _.mini,
-      noBorder && _['no-border']
+      noBorder && _['no-border'],
+      disabled && _.disabled
     ]"
     v-bind="$attrs"
     @click="handleClick">
@@ -37,11 +38,13 @@ export default createComponent({
     },
     plain: Boolean,
     mini: Boolean,
-    noBorder: Boolean
+    noBorder: Boolean,
+    disabled: Boolean
   },
 
   methods: {
     handleClick(e) {
+      if (this.disabled) return
       this.$emit('click', e)
     }
   }

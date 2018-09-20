@@ -1,10 +1,10 @@
 <template>
-  <button
+  <div
     v-feedback="_.active"
     :class="[_['dialog-button'], _[type]]"
     @click="handleClick">
     <slot />
-  </button>
+  </div>
 </template>
 
 <script>

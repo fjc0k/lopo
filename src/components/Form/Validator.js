@@ -47,19 +47,25 @@ export default class Validator {
     if (trim && isString(value)) value = value.trim()
 
     // required?
-    if (isNil(value) || value === '' || (isArray(value) && !value.length)) return !required
+    if (required && (isNil(value) || value === '' || (isArray(value) && !value.length))) {
+      return false
+    }
 
     // type?
-    if (type && !typeValidators[type](value)) return false
+    if (type && !typeValidators[type](value)) {
+      return false
+    }
 
     // range?
-    if (isNumeric(min) || isNumeric(max)) {
+    const checkMin = isNumeric(min)
+    const checkMax = isNumeric(max)
+    if (checkMin || checkMax) {
       const _value = (
         (type === 'number' || type === 'integer') ? value
           : isArray(value) ? value.length
             : String(value).length
       )
-      if (_value < min || _value > max) return false
+      if ((checkMin && _value < min) || (checkMax && _value > max)) return false
     }
 
     // len?
