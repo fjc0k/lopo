@@ -1,32 +1,25 @@
 <template>
   <div :class="[
     _['list-item'],
-    localTappable && _.tappable,
+    localFeedback && _.feedback,
     List.noDivider && _['no-divider'],
     List.longDivider && _['long-divider']
   ]" v-feedback="_.active">
-    <div :class="_.icon" v-if="$slots.icon || icon">
+    <div :class="_.header" v-if="$slots.icon || icon">
       <slot name="icon">
         <Icon :name="icon" />
       </slot>
     </div>
     <div :class="_.body">
-      <div :class="_.left" :style="leftStyle" v-if="$slots.title || title || $slots.desc || desc">
-        <div :class="_.title" v-if="$slots.title || title">
-          <slot name="title">
-            {{ title }}
-          </slot>
-        </div>
-        <div :class="_.desc" v-if="$slots.desc || desc">
-          <slot name="desc">
-            {{ desc }}
-          </slot>
-        </div>
+      <div :class="_.title" :style="titleStyle" v-if="$slots.title || $isNotEmpty(title)">
+        <slot name="title">
+          {{ title }}
+        </slot>
       </div>
       <div :class="_.value" v-if="$slots.default">
         <slot />
       </div>
-      <div :class="_.extra" v-if="$slots.extra || extra">
+      <div :class="_.extra" v-if="$slots.extra || $isNotEmpty(extra)">
         <slot name="extra">
           {{ extra }}
         </slot>
@@ -51,14 +44,13 @@ export default createComponent({
   props: {
     icon: null,
     title: null,
-    desc: null,
     extra: null,
-    leftStyle: null,
+    titleStyle: null,
     arrow: Boolean,
-    tappable: {
+    feedback: {
       type: Boolean,
-      transform(tappable) {
-        return this.arrow || tappable
+      transform(feedback) {
+        return this.arrow || feedback
       }
     }
   },

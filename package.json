@@ -25,7 +25,7 @@
     "scripts"
   ],
   "scripts": {
-    "dev": "vue-cli-service serve --copy --port 5962 demo/index.js",
+    "dev": "vue-cli-service serve --copy demo/index.js",
     "build": "vue-cli-service build --report --no-clean --target lib --name lopo src/index.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",

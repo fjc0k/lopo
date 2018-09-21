@@ -10,7 +10,7 @@
     :title="label"
     :extra="null"
     :icon="null"
-    :leftStyle="{ width: labelWidth }"
+    :titleStyle="{ width: labelWidth }"
     v-bind="$attrs">
     <PassSlots
       :exclude="['title', 'extra', 'icon']"

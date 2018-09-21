@@ -1,5 +1,18 @@
 <template>
   <div>
+    <h3>List</h3>
+    <l-list>
+      <l-list-item title="姓名" icon="l-sound" extra="18岁" arrow>方剑成</l-list-item>
+      <l-list-item title="姓名" icon="l-sound" extra="18岁" arrow>方剑成</l-list-item>
+    </l-list>
+    <br />
+    <l-form labelWidth="3em">
+      <l-field label="姓名姓名姓名姓名" icon="l-sound" extra="18岁" arrow>
+        <l-input placeholder="输入姓名" />
+      </l-field>
+      <l-field label="姓名" icon="l-sound" extra="18岁" arrow>方剑成</l-field>
+    </l-form>
+
     <h3>ImagePicker</h3>
     <l-image-picker></l-image-picker>
 
